@@ -1,2 +1,2 @@
-# LlabWorks
+# LabWorks
 Laboratory Works - polytech
