@@ -10,11 +10,12 @@ uses
 type
   TForm1 = class(TForm)
     TreeView1: TTreeView;
-    Edit1: TEdit;
     Button1: TButton;
+    Memo1: TMemo;
     Label1: TLabel;
     Label2: TLabel;
     Label3: TLabel;
+    Label4: TLabel;
     procedure Button1Click(Sender: TObject);
     procedure FormShow(Sender: TObject);
   private
@@ -35,9 +36,9 @@ var
   Form1: TForm1;
   NodeData: integer;
   TreeHead: integer;
-  TreeNode: TTreeNode;
-  CheckAdd: boolean;
-  lab1, lab2, lab3: Integer;
+
+  InputData: string;
+
   PTree : TPNode;
 
 implementation
@@ -55,48 +56,66 @@ begin
     aPNode^.PLeft := nil; { Обнуляем указатель на левого потомка. }
     aPNode^.PRight := nil; { Обнуляем указатель на правого потомка. }
 
-    CheckAdd := False;
     TreeHead := aData;
-    showMessage('1');
+    //showMessage('1');
   end
 
   else if aData <= aPNode^.Data then { Поиск места вставки в левой ветви. }
   begin
-    showMessage('left');
+    //showMessage('left');
     AddNode(aPNode^.PLeft, aData);
-    NodeData := aPNode^.PLeft.Data;
+    //NodeData := aPNode^.PLeft.Data;
 
   end
 
   else if aData > aPNode^.Data then { Поиск места вставки в правой ветви. }
   begin
-    showMessage('right');
+    //showMessage('right');
     AddNode(aPNode^.PRight, aData);
-    NodeData := aPNode^.PRight.Data;
+    //NodeData := aPNode^.PRight.Data;
 
   end;
+end;
+
+ procedure PrintTree(treenode:TTreeNode; root:TPNode);
+ var newnode : TTreeNode;
+ begin
+    if Assigned(root) then
+    begin
+       newnode := Form1.TreeView1.Items.AddChild(treenode, IntToStr(root^.Data));
+       PrintTree(newnode, root^.PLeft);
+       PrintTree(newnode, root^.PRight);
+
+    end;
+ end;
+
+procedure TreeWrite(const aPNode : TPNode);
+begin
+  if aPNode = nil then
+    exit;
+
+  TreeWrite(aPNode^.PLeft);
+  InputData := InputData + inttostr(aPNode^.Data);
+  Form1.Label2.Caption := InputData;
+  TreeWrite(aPNode^.PRight);
+
 end;
 
 procedure TForm1.Button1Click(Sender: TObject);
 var
   aPNode: TPNode ;
   Data: TData;
-
   tryAdd: Integer;
+  i: integer;
 begin
-  Data := strtoint(Edit1.text);
-  AddNode(PTree, Data);
+  for i:= 0 to Memo1.Lines.Count - 1 do
+  begin
+    Data := strtoint(Memo1.Lines[i]);
+    AddNode(PTree, Data);
+  end;
 
-  if CheckAdd = False then
-    begin
-      TreeView1.Items.Add(TreeNode, inttostr(TreeHead));
-      CheckAdd := True;
-
-    end
-  else
-    begin
-
-    end;
+  TreeWrite(PTree);
+  PrintTree(nil, PTree);
 
 end;
 
