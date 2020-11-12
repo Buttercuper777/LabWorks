@@ -14,6 +14,8 @@ type
     Label4: TLabel;
     Edit1: TEdit;
     Label1: TLabel;
+    Memo1: TMemo;
+    procedure Button1Click(Sender: TObject);
     procedure FormShow(Sender: TObject);
   private
     { Private declarations }
@@ -24,6 +26,10 @@ type
   TData = Integer;
   TPNode = ^TNode;
 
+  TreePointer = ^TPNode;
+  PPNode = ^TPNode;
+  iPointer = ^Integer;
+
   TNode = record
     Data:   TData;  // data
     PLeft:  TPNode; // left
@@ -32,17 +38,64 @@ type
 
 var
   Form1: TForm1;
-
   PTree : TPNode;
-
+  PTree2 : TPNode;
 implementation
 
 {$R *.dfm}
 
+procedure FibonTreeBuild(k:integer; T:TPNode);
+begin
+  if (k = 0) then
+  begin
+    T:= nil;
+    Form1.Memo1.Lines.Add(inttostr(1) + '- k= ' + inttostr(k));
+  end
+  else if (k = 1) then
+    begin
+      new(T);
+      T^.Data := k;
+      T^.PLeft := nil;
+      T^.PRight := nil;
+      Form1.Memo1.Lines.Add(inttostr(2) + '- k= ' + inttostr(k));
+    end
+  else
+    begin
+      new(T);
+      T^.Data := k;
+      FibonTreeBuild(k - 1, (T^.PLeft));
+      FibonTreeBuild(k - 2, (T^.PRight));
+      Form1.Memo1.Lines.Add(inttostr(3) + '- k= ' + inttostr(k));
+    end;
+end;
+
+procedure PrintTree(treenode:TTreeNode; root:TPNode);
+ var newnode : TTreeNode;
+ begin
+    if Assigned(root) then
+    begin
+       newnode := Form1.TreeView1.Items.AddChild(treenode, IntToStr(root^.Data));
+       PrintTree(newnode, root^.PLeft);
+       PrintTree(newnode, root^.PRight);
+    end
+      else
+        newnode := Form1.TreeView1.Items.AddChild(treenode, '--');
+ end;
+
+procedure TForm1.Button1Click(Sender: TObject);
+  var
+    i, k: integer;
+begin
+  i := 1;
+  k := strtoint(Edit1.Text);
+
+  FibonTreeBuild(k, PTree);
+  PrintTree(nil, PTree);
+end;
 
 procedure TForm1.FormShow(Sender: TObject);
 begin
-   PTree := nil;
+  PTree := nil;
 end;
 
 end.
