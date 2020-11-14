@@ -4,42 +4,47 @@ interface
 
 uses
   Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
-  Dialogs, Xpman, StdCtrls, Menus, ExtCtrls, ImgList, Spin;
+  Dialogs, Xpman, StdCtrls, Menus, ExtCtrls, ImgList, Spin, Vcl.ComCtrls;
 
   const
    size = 200;
-   n=4;
-   nn=6;
-  type ref=^page;
-     item=record
-       key:integer;
-       p:ref;
-       count:integer;
-     end;
-     page=record
-       m:0..nn;
-       p0:ref;
-       e:array[1..nn] of item;
-     end;
+   n=2;
+   nn=4;
+   type ref=^page;
+
+   item=record
+     key:integer;
+     p:ref;
+     count:integer;
+   end;
+
+   page=record
+     m:0..nn;
+     p0:ref;
+     e:array[1..nn] of item;
+   end;
 
   TForm1 = class(TForm)
-    PaintBox1: TPaintBox;
+
     Button1: TButton;
     SpinEdit1: TSpinEdit;
     Panel1: TPanel;
     Button2: TButton;
-    procedure printtree(p:ref; l,z:integer);
-    procedure Button1Click(Sender: TObject);
-    procedure PaintBox1Paint(Sender: TObject);
+    TreeView1: TTreeView;
+    Memo1: TMemo;
     procedure FormCreate(Sender: TObject);
     procedure Button2Click(Sender: TObject);
+    procedure Button1Click(Sender: TObject);
+
+
+    //procedure printtree(p:ref; l:integer);
+    //procedure PaintBox1Paint(Sender: TObject);
+
   private
     { Private declarations }
   public
     { Public declarations }
   end;
-
-
 
 var
   Form1: TForm1;
@@ -49,152 +54,97 @@ var
   i: integer;
   w: integer;
   root,q:ref;
-     x:integer;
-     u:item;
+  x:integer;
+  u:item;
+
 implementation
 
 {$R *.dfm}
 
 
-procedure search(x:integer;a:ref;var h:boolean;var v:item);
+procedure search(x:integer; a:ref; var h:boolean; var v:item);
    var  k,l,r:integer;
         q:ref;
         u:item;
-    procedure insert;
-     var i:integer; b:ref;
+
+  procedure insert;
+    var i:integer; b:ref;
+  begin
+    with a^ do
     begin
-      with a^ do
+     if m<nn then
+     begin
+      m:=m+1;
+      h:=false;
+      for i:=m downto r+2 do e[i]:=e[i-1];
+      e[r+1]:=u;
+      end else
       begin
-       if m<nn then
-       begin
-        m:=m+1;
-        h:=false;
-        for i:=m downto r+2 do e[i]:=e[i-1];
-        e[r+1]:=u;
+        new(b);
+        if r<=n then
+        begin
+        if r=n then v:=u else
+        begin
+          v:=e[n];
+          for i:=n downto r+2 do e[i]:=e[i-1];
+          e[r+1]:=u;
+        end;
+        for i:=1 to n do b^.e[i]:=a^.e[i+n]
         end else
         begin
-          new(b);
-          if r<=n then
-          begin
-          if r=n then v:=u else
-          begin
-            v:=e[n];
-            for i:=n downto r+2 do e[i]:=e[i-1];
-            e[r+1]:=u;
-          end;
-          for i:=1 to n do b^.e[i]:=a^.e[i+n]
-          end else
-          begin
-            r:=r-n;
-            v:=e[n+1];
-            for i:=1 to r-1 do b^.e[i]:=a^.e[i+n+1];
-            b^.e[r]:=u;
-            for i:=r+1 to n do b^.e[i]:=a^.e[i+n];
-          end;
-          m:=n;
-          b^.m:=n;
-          b^.p0:=v.p;
-          v.p:=b;
-          end;
-        end
-       end;
-    BEGIN
-      if a=nil then
-      begin
-        h:=true;
-        with v do
-        begin
-          key:=x;
-          count:=1;
-          p:=nil;
-         end
-         end
-         else
-         with a^ do
-         begin
-           l:=1;
-           r:=m;
-           repeat
-             k:=(l+r)div 2;
-             if x<=e[k].key then r:=k-1;
-             if x>=e[k].key then l:=k+1;
-           until r<l;
-           if l-r>1 then
-           begin
-             e[k].count:=e[k].count+1;
-             h:=false;
-           end else
-           begin
-             if r=0 then q:=p0 else q:=e[r].p;
-             search(x,q,h,u);
-             if h then insert
-            end
-          end
-end;
-
-
-procedure TForm1.Button1Click(Sender: TObject);
-begin
-    for i:=1 to 20 do
-     begin
-     x:=random(30)+1;
-      search(x,tree,h,u);
-      if h then
-      begin
-        q:=tree;
-        new(tree);
-        with tree^ do
-        begin
-          m:=1;
-          p0:=q;
-          e[1]:=u;
+          r:=r-n;
+          v:=e[n+1];
+          for i:=1 to r-1 do b^.e[i]:=a^.e[i+n+1];
+          b^.e[r]:=u;
+          for i:=r+1 to n do b^.e[i]:=a^.e[i+n];
         end;
-      end;
-    end;
-      PaintBox1.Refresh;
-      Button1.Visible:=false;
-      SpinEdit1.Visible:=true;
-      Button2.Visible:=true;
-end;
+        m:=n;
+        b^.m:=n;
+        b^.p0:=v.p;
+        v.p:=b;
+        end;
+      end
+  end;
 
-procedure TForm1.PaintBox1Paint(Sender: TObject);
-begin
- w:=0;
- printtree(tree,1,1);
-end;
-
-procedure TForm1.printtree(p:ref; l,z:integer);
-   var i:integer;
+BEGIN
+  if a=nil then
   begin
-     PaintBox1.Canvas.Brush.Color:=clNavy;
-     PaintBox1.Canvas.Pen.Width:=3;
-     PaintBox1.Canvas.Pen.Color:=clTeal;
-   if p<> nil then with p^ do
-   begin
-      PaintBox1.Canvas.rectangle(565-155*l,-100+200*z,700-155*l,-70+200*z);
-      for i:=1 to m do
-        begin
-          PaintBox1.Canvas.rectangle(530+35*i-155*l,-100+200*z,565+35*i-155*l,-70+200*z);
-          PaintBox1.Canvas.TextOut(539+35*i-155*l,-95+200*z,IntToStr(e[i].key));
-        end;
-          if z>1 then
-          begin
-           PaintBox1.Canvas.MoveTo(530+35*w-155,-73+200*(z-1));
-           PaintBox1.Canvas.LineTo(635-155*l,-100+200*z);
-          end;
-          w:=w+1;
-        printtree(p0,(4-l),z+1);
-      for i:=1 to m do
+    h:=true;
+    with v do
+    begin
+      key:=x;
+      count:=1;
+      p:=nil;
+     end
+     end
+     else
+     with a^ do
+     begin
+       l:=1;
+       r:=m;
+       repeat
+         k:=(l+r)div 2;
+         if x<=e[k].key then r:=k-1;
+         if x>=e[k].key then l:=k+1;
+       until r<l;
+       if l-r>1 then
        begin
-        printtree(e[i].p,(3-i),z+1);
-       end;
-   end
+         e[k].count:=e[k].count+1;
+         h:=false;
+       end else
+       begin
+         if r=0 then q:=p0 else q:=e[r].p;
+         search(x,q,h,u);
+         if h then insert
+        end
+      end
 end;
 
-procedure delete(x:integer;a:ref;var h:boolean);
+procedure delete(x:integer; a:ref; var h:boolean);
     var i,k,l,r:integer; q:ref;
-    procedure underflow(c,a:ref;s:integer;var h:boolean);
-     var b:ref;i,k,mb,mc:integer;
+
+    procedure underflow(c,a:ref; s:integer; var h:boolean);
+     var b:ref; i,k,mb,mc:integer;
     begin
       mc:=c^.m;{h=true; a^.m=n-1}
       if s<mc then
@@ -271,6 +221,7 @@ procedure delete(x:integer;a:ref;var h:boolean);
             end
          end
        end;
+
    BEGIN
      if a=nil then
      begin
@@ -304,14 +255,71 @@ procedure delete(x:integer;a:ref;var h:boolean);
          if h then underflow(a,q,r,h);
        end
       end
-     end;
+   end;
+
+
+procedure printtree(p:ref; l:integer; treenode:TTreeNode);
+  var
+    i:integer;
+    h:integer;
+    node: TTreeNode;
+    node_val: string;
+  begin
+   node_val := '';
+   if p <> nil then
+   with p^ do
+   begin
+    for i:= 1 to l do
+      Form1.Memo1.Lines.Add('. ');
+    for i:=1 to m do
+      begin
+        Form1.Memo1.Lines.Add(inttostr(e[i].key));
+        node_val := node_val + inttostr(e[i].key) +' ';
+      end;
+
+    node := Form1.TreeView1.Items.AddChild(treenode, node_val);
+    Form1.Memo1.Lines.Add('---');
+
+    printtree(p0,l+1, node);
+    for i:=1 to m do printtree(e[i].p,l+1, node);
+   end;
+end;
+
+//----------------------------------------------------------//
 
 procedure TForm1.FormCreate(Sender: TObject);
 begin
-randomize();
-tree:=nil;
-h:=false;
+  randomize();
+  tree:=nil;
+  h:=false;
 end;
+
+
+procedure TForm1.Button1Click(Sender: TObject);
+begin
+    for i:=1 to 20 do
+     begin
+     x:=random(30)+1;
+      search(x,tree,h,u);
+      if h then
+      begin
+        q:=tree;
+        new(tree);
+        with tree^ do
+        begin
+          m:=1;
+          p0:=q;
+          e[1]:=u;
+        end;
+      end;
+    end;
+      Button1.Enabled:=false;
+      SpinEdit1.Visible:=true;
+      Button2.Visible:=true;
+      printtree(tree, 1, nil);
+      //treeout(nil, tree);
+end;
+
 
 procedure TForm1.Button2Click(Sender: TObject);
 begin
@@ -326,7 +334,9 @@ begin
           tree:=q^.p0; {dispose(q)}
         end
       end;
-     PaintBox1.Refresh;
+  Form1.TreeView1.Items.Clear;
+  Form1.Memo1.Clear;
+  printtree(tree, 1, nil);
 end;
 
 end.

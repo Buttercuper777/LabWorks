@@ -63,8 +63,8 @@ begin
     begin
       new(T);
       T^.Data := k;
-      FibonTreeBuild(k - 1, (T^.PLeft));
-      FibonTreeBuild(k - 2, (T^.PRight));
+      FibonTreeBuild(k - 1, @(T^.PLeft));
+      FibonTreeBuild(k - 2, @(T^.PRight));
       Form1.Memo1.Lines.Add(inttostr(3) + '- k= ' + inttostr(k));
     end;
 end;
@@ -75,8 +75,8 @@ procedure PrintTree(treenode:TTreeNode; root:TPNode);
     if Assigned(root) then
     begin
        newnode := Form1.TreeView1.Items.AddChild(treenode, IntToStr(root^.Data));
-       PrintTree(newnode, root^.PLeft);
-       PrintTree(newnode, root^.PRight);
+       PrintTree(newnode, (root^.PLeft));
+       PrintTree(newnode, (root^.PRight));
     end
       else
         newnode := Form1.TreeView1.Items.AddChild(treenode, '--');
