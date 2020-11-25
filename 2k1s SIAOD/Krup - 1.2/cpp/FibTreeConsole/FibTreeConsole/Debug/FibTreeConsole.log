@@ -1,0 +1,3 @@
+﻿  FibTreeConsole.cpp
+D:\LabWorks\2k1s SIAOD\Krup - 1.2\cpp\FibTreeConsole\FibTreeConsole\FibTreeConsole.cpp(75,1): warning C4326: возвращаемый тип "main" должен быть "int", а не "void"
+  FibTreeConsole.vcxproj -> D:\LabWorks\2k1s SIAOD\Krup - 1.2\cpp\FibTreeConsole\Debug\FibTreeConsole.exe

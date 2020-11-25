@@ -1,0 +1,6 @@
+﻿  MoneyAlgorithm.cpp
+D:\LabWorks\2k1s SIAOD\Krup - 1.2\cpp\MoneyAlgorithm\MoneyAlgorithm\MoneyAlgorithm\MoneyAlgorithm.cpp(57,13): warning C4244: инициализация: преобразование "double" в "float", возможна потеря данных
+D:\LabWorks\2k1s SIAOD\Krup - 1.2\cpp\MoneyAlgorithm\MoneyAlgorithm\MoneyAlgorithm\MoneyAlgorithm.cpp(60,13): warning C4244: инициализация: преобразование "double" в "float", возможна потеря данных
+D:\LabWorks\2k1s SIAOD\Krup - 1.2\cpp\MoneyAlgorithm\MoneyAlgorithm\MoneyAlgorithm\MoneyAlgorithm.cpp(63,13): warning C4244: инициализация: преобразование "double" в "float", возможна потеря данных
+D:\LabWorks\2k1s SIAOD\Krup - 1.2\cpp\MoneyAlgorithm\MoneyAlgorithm\MoneyAlgorithm\MoneyAlgorithm.cpp(66,13): warning C4244: инициализация: преобразование "double" в "float", возможна потеря данных
+D:\LabWorks\2k1s SIAOD\Krup - 1.2\cpp\MoneyAlgorithm\MoneyAlgorithm\MoneyAlgorithm\MoneyAlgorithm.cpp(41): fatal error C1075: "{": не найдена несоответствующая лексема

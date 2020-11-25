@@ -264,13 +264,20 @@ procedure printtree(p:ref; l:integer; treenode:TTreeNode);
     h:integer;
     node: TTreeNode;
     node_val: string;
+    lvl:integer;
   begin
+   lvl := 0;
    node_val := '';
    if p <> nil then
    with p^ do
    begin
     for i:= 1 to l do
-      Form1.Memo1.Lines.Add('. ');
+        lvl := lvl + 1;
+
+      Form1.Memo1.Lines.Add('');
+      Form1.Memo1.Lines.Add('-- ' + inttostr(lvl) + ' --');
+      Form1.Memo1.Lines.Add('');
+
     for i:=1 to m do
       begin
         Form1.Memo1.Lines.Add(inttostr(e[i].key));
@@ -278,7 +285,6 @@ procedure printtree(p:ref; l:integer; treenode:TTreeNode);
       end;
 
     node := Form1.TreeView1.Items.AddChild(treenode, node_val);
-    Form1.Memo1.Lines.Add('---');
 
     printtree(p0,l+1, node);
     for i:=1 to m do printtree(e[i].p,l+1, node);
@@ -297,9 +303,9 @@ end;
 
 procedure TForm1.Button1Click(Sender: TObject);
 begin
-    for i:=1 to 20 do
+    for i:=1 to 30 do
      begin
-     x:=random(30)+1;
+     x:=random(40)+1;
       search(x,tree,h,u);
       if h then
       begin
