@@ -1,0 +1,3 @@
+D:\LabWorks\2k1s SIAOD\Krup - 1.2\cpp\MoneyAlgorithm\MoneyAlg\MoneyAlg\Debug\MoneyAlg.vcxprojAssemblyReference.cache
+D:\LabWorks\2k1s SIAOD\Krup - 1.2\cpp\MoneyAlgorithm\MoneyAlg\MoneyAlg\Debug\MoneyAlg.MyForm.resources
+D:\LabWorks\2k1s SIAOD\Krup - 1.2\cpp\MoneyAlgorithm\MoneyAlg\MoneyAlg\Debug\MoneyAlg.vcxproj.GenerateResource.cache

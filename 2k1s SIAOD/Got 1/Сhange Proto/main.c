@@ -8,6 +8,17 @@ int main(void)
     float five=0.05;
     float cent=0.01;
 
+    float moneyValues[10] = {
+        5000, 1000, 500, 100, 50, 10, 5, 1, 0.5, 0.1
+    };
+
+    float sum = 0;
+    float fullSum = 0;
+    float buff = 0;
+    int buff2 = 0;
+
+    int i, Ni;
+
     #define FiveTh 5000
     #define OneTh 1000
     #define FiveNd 500
@@ -27,6 +38,21 @@ int main(void)
             scanf("%f", &change);
         }
         while (change<0.009);
+
+        /*fullSum = change/moneyValues[0];
+        buff2 = (int)(fullSum + 0.1);
+        printf("%d\n", buff2);
+
+        for(int i = 1; i <= 10; i++)
+        {   
+            fullSum = (buff * moneyValues[i - 1]);
+            buff2 = (int)(fullSum + 0.1) - buff2;
+            buff = (change - buff2)/moneyValues[i];
+            sum = (int)(buff2 + 0.1);
+            printf("%d\n", sum);
+        }*/
+
+        i = 1;
         
         //рассчет сколько монет каждого номинала составляют данную сумму, начиная с монеты самого большого номинала
         float x = change/FiveTh;
@@ -60,8 +86,8 @@ int main(void)
         int j = (int)(m+0.1);
         
         int result=a+b+c+d;
-        
-        printf("%d\n", a);
+
+        /*printf("%d\n", a);
         printf("%d\n", b);
         printf("%d\n", c);
         printf("%d\n", d);
@@ -70,6 +96,6 @@ int main(void)
         printf("%d\n", g);
         printf("%d\n", h);
         printf("%d\n", i);
-        printf("%d\n", j);
+        printf("%d\n", j);*/
 
 }
