@@ -1,0 +1,143 @@
+unit Unit13;
+
+interface
+
+uses
+  Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
+  Dialogs, Grids, StdCtrls;
+
+type
+  TForm13 = class(TForm)
+    Edit1: TEdit;
+    Label1: TLabel;
+    Edit2: TEdit;
+    Label2: TLabel;
+    StringGrid1: TStringGrid;
+    Label3: TLabel;
+    Memo1: TMemo;
+    Label4: TLabel;
+    Button1: TButton;
+    procedure Button1Click(Sender: TObject);
+    procedure Button2Click(Sender: TObject);
+    procedure Edit1Change(Sender: TObject);
+    procedure FormCreate(Sender: TObject);
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  Form13: TForm13;
+
+implementation
+
+{$R *.dfm}
+
+procedure TForm13.Button1Click(Sender: TObject);
+var a,b:array[1..100] of integer;
+   n:byte;
+   sum:integer;
+   f:boolean;
+   i,j,k,h,s,m,z:integer;
+   otvet: string;
+begin
+  //Ввод данных
+  n := StrTointDef(Edit1.Text, 0);
+  if n = 0 then
+  begin
+    ShowMessage('Не задано количество предметов');
+    exit
+  end;
+  with StringGrid1 do
+    for i := 1 to n do
+      a[i] := StrTointDef(Cells[1,i], 0);
+  sum := StrTointDef(Edit2.Text, 0);
+  if sum = 0 then
+  begin
+    ShowMessage('Не задан максимальный вес ранца');
+    exit
+  end;
+otvet := 'В ранец необходимо поместить предметы: ';
+For I := N Downto 1 Do
+ Begin
+  B[1] := I;
+  H := 1;
+  K := Sum - A[I];
+  F := False;
+  Repeat
+   For J := B[H]-1 Downto 1 Do
+    Begin
+     If A[J] <= K Then
+      Begin
+       Inc(H);
+       B[H] := J;
+       Dec(K, A[J]);
+      End;
+       If K = 0 Then
+        Begin
+         For M := 1 to H Do begin
+          otvet := otvet + '[№'+ IntToStr(B[M]) + ' - ' + IntToStr(A[B[M]]) + ']; ';
+         end;
+         otvet := otvet + #13#10;
+         Inc(K, A[B[H]]);
+         Dec(H);
+        End;
+    End;
+   F := True;
+   For M := H Downto 2 Do
+     Begin
+       If B[M] <> H-M+1 Then
+       Begin
+        F := False;
+        Dec(B[M]);
+    H := M;
+        K := Sum;
+        For Z := 1 to H Do
+         Dec(K, A[B[Z]]);
+        Break;
+       End;
+     End;
+  Until F;
+ End;
+memo1.Lines.Add(otvet)
+end;
+
+procedure TForm13.Button2Click(Sender: TObject);
+begin
+  close
+end;
+
+procedure TForm13.Edit1Change(Sender: TObject);
+  var i, n: integer;
+begin
+  n := StrTointDef(Edit1.Text, 0);
+  with StringGrid1 do
+  if (n > 0) and (n <= 100) then
+  begin
+    RowCount := n + 1;
+    for I := 1 to RowCount - 1 do
+    begin
+      Cells[0, i] := IntToStr(i);
+    end;
+  end;
+end;
+
+
+
+procedure TForm13.FormCreate(Sender: TObject);
+  var i: Integer;
+begin
+  with StringGrid1 do
+  begin
+    Cells[0,0] := 'Номер предмета';
+    Cells[1,0] := 'Вес предмета';
+    for I := 1 to RowCount - 1 do Cells[0, i] := IntToStr(i);
+    Cells[1,1] := '2';
+    Cells[1,2] := '3';
+    Cells[1,3] := '4';
+    Cells[1,4] := '7';
+  end;
+end;
+
+end.

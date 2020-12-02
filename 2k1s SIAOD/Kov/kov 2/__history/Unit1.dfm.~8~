@@ -1,0 +1,162 @@
+object Form1: TForm1
+  Left = 0
+  Top = 0
+  Caption = 'la'
+  ClientHeight = 451
+  ClientWidth = 280
+  Color = clBtnFace
+  Font.Charset = DEFAULT_CHARSET
+  Font.Color = clWindowText
+  Font.Height = -11
+  Font.Name = 'Tahoma'
+  Font.Style = []
+  OldCreateOrder = False
+  PixelsPerInch = 96
+  TextHeight = 13
+  object Label1: TLabel
+    Left = 8
+    Top = 8
+    Width = 90
+    Height = 13
+    Caption = #1058#1088#1077#1073#1091#1077#1084#1072#1103' '#1089#1091#1084#1084#1072':'
+  end
+  object Label2: TLabel
+    Left = 8
+    Top = 35
+    Width = 82
+    Height = 13
+    Caption = #1042#1074#1077#1076#1080#1090#1077' '#1089#1091#1084#1084#1091': '
+  end
+  object Edit1: TEdit
+    Left = 104
+    Top = 5
+    Width = 161
+    Height = 21
+    TabOrder = 0
+    Text = '893,2'
+  end
+  object Edit2: TEdit
+    Left = 104
+    Top = 32
+    Width = 161
+    Height = 21
+    TabOrder = 1
+    Text = '1000'
+  end
+  object Memo1: TMemo
+    Left = 8
+    Top = 72
+    Width = 257
+    Height = 217
+    ScrollBars = ssVertical
+    TabOrder = 2
+  end
+  object CheckBox1: TCheckBox
+    Left = 8
+    Top = 295
+    Width = 97
+    Height = 17
+    Caption = '5000'
+    Checked = True
+    State = cbChecked
+    TabOrder = 3
+  end
+  object CheckBox2: TCheckBox
+    Left = 8
+    Top = 318
+    Width = 97
+    Height = 17
+    Caption = '1000'
+    Checked = True
+    State = cbChecked
+    TabOrder = 4
+  end
+  object CheckBox3: TCheckBox
+    Left = 8
+    Top = 341
+    Width = 97
+    Height = 17
+    Caption = '500'
+    Checked = True
+    State = cbChecked
+    TabOrder = 5
+  end
+  object CheckBox4: TCheckBox
+    Left = 8
+    Top = 364
+    Width = 97
+    Height = 17
+    Caption = '100'
+    Checked = True
+    State = cbChecked
+    TabOrder = 6
+  end
+  object CheckBox5: TCheckBox
+    Left = 8
+    Top = 387
+    Width = 97
+    Height = 17
+    Caption = '50'
+    Checked = True
+    State = cbChecked
+    TabOrder = 7
+  end
+  object CheckBox6: TCheckBox
+    Left = 128
+    Top = 295
+    Width = 97
+    Height = 17
+    Caption = '10'
+    Checked = True
+    State = cbChecked
+    TabOrder = 8
+  end
+  object CheckBox7: TCheckBox
+    Left = 128
+    Top = 318
+    Width = 97
+    Height = 17
+    Caption = '5'
+    Checked = True
+    State = cbChecked
+    TabOrder = 9
+  end
+  object CheckBox8: TCheckBox
+    Left = 128
+    Top = 341
+    Width = 97
+    Height = 17
+    Caption = '1'
+    Checked = True
+    State = cbChecked
+    TabOrder = 10
+  end
+  object CheckBox9: TCheckBox
+    Left = 128
+    Top = 364
+    Width = 97
+    Height = 17
+    Caption = '0,5'
+    Checked = True
+    State = cbChecked
+    TabOrder = 11
+  end
+  object CheckBox10: TCheckBox
+    Left = 128
+    Top = 387
+    Width = 97
+    Height = 17
+    Caption = '0,1'
+    Checked = True
+    State = cbChecked
+    TabOrder = 12
+  end
+  object Button1: TButton
+    Left = 8
+    Top = 418
+    Width = 257
+    Height = 25
+    Caption = #1042#1074#1086#1076
+    TabOrder = 13
+  end
+end

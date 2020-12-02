@@ -1,0 +1,17 @@
+﻿  MyForm.cpp
+D:\LabWorks\2k1s SIAOD\Krup - 1.2\cpp\MoneyAlgorithm\MoneyAlg\MoneyAlg\MyForm.h(7,1): warning C4305: инициализация: усечение из "double" в "float"
+D:\LabWorks\2k1s SIAOD\Krup - 1.2\cpp\MoneyAlgorithm\MoneyAlg\MoneyAlg\MyForm.h(601,12): warning C4244: аргумент: преобразование "time_t" в "unsigned int", возможна потеря данных
+D:\LabWorks\2k1s SIAOD\Krup - 1.2\cpp\MoneyAlgorithm\MoneyAlg\MoneyAlg\MyForm.h(632,18): warning C4244: =: преобразование "float" в "int", возможна потеря данных
+D:\LabWorks\2k1s SIAOD\Krup - 1.2\cpp\MoneyAlgorithm\MoneyAlg\MoneyAlg\MyForm.h(609,28): warning C4101: InputVal2: неиспользованная локальная переменная
+D:\LabWorks\2k1s SIAOD\Krup - 1.2\cpp\MoneyAlgorithm\MoneyAlg\MoneyAlg\MyForm.h(414): warning C4700: использована неинициализированная локальная переменная "index"
+D:\LabWorks\2k1s SIAOD\Krup - 1.2\cpp\MoneyAlgorithm\MoneyAlg\MoneyAlg\MyForm.h(434): warning C4700: использована неинициализированная локальная переменная "index"
+D:\LabWorks\2k1s SIAOD\Krup - 1.2\cpp\MoneyAlgorithm\MoneyAlg\MoneyAlg\MyForm.h(455): warning C4700: использована неинициализированная локальная переменная "index"
+D:\LabWorks\2k1s SIAOD\Krup - 1.2\cpp\MoneyAlgorithm\MoneyAlg\MoneyAlg\MyForm.h(476): warning C4700: использована неинициализированная локальная переменная "index"
+D:\LabWorks\2k1s SIAOD\Krup - 1.2\cpp\MoneyAlgorithm\MoneyAlg\MoneyAlg\MyForm.h(496): warning C4700: использована неинициализированная локальная переменная "index"
+D:\LabWorks\2k1s SIAOD\Krup - 1.2\cpp\MoneyAlgorithm\MoneyAlg\MoneyAlg\MyForm.h(516): warning C4700: использована неинициализированная локальная переменная "index"
+D:\LabWorks\2k1s SIAOD\Krup - 1.2\cpp\MoneyAlgorithm\MoneyAlg\MoneyAlg\MyForm.h(536): warning C4700: использована неинициализированная локальная переменная "index"
+D:\LabWorks\2k1s SIAOD\Krup - 1.2\cpp\MoneyAlgorithm\MoneyAlg\MoneyAlg\MyForm.h(556): warning C4700: использована неинициализированная локальная переменная "index"
+D:\LabWorks\2k1s SIAOD\Krup - 1.2\cpp\MoneyAlgorithm\MoneyAlg\MoneyAlg\MyForm.h(576): warning C4700: использована неинициализированная локальная переменная "index"
+D:\LabWorks\2k1s SIAOD\Krup - 1.2\cpp\MoneyAlgorithm\MoneyAlg\MoneyAlg\MyForm.h(596): warning C4700: использована неинициализированная локальная переменная "index"
+  MyForm.obj : обнаружен модуль MSIL; для MSIL последовательная компоновка отключена; выполняется полная компоновка
+  MoneyAlg.vcxproj -> D:\LabWorks\2k1s SIAOD\Krup - 1.2\cpp\MoneyAlgorithm\MoneyAlg\Debug\MoneyAlg.exe
