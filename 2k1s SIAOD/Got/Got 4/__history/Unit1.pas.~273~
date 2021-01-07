@@ -1,0 +1,166 @@
+unit Unit1;
+
+interface
+
+uses
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls, Vcl.Grids, Vcl.ExtCtrls,
+  Vcl.Imaging.pngimage;
+
+type
+  TForm1 = class(TForm)
+    Image1: TImage;
+    StringGrid1: TStringGrid;
+    Label1: TLabel;
+    Edit1: TEdit;
+    Button1: TButton;
+    Button2: TButton;
+    Label2: TLabel;
+    Label3: TLabel;
+    Label4: TLabel;
+    Label5: TLabel;
+    Label6: TLabel;
+    procedure FormShow(Sender: TObject);
+    procedure Button1Click(Sender: TObject);
+    procedure Button2Click(Sender: TObject);
+    procedure setSize(n: integer);
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  Form1: TForm1;
+  vArr: array[1..10] of integer;
+  cArr: array[1..10, 1..10] of integer;
+  n :integer;
+
+implementation
+
+{$R *.dfm}
+
+procedure TForm1.Button1Click(Sender: TObject);
+begin
+  n:= strtoint(Edit1.Text);
+  setSize(n);
+end;
+
+procedure TForm1.Button2Click(Sender: TObject);
+var
+  a, b, E, V, i, j, nCount, mVal, wi, mCost:integer;
+  resway, WayCost: String;
+  Way: array[1..100] of integer;
+
+begin
+  resway := '1, ';
+  n:= strtoint(Edit1.Text);
+
+  wi := 1;
+  nCount := 1;
+  mVal := 1000;
+
+  mCost := 0;
+
+  for i := 1 to 10 do
+    vArr[i] := 0;
+
+  for i := 1 to n do
+    for j := 1 to n do
+    begin
+      cArr[i,j] := strtoint(StringGrid1.Cells[i,j]);
+      if (cArr[i,j] = 0) then
+        cArr[i, j] := 1000;
+    end;
+
+    vArr[1] := 1;
+
+    while (nCount < n) do
+    begin
+      mVal := 1000;
+
+      for i := 1 to n do
+      begin
+        for j := 1 to n do
+          if cArr[i,j] < mVal then
+            if vArr[i] <> 0 then
+            begin
+              mVal := cArr[i,j];
+              E := i;
+              a := E;
+
+              V := j;
+              b := V;
+            end;
+      end;
+
+      if (vArr[E] = 0) or (vArr[V] = 0) then
+      begin
+        Way[wi] := b;
+        wi := wi + 1;
+        inc(nCount);
+        mCost := mCost + mVal;
+        WayCost := WayCost + inttostr(mVal);
+        vArr[b] := 1;
+      end;
+
+      cArr[b,a] := 1000;
+      cArr[a,b] := cArr[b,a];
+
+      end;
+
+    for i := 1 to n-1 do
+    begin
+      resway := resway + inttostr(Way[i]);
+      if (i < n - 1) then
+      begin
+        resway := resway + ', ';
+        WayCost := WayCost + ' + ';
+      end;
+    end;
+
+    Label5.Caption := resway;
+    Label6.Caption := WayCost + ' = ' + inttostr(mCost);
+
+end;
+
+procedure TForm1.setSize(n: integer);
+var
+  i, j, k: integer;
+begin
+  StringGrid1.RowCount := n + 1;
+  StringGrid1.ColCount := n + 1;
+  for i := 1 to n do
+  begin
+    StringGrid1.Cells[0,i] := inttostr(i);
+    StringGrid1.Cells[i,0] := inttostr(i);
+  end;
+  for k := 1 to n do
+    for j := 1 to n do
+      StringGrid1.Cells[k,j] := inttostr(0);
+end;
+
+procedure TForm1.FormShow(Sender: TObject);
+var
+  i, j: integer;
+begin
+  n:= strtoint(Edit1.Text);
+  setSize(n);
+
+  StringGrid1.Cells[1,4] := inttostr(1);
+  StringGrid1.Cells[1,5] := inttostr(3);
+  StringGrid1.Cells[2,3] := inttostr(3);
+  StringGrid1.Cells[2,4] := inttostr(5);
+  StringGrid1.Cells[2,5] := inttostr(4);
+  StringGrid1.Cells[3,2] := inttostr(3);
+  StringGrid1.Cells[3,5] := inttostr(4);
+  StringGrid1.Cells[4,1] := inttostr(1);
+  StringGrid1.Cells[4,2] := inttostr(5);
+  StringGrid1.Cells[4,5] := inttostr(2);
+  StringGrid1.Cells[5,1] := inttostr(3);
+  StringGrid1.Cells[5,2] := inttostr(4);
+  StringGrid1.Cells[5,3] := inttostr(4);
+  StringGrid1.Cells[5,4] := inttostr(2);
+end;
+
+end.

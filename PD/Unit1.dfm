@@ -3,7 +3,7 @@ object Form1: TForm1
   Top = 0
   Caption = 'Form1'
   ClientHeight = 449
-  ClientWidth = 963
+  ClientWidth = 972
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -506,43 +506,18 @@ object Form1: TForm1
     Font.Style = [fsBold]
     ParentFont = False
   end
-  object Chart1: TChart
-    Left = 8
-    Top = 8
-    Width = 603
-    Height = 433
-    BackWall.Brush.Color = 5131854
-    BackWall.Color = 2038506
-    BackWall.Transparency = 7
-    BackWall.Emboss.Color = clBlack
-    BackWall.Emboss.Visible = True
-    BackWall.Shadow.Color = 8487297
-    LeftWall.Pen.Color = 1772031
-    LeftWall.Pen.Style = psDot
-    LeftWall.Pen.Width = 0
-    RightWall.Visible = True
-    Title.Text.Strings = (
-      #1043#1088#1072#1092#1080#1082':')
-    View3D = False
-    TabOrder = 0
-    DefaultCanvas = 'TGDIPlusCanvas'
-    ColorPaletteIndex = 18
-    object Series1: TLineSeries
-      Brush.BackColor = clDefault
-      Pointer.InflateMargins = True
-      Pointer.Style = psRectangle
-      XValues.Name = 'X'
-      XValues.Order = loAscending
-      YValues.Name = 'Y'
-      YValues.Order = loNone
-    end
+  object Image3: TImage
+    Left = 578
+    Top = 432
+    Width = 33
+    Height = 57
   end
   object Edit1: TEdit
     Left = 617
     Top = 232
     Width = 65
     Height = 21
-    TabOrder = 1
+    TabOrder = 0
     Text = '0'
   end
   object Edit2: TEdit
@@ -550,7 +525,7 @@ object Form1: TForm1
     Top = 232
     Width = 65
     Height = 21
-    TabOrder = 2
+    TabOrder = 1
     Text = '50'
   end
   object Edit3: TEdit
@@ -558,7 +533,7 @@ object Form1: TForm1
     Top = 266
     Width = 103
     Height = 21
-    TabOrder = 3
+    TabOrder = 2
     Text = '700'
   end
   object Edit4: TEdit
@@ -566,7 +541,7 @@ object Form1: TForm1
     Top = 293
     Width = 103
     Height = 21
-    TabOrder = 4
+    TabOrder = 3
     Text = '1,59'
   end
   object Edit5: TEdit
@@ -574,7 +549,7 @@ object Form1: TForm1
     Top = 320
     Width = 103
     Height = 21
-    TabOrder = 5
+    TabOrder = 4
     Text = '0,6'
   end
   object Edit6: TEdit
@@ -582,7 +557,7 @@ object Form1: TForm1
     Top = 347
     Width = 103
     Height = 21
-    TabOrder = 6
+    TabOrder = 5
     Text = '0,22'
   end
   object Edit7: TEdit
@@ -590,7 +565,7 @@ object Form1: TForm1
     Top = 374
     Width = 103
     Height = 21
-    TabOrder = 7
+    TabOrder = 6
     Text = '30,6'
   end
   object Button1: TButton
@@ -599,7 +574,7 @@ object Form1: TForm1
     Width = 338
     Height = 40
     Caption = #1055#1091#1089#1082
-    TabOrder = 8
+    TabOrder = 7
     OnClick = Button1Click
   end
   object StringGrid1: TStringGrid
@@ -610,7 +585,44 @@ object Form1: TForm1
     ColCount = 4
     DefaultColWidth = 45
     FixedCols = 0
+    Options = [goFixedVertLine, goFixedHorzLine, goVertLine, goHorzLine, goRangeSelect, goEditing]
     ScrollBars = ssVertical
+    TabOrder = 8
+  end
+  object Chart1: TChart
+    Left = 8
+    Top = 8
+    Width = 593
+    Height = 433
+    Title.Text.Strings = (
+      #1043#1088#1072#1092#1080#1082':')
+    View3D = False
+    Zoom.MinimumPixels = 12
     TabOrder = 9
+    DefaultCanvas = 'TGDIPlusCanvas'
+    PrintMargins = (
+      15
+      14
+      15
+      14)
+    ColorPaletteIndex = 13
+    object Series1: TLineSeries
+      Selected.Hover.Visible = False
+      Brush.BackColor = clDefault
+      DrawStyle = dsCurve
+      LinePen.Color = 10708548
+      Pointer.InflateMargins = True
+      Pointer.Style = psRectangle
+      TreatNulls = tnIgnore
+      XValues.Name = 'X'
+      XValues.Order = loAscending
+      YValues.Name = 'Y'
+      YValues.Order = loNone
+      object TeeFunction1: TCustomTeeFunction
+        CalcByValue = False
+        Period = 1.000000000000000000
+        NumPoints = 100
+      end
+    end
   end
 end

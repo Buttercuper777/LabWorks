@@ -1,0 +1,65 @@
+object Form1: TForm1
+  Left = 200
+  Top = 257
+  Caption = 'Form1'
+  ClientHeight = 456
+  ClientWidth = 852
+  Color = clBtnFace
+  Font.Charset = DEFAULT_CHARSET
+  Font.Color = clWindowText
+  Font.Height = -11
+  Font.Name = 'MS Sans Serif'
+  Font.Style = []
+  OldCreateOrder = False
+  OnCreate = FormCreate
+  PixelsPerInch = 96
+  TextHeight = 13
+  object Label2: TLabel
+    Left = 8
+    Top = 4
+    Width = 839
+    Height = 16
+    Caption = 
+      #1053#1072#1081#1090#1080' '#1084#1072#1089#1089#1080#1074' '#1082#1088#1072#1090#1095#1072#1081#1096#1080#1093' '#1088#1072#1089#1089#1090#1086#1103#1085#1080#1081' '#1086#1090' '#1074#1077#1088#1096#1080#1085#1099' '#1089' '#1085#1086#1084#1077#1088#1086#1084' 0 '#1076#1086' '#1074#1089#1077 +
+      #1093' '#1086#1089#1090#1072#1083#1100#1085#1099#1093' '#1074#1077#1088#1096#1080#1085' '#1072#1083#1075#1086#1088#1080#1090#1084#1086#1084' '#1044#1077#1081#1082#1089#1090#1088#1099'.'
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -13
+    Font.Name = 'MS Sans Serif'
+    Font.Style = [fsBold]
+    ParentFont = False
+  end
+  object Image1: TImage
+    Left = 220
+    Top = 262
+    Width = 412
+    Height = 183
+  end
+  object Button1: TButton
+    Left = 638
+    Top = 262
+    Width = 206
+    Height = 183
+    Caption = #1055#1086#1080#1089#1082
+    TabOrder = 0
+    OnClick = Button1Click
+  end
+  object StringGrid1: TStringGrid
+    Left = 220
+    Top = 26
+    Width = 624
+    Height = 230
+    ColCount = 7
+    RowCount = 7
+    Options = [goFixedVertLine, goFixedHorzLine, goVertLine, goHorzLine, goRangeSelect, goEditing]
+    TabOrder = 1
+  end
+  object Memo1: TMemo
+    Left = 4
+    Top = 26
+    Width = 210
+    Height = 419
+    ScrollBars = ssVertical
+    TabOrder = 2
+  end
+end

@@ -19,6 +19,7 @@ type
     Label3: TLabel;
     procedure Button1Click(Sender: TObject);
     procedure Button2Click(Sender: TObject);
+    procedure printTab(TSize: integer);
   private
     { Private declarations }
   public
@@ -35,99 +36,79 @@ var
 implementation
 
 {$R *.dfm}
-procedure hashing(hArr: TArr; tabSz: integer; vArr: TArr; vtSz: integer);
+procedure hashing(hArr: TArr; tabSz, hValue: integer);
 var
   i, j, t, hv:integer;
 begin
-    for i := 0 to TSize - 1 do
-      mainArr[i] := -1;
-      
-    for i := 0 to vtSz - 1 do
-    begin
-      hv := (vArr[i] mod tabSz);
+      hv := (hValue mod tabSz);
       if hArr[hv] = -1 then
-        hArr[hv] := vArr[i]
+        hArr[hv] := hValue
       else
-        for j := 0 to tabSz - 1 do
+        for j := 1 to tabSz do
         begin
-          t := (hv + j * j) mod tabSz;
+          t := (hv + 3 * j + 4 * j * j) mod tabSz;
           if hArr[t] = -1 then
           begin
-            hArr[t] := vArr[i];
+            hArr[t] := hValue;
             break;
           end;
         end;
-    end;
 end;
 
-procedure printTab(TSize: integer);
+procedure TForm1.printTab(TSize: integer);
 var 
   col: integer;
 begin
-   Form1.stringGrid1.Rows[1].Clear;
-   Form1.stringGrid1.Cells[0,0] := 'Index';
-   Form1.stringGrid1.Cells[0,1] := 'Value';
+   stringGrid1.Rows[1].Clear;
+   stringGrid1.Cells[0,0] := 'Index';
+   stringGrid1.Cells[0,1] := 'Value';
 
-   Form1.stringGrid1.ColCount := TSize + 1;
+   stringGrid1.ColCount := TSize + 1;
    
-    for col := 0 to TSize - 1 do
+    for col := 1 to TSize do
     begin
-      Form1.stringGrid1.Cells[col + 1,0] := inttostr(col);
+      stringGrid1.Cells[col,0] := inttostr(col);
       if mainArr[col] = -1 then
         continue
       else
-        Form1.stringGrid1.Cells[col + 1,1] := inttostr(mainArr[col]);
+        stringGrid1.Cells[col,1] := inttostr(mainArr[col]);
     end;
 end;
 
 procedure TForm1.Button1Click(Sender: TObject);
 var
-  i, j, t:integer;
+  i, j, newVal:integer;
 begin
   Randomize;
 
-  
   Button2.Enabled := True;
 
   TSize := strtoint(Edit1.Text);
   setlength(mainArr, TSize);
 
+  for i := 1 to TSize do
+      mainArr[i] := -1;
+
   N := strtoint(edit3.Text);
   setlength(valArr, N);
 
-  for j := 0 to N - 1 do
-    valArr[j] := 1 + Random(100);
+  for j := 1 to N do
+  begin
+    newVal := 1 + Random(100);
+    hashing(mainArr, TSize, newVal);
+  end;
 
-  hashing(mainArr, TSize, valArr, N);
   printTab(TSize);
 
 end;
 
 procedure TForm1.Button2Click(Sender: TObject);
 var
-  forAdd, i , j: integer;
-  sArr: TArr;
+  forAdd: integer;
 begin
-  Form1.stringGrid1.Rows[1].Clear;
-  setlength(sArr, N);
-  
-  for i := 0 to N - 1 do
-  begin
-    sArr[i] := valArr[i];
-  end;
-
-  N := N + 1;
-  setlength(valArr, N);
-  
-  for i := 0 to N - 1 do
-  begin
-    valArr[i] := sArr[i];
-  end;
-    
   forAdd := strtoint(edit2.Text);
-  valArr[N - 1] := forAdd;
-  
-  hashing(mainArr, TSize, valArr, N);
+
+  hashing(mainArr, TSize, forAdd);
   printTab(TSize);
 end;
 

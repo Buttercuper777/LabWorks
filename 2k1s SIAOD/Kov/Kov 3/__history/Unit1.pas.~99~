@@ -1,0 +1,128 @@
+unit Unit1;
+
+interface
+
+uses
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls, Vcl.Grids;
+
+type
+  TForm1 = class(TForm)
+    Label1: TLabel;
+    StringGrid1: TStringGrid;
+    Edit1: TEdit;
+    Button1: TButton;
+    Label2: TLabel;
+    procedure FormShow(Sender: TObject);
+    procedure insertHash(key: integer);
+    procedure tableprint();
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+  Const
+  {$WriteableConst On}
+  tablesize: integer = 20;
+  dhfvalue: integer = 17;
+
+var
+  Form1: TForm1;
+  fullChecker: integer;
+  hashtable: array[1..20] of integer;
+
+implementation
+
+{$R *.dfm}
+
+function isFull():boolean;
+begin
+  if fullchecker = tablesize then
+    isFull := True
+  else
+    isFull := False;
+end;
+
+function h1(key: integer): integer;
+begin
+  h1:= key mod tablesize;
+end;
+
+function h2(key: integer): integer;
+begin
+  h2 := dhfvalue - (key mod dhfvalue);
+end;
+
+procedure initTab();
+var
+  i: integer;
+begin
+  fullChecker := 1;
+  for i := 1 to tablesize do
+    hashtable[i] := -1;
+end;
+
+procedure TForm1.insertHash(key: integer);
+var
+  index, index2, i, newindex:integer;
+begin
+  if isFull() = True then
+    showmessage('Таблица заполнена!' + ' ' + inttostr(fullchecker) + ' ' + inttostr(tablesize))
+  else begin
+    index := h1(key);
+    if hashtable[index] <> -1 then
+    begin
+      index2 := h2(key);
+      i := 1;
+      while True do
+      begin
+        newindex := (index + i * index2) mod tablesize;
+        if hashtable[newindex] = -1 then
+        begin
+          hashtable[newindex] := key;
+          break;
+        end;
+        inc(i);
+      end;
+    end
+    else
+      hashtable[index] := key;
+   inc(fullChecker);
+  end;
+end;
+
+procedure TForm1.tableprint();
+var
+  i: integer;
+begin
+  for i := 1 to tablesize do
+    if hashtable[i] = -1 then
+      StringGrid1.Cells[i - 1, 1] := ''
+    else
+      StringGrid1.Cells[i - 1, 1] := inttostr(hashtable[i]);
+end;
+
+procedure TForm1.FormShow(Sender: TObject);
+var
+  i: integer;
+begin
+  Randomize;
+  initTab();
+
+  StringGrid1.ColCount := tablesize;
+
+  for i := 1 to tablesize do
+  begin
+    stringGrid1.Cells[i - 1, 0] := inttostr(i);
+  end;
+
+  for i := 1 to 10 do
+  begin
+    insertHash(1 + Random(100));
+  end;
+
+  tableprint();
+end;
+
+end.

@@ -1,0 +1,77 @@
+object Form1: TForm1
+  Left = 200
+  Top = 257
+  Caption = 'Form1'
+  ClientHeight = 467
+  ClientWidth = 818
+  Color = clBtnFace
+  Font.Charset = DEFAULT_CHARSET
+  Font.Color = clWindowText
+  Font.Height = -11
+  Font.Name = 'MS Sans Serif'
+  Font.Style = []
+  OldCreateOrder = False
+  OnCreate = FormCreate
+  PixelsPerInch = 96
+  TextHeight = 13
+  object Label1: TLabel
+    Left = 8
+    Top = 8
+    Width = 154
+    Height = 16
+    Caption = #1052#1072#1090#1088#1080#1094#1072' '#1089#1084#1077#1078#1085#1086#1089#1090#1080':'
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -13
+    Font.Name = 'MS Sans Serif'
+    Font.Style = [fsBold]
+    ParentFont = False
+  end
+  object Label2: TLabel
+    Left = 8
+    Top = 362
+    Width = 186
+    Height = 16
+    Caption = #1048#1089#1082#1072#1090#1100' '#1087#1091#1090#1080' '#1086#1090' '#1074#1077#1088#1096#1080#1085#1099':'
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -13
+    Font.Name = 'MS Sans Serif'
+    Font.Style = [fsBold]
+    ParentFont = False
+  end
+  object Button1: TButton
+    Left = 8
+    Top = 411
+    Width = 190
+    Height = 38
+    Caption = #1055#1086#1080#1089#1082
+    TabOrder = 0
+    OnClick = Button1Click
+  end
+  object StringGrid1: TStringGrid
+    Left = 8
+    Top = 32
+    Width = 553
+    Height = 313
+    ColCount = 7
+    RowCount = 7
+    Options = [goFixedVertLine, goFixedHorzLine, goVertLine, goHorzLine, goRangeSelect, goEditing]
+    TabOrder = 1
+  end
+  object Edit1: TEdit
+    Left = 8
+    Top = 384
+    Width = 190
+    Height = 21
+    TabOrder = 2
+    Text = '0'
+  end
+  object Memo1: TMemo
+    Left = 584
+    Top = 32
+    Width = 194
+    Height = 313
+    TabOrder = 3
+  end
+end

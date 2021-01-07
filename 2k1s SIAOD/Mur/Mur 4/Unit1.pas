@@ -19,22 +19,23 @@ type
     procedure FormShow(Sender: TObject);
     procedure Button1Click(Sender: TObject);
     procedure Button2Click(Sender: TObject);
+    procedure tabSize(n: integer); //ѕрототип метода класса
   private
     { Private declarations }
   public
-    procedure tabSize(n: integer);
+    { public declarations }
   end;
 
 var
   Form1: TForm1;
-  n :integer;
-  visited: array[1..10] of integer;
-  cost: array[1..10, 1..10] of integer;
+  n :integer;   //размер
+  visited: array[1..10] of integer;  //массив посещенных/непосещенных вершин
+  cost: array[1..10, 1..10] of integer;  //матрица смежности
 
 implementation
 
 {$R *.dfm}
-procedure TForm1.tabSize(n: integer);
+procedure TForm1.tabSize(n: integer);  //“ут задаем размеры stringgrid. ћетод класса TForm1.
 var
   i, j, k: integer;
 begin
@@ -50,13 +51,13 @@ begin
       StringGrid1.Cells[k,j] := inttostr(0);
 end;
 
-procedure TForm1.Button1Click(Sender: TObject);
+procedure TForm1.Button1Click(Sender: TObject);   // “ут обновл€ем размер матрицы на форме
 begin
   n:= strtoint(Edit1.Text);
   tabSize(n);
 end;
 
-procedure TForm1.Button2Click(Sender: TObject);
+procedure TForm1.Button2Click(Sender: TObject);  // √лавный алг.
 var
   a, b, u, v, i, j, ne, min, path_index, mincost:integer;
   ti, tj:integer;
@@ -64,33 +65,35 @@ var
   path: array[1..100] of integer;
 begin
   outStr := '1 --> ';
-  n:= strtoint(Edit1.Text);
+  n:= strtoint(Edit1.Text);  // –азмер матрицы
   path_index := 1;
   ne := 1;
-  min := 999;
+  min := maxint; // макс значение дл€ integer. 4 байта ~ 43*10^8.
+                  {»сп как вес дл€ дороги, которую точно следует
+                  обойти в поиске наименьшего пути.  ак будто этой дороги и нету}
   mincost := 0;
 
-  for i := 1 to 10 do
+  for i := 1 to 10 do  // «адаем всем вершинам показатель посещени€ в 0
     visited[i] := 0;
 
   for i := 1 to n do
-    for j := 1 to n do
+    for j := 1 to n do  // переносим все из матрицы на форме в матрицу-структуру данных
     begin
       cost[i,j] := strtoint(StringGrid1.Cells[i,j]);
       if (cost[i,j] = 0) then
-        cost[i, j] := 999;
+        cost[i, j] := maxint;
     end;
 
-    visited[1] := 1;
+    visited[1] := 1;   // посещаем первую вершину
 
-    while (ne < n) do
+    while (ne < n) do  // ѕродолжаем пока не поситим все вершины
     begin
-      min := 999;
+      min := maxint;
       for i := 1 to n do
       begin
         for j := 1 to n do
-          if cost[i,j] < min then
-            if visited[i] <> 0 then
+          if cost[i,j] < min then  // ≈сли дорога существует
+            if visited[i] <> 0 then   // ѕровер€ем посещена вершина или нет. ≈сли да, то все это дело запоминаем все это дело
             begin
               min := cost[i,j];
               u := i;
@@ -100,37 +103,39 @@ begin
               b := v;
             end;
       end;
-        if (visited[u] = 0) or (visited[v] = 0) then
+        if (visited[u] = 0) or (visited[v] = 0) then  // провер€ем посещена вершина ab или ba
         begin
-          path[path_index] := b;
+          path[path_index] := b;   // записывем вершину на вывод
           path_index := path_index + 1;
-          ne := ne + 1;
-          mincost := mincost + min;
-          visited[b] := 1;
+          ne := ne + 1;  // это, чтобы while не длилс€ бесконечно. —четчик
+          mincost := mincost + min; // ќбновл€ем стоимость
+          visited[b] := 1;   // маркеруем вершину
         end;
-        cost[b,a] := 999;
-        cost[a,b] := cost[b,a];
+        cost[b,a] := maxint;   // “ут дороги нет
+        cost[a,b] := cost[b,a];  //“ут тоже
       end;
 
-        for i := 1 to n-1 do
+        for i := 1 to n-1 do   // тут работаем только с выводом. Outstr - строка котора€ потом идет в memo
         begin
-          outStr := OutStr + inttostr(path[i]);
-          if (i < n - 1) then
-            outStr := outStr + ' --> ';
+          outStr := OutStr + inttostr(path[i]);  // формируем строку на вывод
+          if (i < n - 1) then   // ѕровер€ем может ли быть в строке после последнего '--> n ' какое-то число
+            outStr := outStr + ' --> '; // если да, то в качестве разделител€ ставим -->
         end;
 
-        memo1.Lines.Add(outStr);
-        memo1.Lines.Add('¬ес: ' + inttostr(mincost));
+        memo1.Lines.Add(outStr); // это итоговый путь
+        memo1.Lines.Add('¬ес: ' + inttostr(mincost));  // это итоговый вес
 
 end;
 
-procedure TForm1.FormShow(Sender: TObject);
+procedure TForm1.FormShow(Sender: TObject);   // как только откроетс€ форма...
 var
   i, j: integer;
 begin
-  n:= strtoint(Edit1.Text);
-  tabSize(n);
+  n:= strtoint(Edit1.Text);   // в edit дл€ указани€ размера изначально занесено число 5. “ак что тут n = 5
+  tabSize(n); // «адаем размер таблицы на форме
 
+
+  //“ут задаем значени€ в stringgrid (по ословию задачи). ѕросто дл€ удобства.
   StringGrid1.Cells[1,4] := inttostr(1);
   StringGrid1.Cells[1,5] := inttostr(3);
 

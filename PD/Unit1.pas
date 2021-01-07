@@ -6,11 +6,10 @@ uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.math, System.Classes, Vcl.Graphics,
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, VclTee.TeeGDIPlus, Vcl.StdCtrls,
   Vcl.ExtCtrls, VCLTee.TeEngine, VCLTee.TeeProcs, VCLTee.Chart,
-  Vcl.Imaging.pngimage, Vcl.Grids, VCLTee.Series;
+  Vcl.Imaging.pngimage, Vcl.Grids, VCLTee.Series, VCLTee.TeeFunci;
 
 type
   TForm1 = class(TForm)
-    Chart1: TChart;
     Image1: TImage;
     Image2: TImage;
     Label1: TLabel;
@@ -30,7 +29,10 @@ type
     Edit7: TEdit;
     Button1: TButton;
     StringGrid1: TStringGrid;
+    Image3: TImage;
+    Chart1: TChart;
     Series1: TLineSeries;
+    TeeFunction1: TCustomTeeFunction;
     procedure Button1Click(Sender: TObject);
     procedure FormShow(Sender: TObject);
   private
@@ -65,8 +67,8 @@ end;
 
 procedure TForm1.Button1Click(Sender: TObject);
 var
-  count, i, W ,x, y: integer;
-  Ps, Qs, j, a, b, c, sin, cos: real;
+  count, i, W ,x, y, z :integer;
+  Ps, Qs: real;
 begin
   count := 1;
 
@@ -92,31 +94,29 @@ begin
 
     StringGrid1.Cells[0,i] := inttostr(count);
     StringGrid1.Cells[1,i] := inttostr(w);
-    StringGrid1.Cells[2,i] := floattostr(SimpleRoundTo(Ps, -3));
-    StringGrid1.Cells[3,i] := floattostr(SimpleRoundTo(Qs, -3));
-
+    StringGrid1.Cells[2,i] := floattostr( SimpleRoundTo(Ps, -3));
+    StringGrid1.Cells[3,i] := floattostr( SimpleRoundTo(Qs, -3));
 
     count := count + 1;
     i := i + 1;
 
-    c := sqrt(sqr(Ps) + sqr(Qs));
-    sin := Qs/c;
-    cos := Ps/c;
-
-    a := c * cos;
-    b := c * sin;
-
-    Series1.AddXY(a, b, '', clGreen);
-
   End;
+
+  for z:=1 to StringGrid1.rowcount-1 do
+    Series1.AddXY(strtofloat(StringGrid1.Cells[2,z]),strtofloat(StringGrid1.Cells[3,z]),'',clred);
+
 end;
 
 procedure TForm1.FormShow(Sender: TObject);
+var
+  x0, y0 :integer;
 begin
+  Series1.XValues.Order := loNone;
+
   Stringgrid1.Cells[0,0] := '¹';
   Stringgrid1.Cells[1,0] := 'W';
   Stringgrid1.Cells[2,0] := 'P(W)';
-  Stringgrid1.Cells[3,0] := 'P(Q)';
+  Stringgrid1.Cells[3,0] := 'Q(W)';
 end;
 
 end.

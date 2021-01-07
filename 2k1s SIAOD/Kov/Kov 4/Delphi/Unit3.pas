@@ -1,0 +1,132 @@
+unit Unit3;
+
+interface
+
+uses
+  Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
+  Dialogs, StdCtrls, Grids, Vcl.ExtCtrls, Vcl.Imaging.pngimage;
+
+type
+  TForm1 = class(TForm)
+    Button1: TButton;
+    StringGrid1: TStringGrid;
+    Memo1: TMemo;
+    Label2: TLabel;
+    Image1: TImage;
+    Label3: TLabel;
+    procedure Button1Click(Sender: TObject);
+    procedure FormCreate(Sender: TObject);
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  Form1: TForm1;
+
+implementation
+
+{$R *.dfm}
+
+const
+  n = 6;
+
+
+procedure TForm1.Button1Click(Sender: TObject);
+var
+  matrix:array[0..n,0..n - 1] of integer;//матрица смежности (-1 нет ребра)
+  visited:array[0..n - 1] of boolean;  //список просмотренных вершин
+  dist:array[0..n - 1] of integer; //расстояния
+  ways:array[0..n - 1] of string;  //пути
+  start, endvalue, v, i, j, max, k: integer;
+begin
+  //Ввод данных
+  start := 0; //StrToInt(Edit1.Text); //начальная вершина
+  //e := StrToInt(Edit2.Text); //конечная вершина
+
+for k := 0 to n - 1 do
+begin
+  if k = start then
+    continue;
+  endvalue := k;
+  for i := 1 to n do
+  begin
+     dist[i - 1]:=maxint;
+    for j := 1 to n do
+      matrix[i - 1,j - 1] := StrToInt(StringGrid1.Cells[i, j]);
+  end;
+
+  //Расчет
+  for i := 0 to n - 1 do
+    visited[i] := False;
+
+  dist[start] := 0;  //расстояние до начальной вершины
+  ways[start] := IntToStr(start); //путь от начальной вершины
+  v:=start;
+  repeat
+    j:=-1;
+    visited[v]:=true;
+    max:=maxint;
+    for i:=0 to n - 1 do //за один проход обновляем расстояния и ищем минимальное для след.итерации
+      if not visited[i] then
+      begin
+        //расчет расстояний
+        if (matrix[v,i] >= 0) and (dist[v]+matrix[v,i] < dist[i]) then
+        begin
+          dist[i]:=dist[v]+matrix[v,i];
+          ways[i]:=Format('%s-%d',[ways[v],i]); //формируем путь до i-й вершины
+        end;
+        //поиск минимального
+        if dist[i] < max then
+        begin
+          max:=dist[i];
+          j:=i;
+        end;
+      end;
+    v:=j;
+  until((v <= 0) or (v = endvalue)); //все пути пройдены или нашли минимальное расстояние для end
+
+  //вывод рез-та
+  if dist[endvalue] = maxint then
+    memo1.Lines.Add(Format('Путь из %d в %d не существует',[start,endvalue]))
+  else
+    memo1.Lines.Add(Format('Кратчайший путь из %d в %d: %s'#13#10'Длина пути: %d',[start,endvalue,ways[endvalue],dist[endvalue]]));
+  end;
+end;
+
+procedure TForm1.FormCreate(Sender: TObject);
+  var i, j : integer;
+begin
+
+  stringgrid1.rowcount := n + 1;
+  stringgrid1.colcount := n + 1;
+
+  for i := 0 to n do
+  begin
+    Stringgrid1.Cells[i + 1, 0] := inttostr(i);
+    Stringgrid1.Cells[0, i + 1] := inttostr(i);
+  end;
+
+  for i := 1 to n do
+    for j := 1 to n do
+    begin
+      StringGrid1.Cells[i, j] := '-1';
+      if i = j then
+        StringGrid1.Cells[i, j] := '0';
+    end;
+
+   //StringGrid1.Cells[1, 2] := '20';
+   StringGrid1.Cells[1, 2] := '20';
+   StringGrid1.Cells[1, 4] := '30';
+   StringGrid1.Cells[2, 4] := '9';
+   StringGrid1.Cells[5, 1] := '70';
+   StringGrid1.Cells[5, 2] := '100';
+   StringGrid1.Cells[5, 6] := '30';
+   StringGrid1.Cells[6, 1] := '30';
+   StringGrid1.Cells[5, 3] := '40';
+   StringGrid1.Cells[6, 3] := '20';
+   StringGrid1.Cells[3, 4] := '70';
+end;
+
+end.

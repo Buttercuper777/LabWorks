@@ -21,7 +21,7 @@ uses
    page=record
      m:0..nn;
      p0:ref;
-     e:array[1..nn] of item;
+     e:array[1..nn] of item ;
    end;
 
   TForm1 = class(TForm)

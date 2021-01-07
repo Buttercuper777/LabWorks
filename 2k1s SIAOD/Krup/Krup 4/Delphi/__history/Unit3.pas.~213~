@@ -1,0 +1,143 @@
+unit Unit3;
+
+interface
+
+uses
+  Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
+  Dialogs, StdCtrls, Grids;
+
+type
+  TForm1 = class(TForm)
+    Button1: TButton;
+    StringGrid1: TStringGrid;
+    Edit1: TEdit;
+    Memo1: TMemo;
+    Label1: TLabel;
+    Label2: TLabel;
+    Label3: TLabel;
+    procedure Button1Click(Sender: TObject);
+    procedure FormCreate(Sender: TObject);
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  Form1: TForm1;
+
+implementation
+
+{$R *.dfm}
+
+const
+  n = 6;
+
+
+procedure TForm1.Button1Click(Sender: TObject);
+var
+  a:array[1..n,1..n] of integer;//матрица смежности (-1 нет ребра)
+  b:array[1..n] of boolean;  //список просмотренных вершин
+  d:array[1..n] of integer; //расстояния
+  p:array[1..n] of string;  //пути
+  q, e, v, i, j, m, k: integer;
+begin
+  //Ввод данных
+  q := StrToInt(Edit1.Text) + 1; //начальная вершина
+  //e := StrToInt(Edit2.Text); //конечная вершина
+
+for k := 1 to n do
+begin
+
+  if k = q then
+    continue;
+
+  e := k;
+
+ { if (q < 0) or (q > n - 1) or (e < 0) or (e > n - 1) then
+    raise ERangeError.Create('Значение должно быть в диапазоне 0..'+IntTostr(n - 1));   }
+
+  for i := 1 to n do
+  begin
+     d[i]:=0;
+    for j := 1 to n do
+      a[i,j] := StrToInt(StringGrid1.Cells[i, j]);
+  end;
+
+  //Расчет
+  for i := 1 to n do
+    b[i] := False;
+
+  d[q] := 0;  //расстояние до начальной вершины
+  p[q] := IntToStr(q - 1); //путь от начальной вершины
+  v:=q;
+  while((v > 0) or (v = e)) do
+  begin
+    b[v]:=true;
+    m:=0;
+    j:=0;
+    for i:=1 to n do //за один проход обновляем расстояния и ищем минимальное для след.итерации
+      if not b[i] then
+      begin
+        //расчет расстояний
+        //label1.Caption:=label1.Caption + ' ' + inttostr(d[i]);
+        //memo1.Lines.Add(inttostr(a[0, i]));
+        if (a[v,i] > 0) and (d[v]+a[v,i] > d[i]) then
+        begin
+          d[i]:=d[v]+a[v,i];
+          p[i]:=Format('%s-%d',[p[v],i - 1]); //формируем путь до i-й вершины
+        end;
+        //поиск минимального
+        if ((d[i] = m)) {and (m <> 0))} then
+        begin
+          m:=d[i];
+          j:=i;
+        end;
+      end;
+    v:=j;
+  end;
+  //until (v < 0) or (v = e); //все пути пройдены или нашли минимальное расстояние для e
+  //вывод рез-та
+  if d[e] = 0 then
+    memo1.Lines.Add(Format('Путь из %d в %d не существует',[q - 1 ,e - 1]))
+  else
+    memo1.Lines.Add(Format('Кратчайший путь из %d в %d: %s'#13#10'Длина пути: %d',[q - 1,e - 1,p[e],d[e]]));
+  end;
+end;
+
+procedure TForm1.FormCreate(Sender: TObject);
+  var i, j : integer;
+begin
+  Randomize;
+
+  stringgrid1.rowcount := n + 1;
+  stringgrid1.colcount := n + 1;
+
+  for i := 0 to n do
+  begin
+    Stringgrid1.Cells[i + 1, 0] := inttostr(i);
+    Stringgrid1.Cells[0, i + 1] := inttostr(i);
+  end;
+
+  for i := 1 to n do
+    for j := 1 to n do
+    begin
+      StringGrid1.Cells[i, j] := '0';
+      if i = j then
+        StringGrid1.Cells[i, j] := '0';
+    end;
+
+   //StringGrid1.Cells[1, 2] := '20';
+   StringGrid1.Cells[1, 2] := '20';
+   StringGrid1.Cells[1, 4] := '30';
+   StringGrid1.Cells[2, 4] := '9';
+   StringGrid1.Cells[5, 1] := '70';
+   StringGrid1.Cells[5, 2] := '100';
+   StringGrid1.Cells[5, 6] := '30';
+   StringGrid1.Cells[6, 1] := '30';
+   StringGrid1.Cells[5, 3] := '40';
+   StringGrid1.Cells[6, 3] := '20';
+   StringGrid1.Cells[3, 4] := '70';
+end;
+
+end.

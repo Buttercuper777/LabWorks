@@ -30,7 +30,7 @@ object Form1: TForm1
   object Label2: TLabel
     Left = 120
     Top = 17
-    Width = 23
+    Width = 4
     Height = 16
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clWindowText

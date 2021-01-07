@@ -1,9 +1,9 @@
 object Form6: TForm6
   Left = 993
   Top = 259
-  Width = 488
-  Height = 302
   Caption = #1051#1072#1073#1086#1088#1072#1090#1086#1088#1085#1072#1103' '#1085#1086#1084#1077#1088' 7'
+  ClientHeight = 243
+  ClientWidth = 472
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText

@@ -1,0 +1,105 @@
+unit Unit1;
+
+interface
+
+uses
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls, Vcl.Grids, Math;
+
+type
+  TForm1 = class(TForm)
+    Label1: Tlabel;
+    Button1: TButton;
+    Edit1: TEdit;
+    StringGrid1: TStringGrid;
+    Edit2: TEdit;
+    Edit3: TEdit;
+    Label2: TLabel;
+    Label3: TLabel;
+    procedure Button1Click(Sender: TObject);
+    procedure FormCreate(Sender: TObject);
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  Form1: TForm1;
+
+implementation
+
+{$R *.dfm}
+const
+G = 9;
+
+
+type
+K = array [0..G] of integer;
+
+var A : K;
+ key, x, t, u, z : integer;
+ i: integer;
+
+procedure TForm1.FormCreate(Sender: TObject); //создание формы
+ var i: integer;
+ begin
+ label1.caption:='¬ведите артикул'+chr(13)+'(в цифрах)';
+ t := randomrange(1,G);
+ u := randomrange(1,G);
+ z := t*u;
+ Edit2.Text := IntToStr(t);
+ Edit3.Text := IntToStr(u);
+ for i := 0 to G do
+    begin
+    A[i]:= 0;
+    Form1.StringGrid1.Cells[0, i] := IntToStr(i)
+    end;
+ end;
+
+
+Function Hash (z:integer): integer;
+begin
+Hash := z mod 10;
+end;
+
+
+Procedure SAP (key:integer);
+//x - артикул; K -  номер в таблице
+label goback;
+  begin
+  key := Hash(z); // вот здесь key = 4
+  goback:
+  if A[key] = 0 then
+   begin
+     A[key] := x; //вывод если €чейка свободна
+     Form1.StringGrid1.Cells[1, key] := IntToStr(x);
+   end
+else
+  if key = 9 then
+  begin
+     key := 0;
+     goto goback;
+  end
+   else
+  Begin
+    for i := 0 to G do
+    if A[key] > 0 then
+    key := key + 1;
+    begin
+    A[key] := x;
+    Form1.StringGrid1.Cells[1, key] := IntToStr(x);
+    end;
+  End;
+end;
+
+Procedure TForm1.Button1Click(Sender: TObject);
+begin
+ t := randomrange(1,G);
+ u := randomrange(1,G);
+ z := t*u;
+ x := StrToInt(Edit1.Text);
+ SAP(x);
+ end;
+
+end.
