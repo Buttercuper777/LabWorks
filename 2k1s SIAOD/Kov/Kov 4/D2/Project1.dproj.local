@@ -1,10 +1,10 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <BorlandProject>
 	<Transactions>
-    <Transaction>1899.12.30 00:00:00.000.259,=C:\Users\nikam\Documents\Embarcadero\Studio\Projects\Unit1.pas</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.583,C:\Users\nikam\Documents\Embarcadero\Studio\Projects\Project1.dproj=C:\Users\nikam\Desktop\Универ!\2 курс\Структура и алгоритмы обработки данных\kf, 4\Project1.dproj</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.054,C:\Users\nikam\Documents\Embarcadero\Studio\Projects\Unit1.pas=C:\Users\nikam\Desktop\Универ!\2 курс\Структура и алгоритмы обработки данных\kf, 4\Unit1.pas</Transaction>
     <Transaction>1899.12.30 00:00:00.000.641,=C:\Users\nikam\Documents\Embarcadero\Studio\Projects\Unit1.pas</Transaction>
-    <Transaction>1899.12.30 00:00:00.000.054,C:\Users\nikam\Desktop\Универ!\2 курс\Структура и алгоритмы обработки данных\kf, 4\Unit1.pas=C:\Users\nikam\Documents\Embarcadero\Studio\Projects\Unit1.pas</Transaction>
-    <Transaction>1899.12.30 00:00:00.000.583,C:\Users\nikam\Desktop\Универ!\2 курс\Структура и алгоритмы обработки данных\kf, 4\Project1.dproj=C:\Users\nikam\Documents\Embarcadero\Studio\Projects\Project1.dproj</Transaction>
-    <Transaction>1899.12.30 00:00:00.000.054,C:\Users\nikam\Desktop\Универ!\2 курс\Структура и алгоритмы обработки данных\kf, 4\Unit1.dfm=C:\Users\nikam\Documents\Embarcadero\Studio\Projects\Unit1.dfm</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.259,=C:\Users\nikam\Documents\Embarcadero\Studio\Projects\Unit1.pas</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.054,C:\Users\nikam\Documents\Embarcadero\Studio\Projects\Unit1.dfm=C:\Users\nikam\Desktop\Универ!\2 курс\Структура и алгоритмы обработки данных\kf, 4\Unit1.dfm</Transaction>
   </Transactions>
 </BorlandProject>

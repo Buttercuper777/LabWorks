@@ -1,0 +1,118 @@
+program Project1;
+
+{$APPTYPE CONSOLE}
+
+{$R *.res}
+
+uses
+  System.SysUtils;
+const
+   l = 100;
+
+var
+  i,j,n, consp,cur, st,fin : integer;
+
+  v: integer;
+  visit: array [1..l] of boolean;
+  C: array[1..100] of array[1..100] of integer;
+
+  way,q: array[1..l] of integer;
+  was: array[1..l] of integer;
+  pred: array[1..l] of integer;
+
+  b,e: integer;
+
+procedure push(var i:integer; v : integer);
+begin
+ if i < l then i:=i+1;
+ q[i] := v;
+end;
+
+function pop(var i:integer) : integer;
+begin
+  pop := q[i];
+  dec(i);
+end;
+{-------------------------------------------}
+
+procedure BFS( v:integer);
+  var Q: array [1..l] of integer;
+  Un,Uk: integer;
+  j: integer;
+begin
+Un:=0; Uk:=0;             {инициализаци€, очередь пуста}
+Uk:=Uk+1; Q[Uk]:=v;       {занести вершину в очередь}
+
+Visit[v]:=false;          {отметить вершину как посещенную}
+  while Un < Uk do        {пока очередь не пуста}
+  begin
+  Un:=Un+1; v:=Q[Un];     {извлекаем элемент из очереди}
+  write(v:3);             {выводим элемент в пор€дке обхода в ширину}
+
+  for j:=0 to n do        {просмотр всех вершин, св€занных с v дугой}
+    if (C[v,j]=1) and (Visit[j]) then {если вершина ранее не посещалась и св€зана дугой, то заносим в очередь}
+    begin
+  Uk:=Uk+1; Q[Uk]:=j;
+  {отмечаем как посещенную вершину}
+  Visit[j]:=false;
+  end;
+  end; {while}
+end; {procedure}
+
+begin
+writeln('ѕоиск в ширину');
+writeln (С¬ведите вершину начала поискаТ); readln(v);
+BFS(v); { поиск в ширину от исходной вершины v}
+end.
+
+{begin
+  For i:=1 to l do
+    begin
+      was[i]:=0;
+      q[i]:=0;
+      visit[i] := true;
+    end;
+
+  readln(n);
+
+ For i:=1 to n do
+    For j:=1 to n do
+       read(m[i,j]);
+
+  //read(st,fin);
+
+   b := 0;
+   push(b, 1);
+   was[1] := 1;
+
+   while b > 0 do
+   begin
+     e := pop(b);
+     was[e] := 2;
+     //if e = fin then break;
+     write(e:3);
+     for i := 1 to n do
+       if (m[e, i] = 1) and (was[i] = 0) then
+       begin
+         push(b, i);
+         was[i] := 1;
+         pred[i] := e;
+       end;
+
+   end;
+   {i:=1;
+   cur := fin;
+   while (cur <> st) do
+   begin
+      way[i]:=cur;
+      inc(i);
+      cur:=pred[cur];
+   end;
+   way[i]:=st;
+
+   For j:= i downto 1 do
+      write(way[j]:3);
+   readln;
+   readln;
+   readln;
+end.     }

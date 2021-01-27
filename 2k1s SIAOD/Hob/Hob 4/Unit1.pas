@@ -13,7 +13,6 @@ type
     Edit1: TEdit;
     Button1: TButton;
     Memo1: TMemo;
-    Memo2: TMemo;
     procedure FormShow(Sender: TObject);
     procedure Button1Click(Sender: TObject);
   private
@@ -36,17 +35,18 @@ procedure dfs(stVal:integer);
 var
   r: integer;
 begin
-
 output := output + inttostr(stVal);
 if strcnt < n then
   output := output + ' --> ';
-inc(strcnt);
 
+inc(strcnt);
 visited[stVal] := true;
+
 for r := 1 to n do
-  if (matrix[stVal, r] <> 0) and (not visited[r]) then
+  if (matrix[stVal, r] > 0) and (not visited[r]) then
     dfs(r);
 end;
+
 procedure TTForm1.Button1Click(Sender: TObject);
 var
   i, j, input:integer;
@@ -54,6 +54,7 @@ var
 begin
   output:= '';
   strcnt := 1;
+
   input := strtoint(edit1.Text);
 
   for i := 1 to n do
@@ -61,6 +62,7 @@ begin
     visited[i] := false;
     for j := 1 to n do
       matrix[i,j] := strtoint(stringgrid1.Cells[i,j]);
+
   end;
   dfs(input);
 
@@ -99,11 +101,11 @@ begin
   stringgrid1.Cells[5, 4] := '1';
   stringgrid1.Cells[5, 6] := '1';
 
-  stringgrid1.Cells[6, 5] := '1';
-  stringgrid1.Cells[6, 3] := '1';
   stringgrid1.Cells[6, 8] := '1';
   stringgrid1.Cells[6, 7] := '1';
 
+  stringgrid1.Cells[7, 5] := '1';
+  stringgrid1.Cells[7, 3] := '1';
   stringgrid1.Cells[7, 8] := '1';
   stringgrid1.Cells[7, 6] := '1';
 
