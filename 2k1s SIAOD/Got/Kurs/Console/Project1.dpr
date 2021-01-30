@@ -25,7 +25,7 @@ var
   el:type_of_array_element;
   // --------------------------
   
-  year, month, day, hr, min, sec, ms: Word;
+
   res, a, b:string;
   i, d: integer;
 
@@ -58,7 +58,7 @@ var i : integer;
 begin
   for i:=1 to ArraySize do begin
      New(p^[i]);
-     p^[i]^ := random(50); {числа от нуля до 9.999999}                          // <----------
+     p^[i]^ := ArraySize - i + 1; {числа от нуля до 9.999999}                          // <----------
      //p^[i]^ := Round(100*p^[i]^)/100; {округлим до сотых}
   end;
 end;
@@ -73,7 +73,7 @@ var
 begin
   //SetLength(MainArr, n);
   BOVal := 1;
-
+  StepsVal := 1;
   {randomize;
   for i := 1 to n do begin
       MainArr[i] := random(100);
@@ -84,6 +84,7 @@ begin
 
   while j > 1 do begin
   inc(BOVal);
+  inc(StepsVal);
       id := 1;
       //writeln(inttostr(MainArr^[1]^));
       for i := 2 to j do
@@ -92,7 +93,8 @@ begin
         if MainArr^[i]^ > MainArr^[id]^ then
             id := i;
         BOVal := BOVal + 2; {При +1 мы получаем O((N^2)/2), где 2 - константа,
-                                что не учитывается при асимпт. анализе}  
+                                что не учитывается при асимпт. анализе}
+        inc(StepsVal);
       end;
 
       max := MainArr^[id]^;
@@ -101,13 +103,16 @@ begin
       j := j - 1; 
 
 
-      //write(inttostr(outval) + ': ');
+      {//write(inttostr(outval) + ': ');
       for z := 1 to ArraySize do
         write(MainArr^[z]^:4);
-      writeln;  
+      writeln;}
   end;
 
-  //result := BOVal;
+   if AssType = 'o' then
+      result := StepsVal
+    else
+      result := BOVal;
 end;
 
 {----------------------------------------------------------------------------}
@@ -169,7 +174,7 @@ begin
       writeln;
     end;
 
-    if AssType = 's' then
+    if AssType = 'o' then
       result := StepsVal
     else 
       result := BOVal;
@@ -179,16 +184,37 @@ function SortCaller(ArrayPointer: parr; ArrSize:integer; AlgType: boolean; AssTy
                                                                                   Массив; Размер массивы; Тип алг(1 - S, 0 - I); Тип оценки[Время(t), Проходы(s), Сложность(o)];
                                                                                   Если массив = nil, то случай работы с массивом. Тех.параметр} 
 var
-  resVal: integer;
+  resVal, delta: integer;
+  TimeS, TimeF: string;
+  year, month, day, hr, min, sec, ms: Word;
 begin
-  //write(trunc(sizeof(ArrayPointer^)));
   if ArrayPointer <> nil then
     if AlgType = True then
-      resVal := Selection(ArrayPointer, ArrSize, AssType)
+      if AssType = 's' then
+        resVal := Selection(ArrayPointer, ArrSize, AssType)
+      else if AssType = 't' then
+      begin
+        DecodeTime(Time,hr, min, sec, ms);
+        writeln(format('%d' + ':' + '%d',[sec, ms]));
+        writeln(delta);
+
+        Selection(ArrayPointer, ArrSize, AssType);
+        //write(Insertion(10000,'b'));writeln;
+
+        DecodeTime(Time,hr, min, sec, ms);
+        writeln(format('%d' + ':' + '%d',[sec, ms]));
+
+        {if TimeF < TimeS then
+          delta := (1000 - strtoint(TimeS)) + strtoint(TimeF)
+        else
+          delta := strtoint(TimeF) - strtoint(TimeS);}
+        writeln(delta);
+        result := 000000;
+      end
     else
       resVal := Insertion(ArrayPointer, ArrSize, AssType);
 
-    result := resVal;
+  //result := resVal;
 end;
 
 {-----------------------------------Main Block----------------------------------}
@@ -219,9 +245,9 @@ begin
   GetMem(p, n*sizeof(type_of_array_element));
   FillRandom(p, n);
   
-  PrinArray(p, n);
-  write(SortCaller(p, n, False, 'o'));
-  //FreeArray(p,n); 
+  //PrinArray(p, n);
+  write(SortCaller(p, n, True, 't'));      //Тип алг(1 - S, 0 - I)
+  FreeArray(p,n);
   
   readln;
   readln;
