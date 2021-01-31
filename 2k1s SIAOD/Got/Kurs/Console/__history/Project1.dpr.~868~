@@ -80,7 +80,7 @@ begin
       //write(MainArr[i]:4)
   end;}
 
-    j := ArraySize;
+  j := ArraySize;
 
   while j > 1 do begin
   inc(BOVal);
@@ -109,9 +109,9 @@ begin
       writeln;}
   end;
 
-   if AssType = 'o' then
+   if AssType = 's' then
       result := StepsVal
-    else
+   else
       result := BOVal;
 end;
 
@@ -184,37 +184,59 @@ function SortCaller(ArrayPointer: parr; ArrSize:integer; AlgType: boolean; AssTy
                                                                                   Массив; Размер массивы; Тип алг(1 - S, 0 - I); Тип оценки[Время(t), Проходы(s), Сложность(o)];
                                                                                   Если массив = nil, то случай работы с массивом. Тех.параметр} 
 var
-  resVal, delta: integer;
-  TimeS, TimeF: string;
+  ms_i_S, ms_i_F, sec_i_S, sec_i_F, secDelta, msDelta: integer;
+  msTimeS, msTimeF, secTimeS, secTimeF: string;
   year, month, day, hr, min, sec, ms: Word;
+
+  resVal: integer;
 begin
-  if ArrayPointer <> nil then
-    if AlgType = True then
-      if AssType = 's' then
-        resVal := Selection(ArrayPointer, ArrSize, AssType)
-      else if AssType = 't' then
-      begin
-        DecodeTime(Time,hr, min, sec, ms);
-        writeln(format('%d' + '%d',[sec, ms]));
-        writeln(delta);
+    if AssType = 's' then
+      if AlgType = True then
+        result := Selection(ArrayPointer, ArrSize, AssType)
+      else
+        result := Insertion(ArrayPointer, ArrSize, AssType)
+    else if AssType = 't' then
+    begin
+      DecodeTime(Time,hr, min, sec, ms);
+      //writeln(format('%d' + 's, ' + '%d' + 'ms',[sec, ms]));
+      msTimeS := (format('%d',[ms]));
+      secTimeS := (format('%d',[sec]));
+      //writeln(delta);
 
-        Selection(ArrayPointer, ArrSize, AssType);
-        //write(Insertion(10000,'b'));writeln;
+      Selection(ArrayPointer, ArrSize, AssType);
+      //write(Insertion(10000,'b'));writeln;
 
-        DecodeTime(Time,hr, min, sec, ms);
-        writeln(format('%d' + '%d',[sec, ms]));
+      DecodeTime(Time,hr, min, sec, ms);
+      //writeln(format('%d' + 's, ' + '%d' + 'ms',[sec, ms]));
 
-        {if TimeF < TimeS then
-          delta := (1000 - strtoint(TimeS)) + strtoint(TimeF)
-        else
-          delta := strtoint(TimeF) - strtoint(TimeS);}
-        writeln(delta);
-        result := delta;
-      end
-    else
-      resVal := Insertion(ArrayPointer, ArrSize, AssType);
+      msTimeF := (format('%d',[ms]));
+      secTimeF := (format('%d',[sec]));
 
-  //result := resVal;
+      ms_i_S := strtoint(msTimeS);
+      ms_i_F := strtoint(msTimeF);
+
+      sec_i_S := strtoint(secTimeS);
+      sec_i_F := strtoint(secTimeF);
+
+      if ms_i_F < ms_i_S then
+        msDelta := (1000 - ms_i_S) + ms_i_F
+      else
+        msDelta := ms_i_F - ms_i_S;
+
+      if sec_i_F < sec_i_S then
+        secDelta := (60 - sec_i_S) + sec_i_F
+      else
+        secDelta := sec_i_F - sec_i_S;
+
+
+      //writeln(inttostr(secDelta) + 's; ' + inttostr(msDelta) + 'ms');
+      result := secDelta * 1000 + msDelta;
+    end
+    else if AssType = 'o' then
+      if AlgType = True then
+        result := Selection(ArrayPointer, ArrSize, AssType)
+      else
+        result := Insertion(ArrayPointer, ArrSize, AssType)
 end;
 
 {-----------------------------------Main Block----------------------------------}
@@ -246,7 +268,7 @@ begin
   FillRandom(p, n);
   
   //PrinArray(p, n);
-  write(SortCaller(p, n, True, 't'));      //Тип алг(1 - S, 0 - I)
+  write(SortCaller(p, n, True, 'o'));      //Тип алг(1 - S, 0 - I)
   FreeArray(p,n);
   
   readln;
