@@ -58,7 +58,7 @@ var i : integer;
 begin
   for i:=1 to ArraySize do begin
      New(p^[i]);
-     p^[i]^ := ArraySize - i + 1; {числа от нуля до 9.999999}                          // <----------
+     p^[i]^ := ArraySize - i + 1; {числа от нуля до 9.999999 ArraySize - i + 1 random(100)}                          // <----------
      //p^[i]^ := Round(100*p^[i]^)/100; {округлим до сотых}
   end;
 end;
@@ -122,55 +122,43 @@ var
   //MainArr: array of integer;
   i, j, k, key, tempValue, z: integer;
   StepsVal, BOVal: integer;
-
+  ifCheck: boolean;
 begin
   //SetLength(MainArr, n);
   StepsVal := 1;
   BOVal := 1;
   writeln('Insertion');
-  {randomize;
-  for i := 1 to n do begin
-    if mode = 'g' then
-      MainArr[i] := i
-    else if mode = 'm' then
-      MainArr[i] := random(100)
-    else if mode = 'b' then
-      MainArr[i] := n - i + 1
-    else
-      result := 0;
-
-    //write(MainArr[i]:4);
-  end;
-  //writeln;
-  {сортировка вставками}
-
+  ifCheck := False;
+  
   for i := 2 to ArraySize do
     begin
       StepsVal := StepsVal + 1;
       //BOVal := BOVal - 1;
       key := MainArr^[i]^;
       j := i;
-      if (j > 1) and (MainArr^[j - 1]^ > key) then
-      begin
-        BOVal := BOVal + ArraySize + 1; 
+      BOVal := BOVal + 1;
         while (j > 1) and (MainArr^[j - 1]^ > key) do
         begin
             {обмен элементов}
+            ifCheck := True;
             StepsVal := StepsVal + 1;
             tempValue :=  MainArr^[j]^;
             MainArr^[j]^ := MainArr^[j - 1]^;
             MainArr^[j - 1]^ := tempValue;
             j := j - 1;
         end;
-      end
-        else
-          BOVal := BOVal + 1;
-         
-          
+        
+      if ifCheck = true then
+      begin  
+        BOVal := i;
+        BOVal := BOVal * ArraySize;
+      end;
+
+        
       MainArr^[j]^ := key;
       write(inttostr(BOVal) + ': ');
       for z := 1 to ArraySize do
-        write(MainArr^[z]^:4);
+        write(inttostr(MainArr^[z]^) + ' - ' + booltostr(ifCheck));
       writeln;
     end;
 
@@ -268,7 +256,7 @@ begin
   FillRandom(p, n);
   
   //PrinArray(p, n);
-  write(SortCaller(p, n, True, 's'));      //Тип алг(1 - S, 0 - I)
+  write(SortCaller(p, n, False, 's'));      //Тип алг(1 - S, 0 - I)
   FreeArray(p,n);
   
   readln;
