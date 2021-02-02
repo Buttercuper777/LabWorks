@@ -8,6 +8,25 @@ uses
   Vcl.Grids;
 
 type
+// ----- Types for Array ------
+type_of_array_element = integer;
+
+parr = ^HeadArray;
+pelement = ^type_of_array_element;
+HeadArray = array[1..100001] of pelement;
+// -----------------------------
+
+var
+
+// -------- Array -----------
+main_p:parr;
+main_n:integer;
+main_el:type_of_array_element;
+// --------------------------
+
+
+
+type
   TForm1 = class(TForm)
     Label1: TLabel;
     Edit1: TEdit;
@@ -24,6 +43,7 @@ type
     Button3: TButton;
     procedure Label1Click(Sender: TObject);
     procedure FormShow(Sender: TObject);
+    procedure Button1Click(Sender: TObject);
   private
     { Private declarations }
   public
@@ -36,6 +56,28 @@ var
 implementation
 
 {$R *.dfm}
+
+
+procedure FillArray(var p:parr; ArraySize : integer; CaseType: char);
+  external '../../DLL/SortLib.dll';
+procedure FreeArray(var p:parr; var ArraySize : integer);
+  external '../../DLL/SortLib.dll';
+function Selection(MainArr:parr; ArraySize:integer; AssType: char):integer;
+  external '../../DLL/SortLib.dll';
+function Insertion(MainArr:parr; ArraySize:integer; AssType: char):integer;
+  external '../../DLL/SortLib.dll';
+function SortCaller(ArrayPointer: parr; ArrSize:integer; AlgType: boolean; AssType: char):integer;
+  external '../../DLL/SortLib.dll';
+
+procedure TForm1.Button1Click(Sender: TObject); //“ип алг(1 - S, 0 - I)
+var
+  ArrSize_l: integer;
+begin
+  ArrSize_l := strtoint(Edit2.Text);
+  GetMem(main_p, ArrSize_l*sizeof(type_of_array_element));
+  FillArray(main_p, ArrSize_l, 'g');
+  memo1.Lines.Add(inttostr(SortCaller(main_p, ArrSize_l, True, 's')));
+end;
 
 procedure TForm1.FormShow(Sender: TObject);
 begin

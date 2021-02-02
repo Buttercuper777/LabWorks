@@ -65,7 +65,7 @@ object Form1: TForm1
     Width = 201
     Height = 21
     TabOrder = 0
-    Text = '50'
+    Text = '10'
   end
   object Edit2: TEdit
     Left = 8
@@ -82,6 +82,7 @@ object Form1: TForm1
     Height = 46
     Caption = #1047#1072#1087#1091#1089#1090#1080#1090#1100' '#1090#1077#1089#1090
     TabOrder = 2
+    OnClick = Button1Click
   end
   object StringGrid1: TStringGrid
     Left = 224

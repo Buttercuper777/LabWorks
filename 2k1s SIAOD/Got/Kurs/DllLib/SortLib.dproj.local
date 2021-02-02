@@ -1,0 +1,7 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<BorlandProject>
+	<Transactions>
+    <Transaction>1899.12.30 00:00:00.000.210,D:\LabWorks\Delphi Projects\Project1.dproj=D:\LabWorks\2k1s SIAOD\Got\Kurs\MainLib\Project1.dproj</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.195,D:\LabWorks\2k1s SIAOD\Got\Kurs\MainLib\Project1.dproj=D:\LabWorks\2k1s SIAOD\Got\Kurs\DllLib\SortLib.dproj</Transaction>
+  </Transactions>
+</BorlandProject>

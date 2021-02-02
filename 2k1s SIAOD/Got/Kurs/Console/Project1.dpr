@@ -10,24 +10,22 @@ type
 
   // ----- Types for Array ------
   type_of_array_element = integer;
-  
+
   parr = ^HeadArray;
   pelement = ^type_of_array_element;
   HeadArray = array[1..100000] of pelement;
- // ----------------------------- 
+ // -----------------------------
 
 
 var
 
   // -------- Array -----------
-  p:parr;                   
+  p:parr;
   n:integer;
   el:type_of_array_element;
   // --------------------------
-  
 
-  res, a, b:string;
-  i, d: integer;
+
 
 {------------------------------- For D-Arr -------------------------------------}
 
@@ -64,6 +62,10 @@ begin
 end;
 
 {-------------------------------------------------------------------------------}
+{procedure MakeArray(MA_P:parr; n:integer);
+begin
+GetMem(MA_P, n*sizeof(type_of_array_element));
+end; }
 
 function Selection(MainArr:parr; ArraySize:integer; AssType: char):integer;
 var
@@ -251,7 +253,7 @@ begin
 
   WriteLn('¬ведите размерность массива: ');
   ReadLn(n);
-  
+
   GetMem(p, n*sizeof(type_of_array_element));
   FillRandom(p, n);
   
