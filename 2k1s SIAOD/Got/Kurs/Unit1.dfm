@@ -2,8 +2,8 @@ object Form1: TForm1
   Left = 0
   Top = 0
   Caption = #1043#1086#1090#1084#1072#1085#1086#1074' '#1048#1042#1058'-21'
-  ClientHeight = 323
-  ClientWidth = 555
+  ClientHeight = 322
+  ClientWidth = 817
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -73,7 +73,7 @@ object Form1: TForm1
     Width = 201
     Height = 21
     TabOrder = 1
-    Text = '50000'
+    Text = '9000'
   end
   object Button1: TButton
     Left = 8
@@ -106,29 +106,53 @@ object Form1: TForm1
     RowCount = 4
     TabOrder = 4
   end
-  object Memo1: TMemo
-    Left = 8
-    Top = 183
-    Width = 201
-    Height = 132
-    Lines.Strings = (
-      #1054#1090#1095#1077#1090#1099' '#1086' '#1088#1072#1073#1086#1090#1077':')
-    TabOrder = 5
-  end
   object Button2: TButton
-    Left = 432
-    Top = 8
-    Width = 113
-    Height = 25
+    Left = 135
+    Top = 182
+    Width = 74
+    Height = 132
     Caption = #1043#1088#1072#1092#1080#1082
+    TabOrder = 5
+    OnClick = Button2Click
+  end
+  object RadioGroup1: TRadioGroup
+    Left = 8
+    Top = 174
+    Width = 121
+    Height = 59
+    Caption = #1057#1086#1088#1090#1080#1088#1086#1074#1082#1072
+    Items.Strings = (
+      'Insertion'
+      'Selection')
     TabOrder = 6
   end
-  object Button3: TButton
-    Left = 432
-    Top = 176
+  object RadioGroup2: TRadioGroup
+    Left = 16
+    Top = 239
     Width = 113
-    Height = 25
-    Caption = #1043#1088#1072#1092#1080#1082
+    Height = 75
+    Items.Strings = (
+      '1..n'
+      'n..1'
+      'Random')
     TabOrder = 7
+  end
+  object Memo1: TMemo
+    Left = 551
+    Top = 37
+    Width = 74
+    Height = 277
+    Lines.Strings = (
+      'Memo1')
+    TabOrder = 8
+  end
+  object Memo2: TMemo
+    Left = 631
+    Top = 37
+    Width = 74
+    Height = 277
+    Lines.Strings = (
+      'Memo1')
+    TabOrder = 9
   end
 end

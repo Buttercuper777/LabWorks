@@ -4,7 +4,7 @@ object Form3: TForm3
   BorderStyle = bsSingle
   Caption = 'Insertion sort'
   ClientHeight = 360
-  ClientWidth = 605
+  ClientWidth = 700
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -24,5 +24,13 @@ object Form3: TForm3
     TabOrder = 0
     DefaultCanvas = 'TGDIPlusCanvas'
     ColorPaletteIndex = 13
+  end
+  object Button1: TButton
+    Left = 608
+    Top = 184
+    Width = 75
+    Height = 25
+    Caption = 'Button1'
+    TabOrder = 1
   end
 end

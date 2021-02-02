@@ -117,7 +117,6 @@ var
 begin
   StepsVal := 1;
   BOVal := 1;
-  writeln('Insertion');
   ifCheck := False;
 
   for i := 2 to ArraySize do
@@ -142,12 +141,7 @@ begin
         BOVal := BOVal * ArraySize;
       end;
 
-
       MainArr^[j]^ := key;
-      write(inttostr(BOVal) + ': ');
-      for z := 1 to ArraySize do
-        write(inttostr(MainArr^[z]^) + ' - ' + booltostr(ifCheck));
-      writeln;
     end;
 
     if AssType = 'o' then
@@ -183,11 +177,10 @@ begin
 
       if AlgType = True then
         Selection(ArrayPointer, ArrSize, AssType)
-      else
+      else if AlgType = False then
         Insertion(ArrayPointer, ArrSize, AssType);
 
       DecodeTime(Time,hr, min, sec, ms);
-
 
       msTimeF := (format('%d',[ms]));
       secTimeF := (format('%d',[sec]));
