@@ -14,6 +14,7 @@ type_of_array_element = integer;
 parr = ^HeadArray;
 pelement = ^type_of_array_element;
 HeadArray = array[1..100001] of pelement;
+
 // -----------------------------
 
 var
@@ -26,7 +27,7 @@ main_el:type_of_array_element;
 
 ST:Boolean;
 SS:char;
-GrArr: array[1..2,1..30] of integer;
+GrArr:array[1..2,1..30] of integer;
 
 type
   TForm1 = class(TForm)
@@ -43,8 +44,6 @@ type
     Button2: TButton;
     RadioGroup1: TRadioGroup;
     RadioGroup2: TRadioGroup;
-    Memo1: TMemo;
-    Memo2: TMemo;
     procedure Label1Click(Sender: TObject);
     procedure FormShow(Sender: TObject);
     procedure Button1Click(Sender: TObject);
@@ -188,21 +187,12 @@ begin
     GrArr[2,i] := SortCaller(main_p, SCounter, ST, 'o');
   end;
 
-  for i := 1 to 30 do
-  begin
-    SCounter := SCounter + 5;
-    memo1.Lines.Add(inttostr(GrArr[1,i]));
-    memo2.Lines.Add(inttostr(GrArr[2,i]));
-    //GrArr[1,i] := SCounter;
-    //GrArr[2,i] := SortCaller(main_p, SCounter, ST, 'o');
-  end;
-
-  //SortCaller(main_p, 100, ST, 'o');
+  Form3.Show();
 end;
 
 procedure TForm1.Button3Click(Sender: TObject);
 begin
-Form3.Show();
+  Form3.Show();
 end;
 
 procedure TForm1.FormShow(Sender: TObject);

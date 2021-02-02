@@ -3,7 +3,7 @@ object Form1: TForm1
   Top = 0
   Caption = #1043#1086#1090#1084#1072#1085#1086#1074' '#1048#1042#1058'-21'
   ClientHeight = 322
-  ClientWidth = 817
+  ClientWidth = 556
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -136,23 +136,5 @@ object Form1: TForm1
       'n..1'
       'Random')
     TabOrder = 7
-  end
-  object Memo1: TMemo
-    Left = 551
-    Top = 37
-    Width = 74
-    Height = 277
-    Lines.Strings = (
-      'Memo1')
-    TabOrder = 8
-  end
-  object Memo2: TMemo
-    Left = 631
-    Top = 37
-    Width = 74
-    Height = 277
-    Lines.Strings = (
-      'Memo1')
-    TabOrder = 9
   end
 end
