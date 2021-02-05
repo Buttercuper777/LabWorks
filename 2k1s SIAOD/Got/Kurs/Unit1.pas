@@ -20,6 +20,7 @@ HeadArray = array[1..100001] of pelement;
 var
 
 // -------- Array -----------
+
 main_p:parr;
 main_n:integer;
 main_el:type_of_array_element;

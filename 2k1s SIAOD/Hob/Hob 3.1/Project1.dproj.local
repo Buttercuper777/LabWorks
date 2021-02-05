@@ -1,9 +1,9 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <BorlandProject>
 	<Transactions>
-    <Transaction>1899.12.30 00:00:00.000.632,C:\Users\Xiaomi\Documents\Embarcadero\Studio\Projects\Unit1.pas=C:\Users\Xiaomi\Desktop\8 лаба\Unit1.pas</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.159,C:\Users\Xiaomi\Desktop\8 лаба\Project1.dproj=C:\Users\Xiaomi\Documents\Embarcadero\Studio\Projects\Project1.dproj</Transaction>
     <Transaction>1899.12.30 00:00:00.000.010,=C:\Users\Xiaomi\Documents\Embarcadero\Studio\Projects\Unit1.pas</Transaction>
-    <Transaction>1899.12.30 00:00:00.000.159,C:\Users\Xiaomi\Documents\Embarcadero\Studio\Projects\Project1.dproj=C:\Users\Xiaomi\Desktop\8 лаба\Project1.dproj</Transaction>
-    <Transaction>1899.12.30 00:00:00.000.632,C:\Users\Xiaomi\Documents\Embarcadero\Studio\Projects\Unit1.dfm=C:\Users\Xiaomi\Desktop\8 лаба\Unit1.dfm</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.632,C:\Users\Xiaomi\Desktop\8 лаба\Unit1.dfm=C:\Users\Xiaomi\Documents\Embarcadero\Studio\Projects\Unit1.dfm</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.632,C:\Users\Xiaomi\Desktop\8 лаба\Unit1.pas=C:\Users\Xiaomi\Documents\Embarcadero\Studio\Projects\Unit1.pas</Transaction>
   </Transactions>
 </BorlandProject>
