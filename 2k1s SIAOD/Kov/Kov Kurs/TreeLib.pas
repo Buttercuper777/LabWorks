@@ -3,9 +3,9 @@ unit TreeLib;
 interface
 
 uses
-  System.SysUtils;
+  System.SysUtils,
+   Vcl.Dialogs;
 
-implementation
 type
   TData = Integer; { Тип указателя на узел. }
   TPNode = ^TNode; { Тип узла дерева. }
@@ -15,47 +15,195 @@ type
     PLeft, PRight: TPNode; { Указатели на левый и правый узел. }
   end;
   TreeArrT = array[0..100] of TData;
-var
-  NodeData: integer;
-  TreeHead: integer;
-  InputData: string;
-  PTree : TPNode;
 
-  Data: TData;
-  i:integer;
+  TTree = class  // main class                              <---
+    TreePointer: TPNode;
+    Data: TData;
+    OutData: string;
+
+    Private
+      LeftNode: TPNode;
+      DataSaver: integer;
+      Procedure FindLeft(Pointer: TPNode);
+    Public
+      procedure AddNode(var aPNode: TPNode; const aData: TData);
+      function TreeWrite(const aPNode : TPNode; WriteType:char): string;
+      procedure FillTree(ArraySize: integer; MainArray:TreeArrT; var Pointer: TPNode);
+
+      procedure Find(const aPNode : TPNode; ForSearch: integer);
+      procedure Add(var Pointer : TPNode; ForAdd: integer);
+      Procedure Del(Pointer: TPNode; ForDel: Integer);
+
+      constructor Create();
+  end;
 
 
-procedure AddNode(var aPNode: TPNode; const aData: TData);
+  Var
+    Way: string;
+    NodeSaver: TPNode;
+implementation
+
+constructor TTree.Create();
 begin
-  if aPNode = nil then { Вставка узла. }
-  begin
-    New(aPNode); { Выделяем память для узла. }
-    aPNode^.Data := aData; { Записываем в узел значение ключа. }
-    aPNode^.PLeft := nil; { Обнуляем указатель на левого потомка. }
-    aPNode^.PRight := nil; { Обнуляем указатель на правого потомка. }
+  TreePointer := nil;
+end;
 
-    TreeHead := aData;
-    //showMessage('1');
+Procedure TTree.FindLeft(Pointer: TPNode);
+begin
+  if Pointer^.PLeft = nil then
+  begin
+    LeftNode := Pointer;
+    exit
+  end
+  else
+    FindLeft(Pointer^.PLeft);
+end;
+
+procedure TTree.Del(Pointer: TPNode; ForDel: Integer);
+Var
+  LSave, RSave: TPNode;
+begin
+  if Pointer = nil then
+    exit;
+
+  if ForDel > Pointer^.Data then
+  begin
+    NodeSaver := Pointer;
+    Del(Pointer^.PRight, ForDel);
   end
 
-  else if aData <= aPNode^.Data then { Поиск места вставки в левой ветви. }
+  else if ForDel < Pointer^.Data then
   begin
-    //showMessage('left');
-    AddNode(aPNode^.PLeft, aData);
-    //NodeData := aPNode^.PLeft.Data;
-
+    NodeSaver := Pointer;
+    Del(Pointer^.PLeft, ForDel);
   end
 
-  else if aData > aPNode^.Data then { Поиск места вставки в правой ветви. }
+  else if ForDel = Pointer^.Data then
   begin
-    //showMessage('right');
-    AddNode(aPNode^.PRight, aData);
-    //NodeData := aPNode^.PRight.Data;
+    if (Pointer^.PLeft = nil) and (Pointer^.PRight = nil) then                    // Alone Node
+    begin
+      if Pointer^.Data > NodeSaver^.Data then
+        NodeSaver^.PRight := nil
+      else if Pointer^.Data < NodeSaver^.Data then
+        NodeSaver^.PLeft := nil;
 
+      Dispose(Pointer);
+    end
+    else if (Pointer^.PLeft <> nil) and (Pointer^.PRight = nil) then              // Tree -L    R - nil
+    begin
+      if Pointer^.Data > NodeSaver^.Data then
+      begin
+        NodeSaver^.PRight := Pointer^.PLeft;
+        Pointer := nil;
+        Dispose(Pointer);
+      end
+      else if Pointer^.Data < NodeSaver^.Data then
+      begin
+        NodeSaver^.PLeft := Pointer^.PLeft;
+        Pointer := nil;
+        Dispose(Pointer);
+      end;
+
+    end
+    else if (Pointer^.PLeft = nil) and (Pointer^.PRight <> nil) then              // nil - L   R - Tree
+    begin
+      if Pointer^.Data > NodeSaver^.Data then
+      begin
+        NodeSaver^.PRight := Pointer^.PRight;
+        Pointer := nil;
+        Dispose(Pointer);
+      end
+      else if Pointer^.Data < NodeSaver^.Data then
+      begin
+        NodeSaver^.PLeft := Pointer^.PRight;
+        Pointer := nil;
+        Dispose(Pointer);
+      end;
+    end
+    else if (Pointer^.PLeft <> nil) and (Pointer^.PRight <> nil) then       //< -----------------------------
+    begin
+      FindLeft(Pointer^.PRight);
+      DataSaver := LeftNode^.Data;
+      Del(Pointer, DataSaver);
+      Pointer^.Data := DataSaver;
+    end;                         
   end;
 end;
 
-function TreeWrite(const aPNode : TPNode; WriteType:char): string;
+procedure TTree.Add(var Pointer: TPNode; ForAdd: integer);
+var
+  AddPointer: TPNode;
+begin
+  if Pointer = nil then
+  begin
+    AddNode(Pointer, ForAdd);
+    ShowMessage('Добавлено: ' + inttostr(ForAdd));
+    exit;
+  end;
+
+  if ForAdd > Pointer^.Data then
+    Add(Pointer^.PRight, ForAdd)
+
+  else if ForAdd < Pointer^.Data then
+    Add(Pointer^.PLeft, ForAdd)
+
+  else if ForAdd = Pointer^.Data then
+    ShowMessage(('Такой потомок уже существует!'));
+end;
+
+procedure TTree.Find(const aPNode: TPNode; ForSearch: integer);
+begin
+  if aPNode = nil then
+  begin
+    ShowMessage('Совпадений нет!');
+    exit;
+  end;
+
+  if ForSearch > aPNode^.Data then
+  begin
+    Way := Way + ' -> ' + inttostr(aPNode^.Data);
+    Find(aPNode^.PRight, ForSearch);
+  end
+  else if ForSearch < aPNode^.Data then
+  begin
+    Way := Way + ' -> ' + inttostr(aPNode^.Data);
+    Find(aPNode^.PLeft, ForSearch);
+  end
+  else if ForSearch = aPNode^.Data then
+    ShowMessage(('Найдено: ' + inttostr(ForSearch) + #13 + 'Tree' + Way + ' -> ' + inttostr(ForSearch)));
+end;
+
+
+
+procedure TTree.FillTree(ArraySize: integer; MainArray:TreeArrT; var Pointer: TPNode);
+var
+  i: integer;
+begin
+  for i := 0 to ArraySize - 1 do
+    AddNode(Pointer, MainArray[i]);
+
+end;
+
+
+procedure TTree.AddNode(var aPNode: TPNode; const aData: TData);
+begin
+  if aPNode = nil then
+  begin
+    New(aPNode);
+    aPNode^.Data := aData;
+    aPNode^.PLeft := nil;
+    aPNode^.PRight := nil;
+  end
+
+  else if aData <= aPNode^.Data then
+    AddNode(aPNode^.PLeft, aData)
+
+  else if aData > aPNode^.Data then
+    AddNode(aPNode^.PRight, aData);
+
+end;
+
+function TTree.TreeWrite(const aPNode : TPNode; WriteType:char): string;
 begin
   if aPNode = nil then
     exit;
@@ -63,12 +211,12 @@ begin
   if WriteType = 's' then
   begin
     TreeWrite(aPNode^.PLeft, WriteType);
-    InputData := InputData + ' ' + inttostr(aPNode^.Data);
+    OutData := OutData + ' ' + inttostr(aPNode^.Data);
     TreeWrite(aPNode^.PRight, WriteType);
   end
   else if WriteType = 'd' then
   begin
-    InputData := InputData + ' ' + inttostr(aPNode^.Data);
+    OutData := OutData + ' ' + inttostr(aPNode^.Data);
     TreeWrite(aPNode^.PLeft, WriteType);
     TreeWrite(aPNode^.PRight, WriteType);
   end
@@ -76,18 +224,15 @@ begin
   begin
     TreeWrite(aPNode^.PLeft, WriteType);
     TreeWrite(aPNode^.PRight, WriteType);
-    InputData := InputData + ' ' + inttostr(aPNode^.Data);
-  end;
-       
-  result := InputData;
-end;
+    OutData := OutData + ' ' + inttostr(aPNode^.Data);
+  end
+  else
+    result := 'ERROR';
 
-procedure FillTree(ArraySize: integer; MainArray:TreeArrT);
-var
-  i: integer;
+  result := OutData;
+end;
+procedure Prnt();
 begin
-  for i := 1 to ArraySize do
-    AddNode(PTree, MainArray[i]);
+  ShowMessage('ukhkjhkjhk');
 end;
-
 end.

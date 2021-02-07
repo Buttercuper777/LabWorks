@@ -26,65 +26,35 @@ type
     Label1: TLabel;
     Label6: TLabel;
     procedure Button1Click(Sender: TObject);
-    procedure FormShow(Sender: TObject);
+    procedure RadioGroup1Click(Sender: TObject);
+    procedure Button2Click(Sender: TObject);
+    procedure Button3Click(Sender: TObject);
+    procedure Button4Click(Sender: TObject);
+    procedure Button5Click(Sender: TObject);
   private
     { Private declarations }
   public
     { Public declarations }
   end;
 
- { TData = Integer;
+ {TData = Integer;
   TPNode = ^TNode;
 
   TNode = record
     Data: TData;
     PLeft, PRight: TPNode;
-  end;
+  end;     }
 
 var
+  MTree: TTree;
   Form1: TForm1;
-  NodeData: integer;
-  TreeHead: integer;
-
-  InputData: string;
-
-  PTree : TPNode;          }
+  InputArray: TreeArrT;
 
 implementation
 
 {$R *.dfm}
 
-{procedure AddNode(var aPNode: TPNode; const aData: TData);
-begin
-  if aPNode = nil then
-  begin
-    New(aPNode);
-    aPNode^.Data := aData;
-    aPNode^.PLeft := nil;
-    aPNode^.PRight := nil;
-
-    TreeHead := aData;
-    //showMessage('1');
-  end
-
-  else if aData <= aPNode^.Data then
-  begin
-    //showMessage('left');
-    AddNode(aPNode^.PLeft, aData);
-    //NodeData := aPNode^.PLeft.Data;
-
-  end
-
-  else if aData > aPNode^.Data then
-  begin
-    //showMessage('right');
-    AddNode(aPNode^.PRight, aData);
-    //NodeData := aPNode^.PRight.Data;
-
-  end;
-end;
-
- procedure PrintTree(treenode:TTreeNode; root:TPNode);
+procedure PrintTree(treenode:TTreeNode; root:TPNode);
  var newnode : TTreeNode;
  begin
     if Assigned(root) then
@@ -96,39 +66,87 @@ end;
     end;
  end;
 
-procedure TreeWrite(const aPNode : TPNode);
-begin
-  if aPNode = nil then
-    exit;
-
-  TreeWrite(aPNode^.PLeft);
-  InputData := InputData + inttostr(aPNode^.Data);
-  Form1.Label2.Caption := InputData;
-  TreeWrite(aPNode^.PRight);
-
-end;
-
 procedure TForm1.Button1Click(Sender: TObject);
 var
-  aPNode: TPNode ;
-  Data: TData;
-  tryAdd: Integer;
-  i: integer;
+  i, TreeArrSize: integer;
 begin
-  for i:= 0 to Memo1.Lines.Count - 1 do
+  if Memo1.Lines.Count = 0 then
+    ShowMessage('¬ведите данные дл€ построени€ дерева!')
+  else
   begin
-    Data := strtoint(Memo1.Lines[i]);
-    AddNode(PTree, Data);
+
+  TreeArrSize := Memo1.Lines.Count - 1;
+  
+  for i := 0 to TreeArrSize do
+    InputArray[i] := strtoint(Memo1.Lines[i]);  
+
+  MTree := TTree.Create();
+  MTree.FillTree(TreeArrSize + 1, InputArray, MTree.TreePointer);
+
+  PrintTree(nil, MTree.TreePointer);               //<----------------
+  
+  RadioGroup1.Enabled := True;
+  Button3.Enabled := True;
+  Button4.Enabled := True;
+  Button5.Enabled := True;
   end;
-
-  TreeWrite(PTree);
-  PrintTree(nil, PTree);
-
 end;
 
-procedure TForm1.FormShow(Sender: TObject);
+procedure TForm1.Button2Click(Sender: TObject);
+var 
+  NTreeVal: integer;
+  i: Integer;
 begin
-   PTree := nil;
-end;  }
+  Memo1.Clear;
+  NTreeVal := strtoint(Edit1.Text);
+  for i := 1 to NTreeVal do
+    Memo1.Lines.Add(inttostr(1 + random(99)));
+end;
+
+procedure TForm1.Button3Click(Sender: TObject);
+  Var
+    FindVal: integer;
+begin
+  TreeLib.Way := '';
+  FindVal := strtoint(Edit2.Text);
+  MTree.Find(MTree.TreePointer, FindVal); 
+end;
+
+procedure TForm1.Button4Click(Sender: TObject);
+  Var
+    AddVal: integer;
+begin
+  TreeView1.Items.Clear;
+  AddVal := strtoint(Edit2.Text);
+  MTree.Add(MTree.TreePointer, AddVal);
+  PrintTree(nil, MTree.TreePointer); 
+end;
+
+procedure TForm1.Button5Click(Sender: TObject);
+  Var
+    DelVal: integer;
+begin
+  TreeView1.Items.Clear;
+  DelVal := strtoint(Edit2.Text);
+  MTree.Del(MTree.TreePointer, DelVal);
+  PrintTree(nil, MTree.TreePointer);
+end;
+
+procedure TForm1.RadioGroup1Click(Sender: TObject);
+var
+  OutMode: char;
+begin
+
+  if RadioGroup1.ItemIndex = 0 then
+    OutMode := 'd'
+  else if RadioGroup1.ItemIndex = 1 then
+    OutMode := 'r'
+  else if RadioGroup1.ItemIndex = 2 then
+    OutMode := 's';
+    
+  MTree.OutData := '';  
+  MTree.TreeWrite(MTree.TreePointer, OutMode);
+  Label6.Caption := MTree.OutData;
+end;
 
 end.
