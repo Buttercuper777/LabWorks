@@ -33,36 +33,49 @@ type
     key: integer;
     next: pElem;
   end;
-
+const
+  m = 20;
+  G = 19;
 var
   Form1: TForm1;
   mas: array [0..1000] of pElem;
   mas2: array [0..1000] of integer;
-  m, index: integer;
+  index: integer;
+  t_val, u_val: integer;
 
 implementation
 
 {$R *.dfm}
 
-function h(k:integer):integer;
+{function h(k:integer):integer;
 var x: integer;
     a: real;
 begin
   a := (sqrt(5)-1)/2;
   x:=Floor(m*Abs(Floor(k*A)-k*A));
   h := x;
+end; }
+
+Function h(t, u, G, x, R:integer): integer;
+var
+  z: integer;
+begin
+z := (((t*x)+u) mod G) mod R;
+h := z;
 end;
+
 
 procedure AddElem(key:integer);
 var position:integer;
     p,table: pElem;
 begin
-    position := h(key) + 1;
+    position := h(t_val, u_val, G, key, M) + 1;
     GetMem(p,sizeof(Elem));
     p^.key := key;
     p^.next := nil;
     table := mas[position];
-    if table=nil then mas[position]:=p
+    if table = nil then
+      mas[position]:= p
     else
     begin
        while (table^.next<>nil) do
@@ -71,7 +84,7 @@ begin
        end;
        table^.next := p;
     end;
-    if(Form1.StringGrid1.Cells[2,position]<>'') then
+    if(Form1.StringGrid1.Cells[2,position] <> '') then
         Form1.StringGrid1.Cells[2,position] := Form1.StringGrid1.Cells[2,position]+','+inttostr(key)
     else Form1.StringGrid1.Cells[2,position] := Form1.StringGrid1.Cells[2,position]+inttostr(key);
     if Form1.StringGrid1.Cells[3,position] = '' then
@@ -85,7 +98,7 @@ var position, i, j: integer;
     s, s2: string;
 begin
    j := 0;
-   position:=h(key) + 1;
+   position := h(t_val, u_val, G, key, M) + 1;
    table := mas[position];
    while table <> nil do
    begin
@@ -95,11 +108,12 @@ begin
        s:=Form1.StringGrid1.Cells[2,position];
        s2 := IntToStr(key);
        i := Length(s2) + 1;
-       if Form1.StringGrid1.Cells[2,(Pos(IntToStr(key),Form1.StringGrid1.Cells[2,position])-1)] = ',' then
-       delete(s,Pos(IntToStr(key),Form1.StringGrid1.Cells[2,position])-1,i)
+       {if Form1.StringGrid1.Cells[2,(Pos(IntToStr(key),Form1.StringGrid1.Cells[2,position])-1)] = ',' then
+        delete(s,Pos(IntToStr(key),Form1.StringGrid1.Cells[2,position])-1,i)
        else delete(s,Pos(IntToStr(key),Form1.StringGrid1.Cells[2,position]),i);
-       Form1.StringGrid1.Cells[2,position]:=s;
-       Form1.StringGrid1.Cells[3,position] := IntToStr(StrToInt(Form1.StringGrid1.Cells[3,position])-1);
+        Form1.StringGrid1.Cells[2,position]:=s;
+
+       Form1.StringGrid1.Cells[3,position] := IntToStr(StrToInt(Form1.StringGrid1.Cells[3,position])-1);}
        repeat
        begin
          if mas2[j] = key then mas2[j] := -1;
@@ -119,7 +133,7 @@ var position: integer;
     find: boolean;
 begin
     find:=false;
-    position:=h(key) + 1;
+    position := h(t_val, u_val, G, key, M) + 1;
     table := mas[position];
     while (find = false) and (table <> nil) do
     begin
@@ -137,13 +151,13 @@ begin
    flag := false;
    ch:=strtoint(Edit1.Text);
    for i := 0 to index do
-   if mas2[i] = ch then flag := true;
-   if flag = false then
-   begin
-     mas2[index] := ch;
-     inc(index);
-     AddElem(ch);
-   end;
+     if mas2[i] = ch then flag := true;
+       if flag = false then
+       begin
+         mas2[index] := ch;
+         inc(index);
+         AddElem(ch);
+       end;
 end;
 
 procedure TForm1.Button2Click(Sender: TObject);
@@ -160,7 +174,8 @@ procedure TForm1.FormCreate(Sender: TObject);
 var i:integer;
 begin
    index := 0;
-   m := 20;
+  t_val := randomrange(1,G);
+  u_val := randomrange(1,G);
    for i := 0 to m do
      begin
        StringGrid1.Cells[0,i]:=inttostr(i);
