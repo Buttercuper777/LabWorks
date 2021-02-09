@@ -1,0 +1,17 @@
+unit HobLLibrary;
+
+interface
+
+  type
+  pElem = ^Elem;
+  Elem = record
+    key: integer;
+    next: pElem;
+  end;
+const
+  m = 20;
+  G = 19;
+
+implementation
+
+end.

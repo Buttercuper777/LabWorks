@@ -5,18 +5,15 @@ interface
 uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants,
   System.Classes, Vcl.Graphics,
-  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.Grids, Vcl.StdCtrls, Math;
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.Grids, Vcl.StdCtrls, Math, HobLibrary;
 
 type
   TForm1 = class(TForm)
     StringGrid1: TStringGrid;
-    Label2: TLabel;
     Button1: TButton;
     Button2: TButton;
     Edit1: TEdit;
-    Edit2: TEdit;
     Button4: TButton;
-    Edit3: TEdit;
     procedure FormCreate(Sender: TObject);
     procedure Button1Click(Sender: TObject);
     procedure Button2Click(Sender: TObject);
@@ -27,21 +24,10 @@ type
     { Public declarations }
   end;
 
-  type
-  pElem = ^Elem;
-  Elem = record
-    key: integer;
-    next: pElem;
-  end;
-const
-  m = 20;
-  G = 19;
+
 var
   Form1: TForm1;
-  mas: array [0..1000] of pElem;
-  mas2: array [0..1000] of integer;
-  index: integer;
-  t_val, u_val: integer;
+  out_pos_add: integer;
 
 implementation
 
@@ -56,40 +42,14 @@ begin
   h := x;
 end; }
 
-Function h(t, u, G, x, R:integer): integer;
-var
-  z: integer;
+procedure AddElemForm(pos_l, key_l: integer);
 begin
-z := (((t*x)+u) mod G) mod R;
-h := z;
-end;
-
-
-procedure AddElem(key:integer);
-var position:integer;
-    p,table: pElem;
-begin
-    position := h(t_val, u_val, G, key, M) + 1;
-    GetMem(p,sizeof(Elem));
-    p^.key := key;
-    p^.next := nil;
-    table := mas[position];
-    if table = nil then
-      mas[position]:= p
-    else
-    begin
-       while (table^.next<>nil) do
-       begin
-         table := table^.next;
-       end;
-       table^.next := p;
-    end;
-    if(Form1.StringGrid1.Cells[2,position] <> '') then
-        Form1.StringGrid1.Cells[2,position] := Form1.StringGrid1.Cells[2,position]+','+inttostr(key)
-    else Form1.StringGrid1.Cells[2,position] := Form1.StringGrid1.Cells[2,position]+inttostr(key);
-    if Form1.StringGrid1.Cells[3,position] = '' then
-       Form1.StringGrid1.Cells[3,position] := '1'
-    else Form1.StringGrid1.Cells[3,position] := inttostr(strtoint(Form1.StringGrid1.Cells[3,position])+1);
+    if(Form1.StringGrid1.Cells[2,pos_l] <> '') then
+      Form1.StringGrid1.Cells[2,pos_l] := Form1.StringGrid1.Cells[2,pos_l]+','+inttostr(key_l)
+    else Form1.StringGrid1.Cells[2,pos_l] := Form1.StringGrid1.Cells[2,pos_l]+inttostr(key_l);
+    if Form1.StringGrid1.Cells[3,pos_l] = '' then
+      Form1.StringGrid1.Cells[3,pos_l] := '1'
+    else Form1.StringGrid1.Cells[3,pos_l] := inttostr(strtoint(Form1.StringGrid1.Cells[3,pos_l])+1);
 end;
 
 procedure DeleteElem(key:integer);
@@ -104,21 +64,23 @@ begin
    begin
      if table^.key = key then
      begin
-       table^.key := -1;
+
        s:=Form1.StringGrid1.Cells[2,position];
        s2 := IntToStr(key);
        i := Length(s2) + 1;
-       {if Form1.StringGrid1.Cells[2,(Pos(IntToStr(key),Form1.StringGrid1.Cells[2,position])-1)] = ',' then
+       if Form1.StringGrid1.Cells[2,(Pos(IntToStr(key),Form1.StringGrid1.Cells[2,position])-1)] = ',' then
         delete(s,Pos(IntToStr(key),Form1.StringGrid1.Cells[2,position])-1,i)
        else delete(s,Pos(IntToStr(key),Form1.StringGrid1.Cells[2,position]),i);
         Form1.StringGrid1.Cells[2,position]:=s;
+       Form1.StringGrid1.Cells[3,position] := IntToStr(StrToInt(Form1.StringGrid1.Cells[3,position])-1);
 
-       Form1.StringGrid1.Cells[3,position] := IntToStr(StrToInt(Form1.StringGrid1.Cells[3,position])-1);}
+       table^.key := -1;
        repeat
-       begin
-         if mas2[j] = key then mas2[j] := -1;
-         inc(j);
-       end
+         begin
+           if mas2[j] = key then
+            mas2[j] := -1;
+           inc(j);
+         end
        until mas2[j] <> key;
        break;
      end
@@ -127,24 +89,8 @@ begin
    end;
 end;
 
-procedure FindElem(key:integer);
-var position: integer;
-    table, p: pElem;
-    find: boolean;
-begin
-    find:=false;
-    position := h(t_val, u_val, G, key, M) + 1;
-    table := mas[position];
-    while (find = false) and (table <> nil) do
-    begin
-      if table^.key = key then find:=true;
-      table:=table^.next;
-    end;
-    if not find then  Form1.Label2.Caption:='Ничего не найдено'
-    else Form1.Label2.Caption:= 'Найдено в строке '+ inttostr(position);
-end;
 
-procedure TForm1.Button1Click(Sender: TObject);
+procedure TForm1.Button1Click(Sender: TObject);                                   //<-------------------------
 var ch, i: integer;
     flag: boolean;
 begin
@@ -156,18 +102,19 @@ begin
        begin
          mas2[index] := ch;
          inc(index);
-         AddElem(ch);
+         AddElem(out_pos_add, ch);
        end;
+   AddElemForm(out_pos_add, ch);
 end;
 
 procedure TForm1.Button2Click(Sender: TObject);
 begin
-   FindElem(strtoint(Edit2.Text));
+   showmessage(FindElem(strtoint(Edit1.Text)));
 end;
 
 procedure TForm1.Button4Click(Sender: TObject);
 begin
-  DeleteElem(strtoint(Edit3.Text));
+  DeleteElem(strtoint(Edit1.Text));
 end;
 
 procedure TForm1.FormCreate(Sender: TObject);

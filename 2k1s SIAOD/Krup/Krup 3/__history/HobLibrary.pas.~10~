@@ -1,0 +1,79 @@
+unit HobLibrary;
+
+uses
+  System.Utils;
+
+interface
+
+  type
+  pElem = ^Elem;
+  Elem = record
+    key: integer;
+    next: pElem;
+  end;
+  const
+  m = 20;
+  G = 19;
+
+
+var
+  mas: array [0..1000] of pElem;
+  mas2: array [0..1000] of integer;
+  index: integer;
+  t_val, u_val: integer;
+
+procedure AddElem(out out_pos:integer; key:integer);
+Function h(t, u, G, x, R:integer): integer;
+implementation
+
+Function h(t, u, G, x, R:integer): integer;
+var
+  z: integer;
+begin
+z := (((t*x)+u) mod G) mod R;
+h := z;
+end;
+
+function FindElem(key:integer):string;
+var position: integer;
+    table, p: pElem;
+    find: boolean;
+begin
+    find:=false;
+    position := h(t_val, u_val, G, key, M) + 1;
+    table := mas[position];
+    while (find = false) and (table <> nil) do
+    begin
+      if table^.key = key then find:=true;
+      table:=table^.next;
+    end;
+    if not find then
+      FindElem := 'Ничего не найдено'
+    else
+      FindElem := 'Найдено в строке '+ inttostr(position);
+end;
+
+procedure AddElem(out out_pos:integer; key:integer);
+var position:integer;
+    p,table: pElem;
+begin
+    position := h(t_val, u_val, G, key, M) + 1;
+    out_pos := position;
+    GetMem(p,sizeof(Elem));
+    p^.key := key;
+    p^.next := nil;
+    table := mas[position];
+    if table = nil then
+      mas[position]:= p
+    else
+    begin
+       while (table^.next<>nil) do
+       begin
+         table := table^.next;
+       end;
+       table^.next := p;
+    end;
+end;
+
+
+end.

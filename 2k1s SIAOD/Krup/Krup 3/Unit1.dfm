@@ -2,7 +2,7 @@ object Form1: TForm1
   Left = 0
   Top = 0
   Caption = 'Form1'
-  ClientHeight = 670
+  ClientHeight = 637
   ClientWidth = 546
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
@@ -14,12 +14,6 @@ object Form1: TForm1
   OnCreate = FormCreate
   PixelsPerInch = 96
   TextHeight = 13
-  object Label2: TLabel
-    Left = 312
-    Top = 632
-    Width = 3
-    Height = 13
-  end
   object StringGrid1: TStringGrid
     Left = 8
     Top = 8
@@ -54,7 +48,7 @@ object Form1: TForm1
   end
   object Button1: TButton
     Left = 8
-    Top = 575
+    Top = 602
     Width = 75
     Height = 25
     Caption = #1044#1086#1073#1072#1074#1080#1090#1100
@@ -62,8 +56,8 @@ object Form1: TForm1
     OnClick = Button1Click
   end
   object Button2: TButton
-    Left = 8
-    Top = 606
+    Left = 89
+    Top = 602
     Width = 75
     Height = 25
     Caption = #1053#1072#1081#1090#1080
@@ -71,33 +65,19 @@ object Form1: TForm1
     OnClick = Button2Click
   end
   object Edit1: TEdit
-    Left = 89
+    Left = 8
     Top = 575
-    Width = 121
+    Width = 237
     Height = 21
     TabOrder = 3
   end
-  object Edit2: TEdit
-    Left = 89
-    Top = 602
-    Width = 121
-    Height = 21
-    TabOrder = 4
-  end
   object Button4: TButton
-    Left = 8
-    Top = 637
+    Left = 170
+    Top = 602
     Width = 75
     Height = 25
     Caption = #1059#1076#1072#1083#1080#1090#1100
-    TabOrder = 5
+    TabOrder = 4
     OnClick = Button4Click
-  end
-  object Edit3: TEdit
-    Left = 89
-    Top = 637
-    Width = 121
-    Height = 21
-    TabOrder = 6
   end
 end
