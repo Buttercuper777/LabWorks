@@ -1,13 +1,13 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <BorlandProject>
 	<Transactions>
-    <Transaction>1899.12.30 00:00:00.000.187,D:\LabWorks\2k1s SIAOD\Kov\Kov 4\D3 - Final\Unit1.dfm=D:\Delphi projects\Unit1.dfm</Transaction>
-    <Transaction>1899.12.30 00:00:00.000.252,D:\LabWorks\2k1s SIAOD\Krup\Krup Kurs\MainLib.pas=D:\LabWorks\2k1s SIAOD\Krup\Krup Kurs\Unit2.pas</Transaction>
-    <Transaction>1899.12.30 00:00:00.000.581,=D:\Delphi projects\Unit1.pas</Transaction>
     <Transaction>1899.12.30 00:00:00.000.409,=D:\Delphi projects\Unit1.pas</Transaction>
-    <Transaction>1899.12.30 00:00:00.000.187,D:\LabWorks\2k1s SIAOD\Kov\Kov 4\D3 - Final\Unit1.pas=D:\Delphi projects\Unit1.pas</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.187,D:\Delphi projects\Unit1.pas=D:\LabWorks\2k1s SIAOD\Kov\Kov 4\D3 - Final\Unit1.pas</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.252,D:\LabWorks\2k1s SIAOD\Krup\Krup Kurs\Unit2.pas=D:\LabWorks\2k1s SIAOD\Krup\Krup Kurs\MainLib.pas</Transaction>
     <Transaction>1899.12.30 00:00:00.000.942,=D:\LabWorks\2k1s SIAOD\Krup\Krup Kurs\Unit2.pas</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.161,D:\Delphi projects\Project1.dproj=D:\LabWorks\2k1s SIAOD\Kov\Kov 4\D3 - Final\Project1.dproj</Transaction>
     <Transaction>1899.12.30 00:00:00.000.694,=D:\LabWorks\2k1s SIAOD\Kov\Kov 4\D3 - Final\Unit2.pas</Transaction>
-    <Transaction>1899.12.30 00:00:00.000.161,D:\LabWorks\2k1s SIAOD\Kov\Kov 4\D3 - Final\Project1.dproj=D:\Delphi projects\Project1.dproj</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.187,D:\Delphi projects\Unit1.dfm=D:\LabWorks\2k1s SIAOD\Kov\Kov 4\D3 - Final\Unit1.dfm</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.581,=D:\Delphi projects\Unit1.pas</Transaction>
   </Transactions>
 </BorlandProject>

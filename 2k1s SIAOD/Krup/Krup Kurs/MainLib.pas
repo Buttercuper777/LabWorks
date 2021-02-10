@@ -7,16 +7,19 @@ uses
 
 
 Type
-  TData = Integer; { Тип указателя на узел. }
-  TPNode = ^TNode; { Тип узла дерева. }
+  TIndex = Integer; { Тип указателя на узел. }
+  TPItem = ^TItem; { Тип узла дерева. }
 
-  TNode = record
-    Data: TData; { Ключ (основные данные) узла дерева. }
-    PLeft, PRight: TPNode; { Указатели на левый и правый узел. }
+  IndexList = array[1..50] of integer;
+
+
+  TItem = record
+    Index: TIndex; { Ключ (основные данные) узла дерева. }
+    IndexPointer: IndexList; { Указатели на левый и правый узел. }
 end;
 
 var
-  PTree : TPNode;
+  PTree: array[1..100] of TPItem;
   visit: array [1..100] of boolean;
   out_arr: array of integer;
   C: array[1..100] of array[1..100] of integer;
@@ -25,8 +28,27 @@ var
 
 procedure BFS(v:integer; n:integer);
 procedure Prim(out Way, Wght:string; n:integer);
-procedure AddNode(var aPNode: TPNode; const aData: TData);
+//procedure AddNode(var aPNode: TPNode; const aData: TData);
+Procedure NewNode(val: integer; List:IndexList);
 implementation
+
+Procedure NewNode(val: integer; List:IndexList);
+var
+  ForNew: TPItem;
+  i: integer;
+  CheckStr: string;
+begin
+  New(ForNew);
+  ForNew.Index := val;
+  CheckStr := inttostr(ForNew.Index) + ': ';
+  for i := 1 to 10 do
+  begin
+    ForNew.IndexPointer[i] := List[i];
+    CheckStr := CheckStr + ' ' + inttostr(ForNew.IndexPointer[i]);
+  end;
+  //CheckStr := inttostr(ForNew.IndexPointer[1]) + ' ' + inttostr(ForNew.IndexPointer[2]);
+  showMessage(CheckStr);
+end;
 
 procedure Prim(out Way, Wght:string; n:integer);
   var
@@ -102,57 +124,50 @@ procedure BFS(v:integer; n:integer);
   var
   Q: array [1..100] of integer;
   Un,Uk: integer;
-  j, add_out: integer;
+  j, add_out, l_cl: integer;
 
+  NodeVal, SaveToCheck, c1, c2: integer;
+  inArr: IndexList;
 begin
 Un:=0; Uk:=0;
 Uk:=Uk+1; Q[Uk]:=v;
 add_out := 0;
 Visit[v]:=false;
 setlength(out_arr, n);
+c1:= 1;
+SaveToCheck := 1;
+
+for j := 1 to 50 do
+  inArr[j] := 0;
 
 while Un < Uk do
 begin
   Un:=Un+1; v:=Q[Un];
   inc(add_out);
+  SaveToCheck := 0;
   out_arr[add_out] := v;
-  AddNode(PTree, v);
   for j:=0 to n do
+  begin
     if (C_BFS[v,j]=1) and (Visit[j]) then
     begin
       Uk:=Uk+1; Q[Uk]:=j;
       Visit[j]:=false;
-      AddNode(PTree, Q[Un]);
+      inArr[c1] := j;
+      c1 := c1 + 1;
+      SaveToCheck := v;
     end;
   end;
-end;
+  if SaveToCheck = 0 then
+    continue
+  else begin
+    NewNode(SaveToCheck, inArr);
 
+    for l_cl := 1 to 50 do
+      inArr[l_cl] := 0;
 
-procedure AddNode(var aPNode: TPNode; const aData: TData);
-begin
-  if aPNode = nil then { Вставка узла. }
-  begin
-    New(aPNode); { Выделяем память для узла. }
-    aPNode^.Data := aData; { Записываем в узел значение ключа. }
-    aPNode^.PLeft := nil; { Обнуляем указатель на левого потомка. }
-    aPNode^.PRight := nil; { Обнуляем указатель на правого потомка. }
-  end
-
-  else if aData < aPNode^.Data then { Поиск места вставки в левой ветви. }
-  begin
-    //showMessage('left');
-    AddNode(aPNode^.PLeft, aData);
-    //NodeData := aPNode^.PLeft.Data;
-
-  end
-
-  else if aData > aPNode^.Data then { Поиск места вставки в правой ветви. }
-  begin
-    //showMessage('right');
-    AddNode(aPNode^.PRight, aData);
-    //NodeData := aPNode^.PRight.Data;
+    c1 := 1;
+  end;
 
   end;
 end;
-
 end.

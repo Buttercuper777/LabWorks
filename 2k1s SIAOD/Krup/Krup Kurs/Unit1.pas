@@ -35,7 +35,7 @@ var
   snode : TTreeNode;
 implementation
 {$R *.dfm}
-procedure PrintTree(treenode:TTreeNode; root:TPNode);
+{procedure PrintTree(treenode:TTreeNode; root:TPNode);
  var newnode : TTreeNode;
  begin
     if Assigned(root) then
@@ -45,7 +45,7 @@ procedure PrintTree(treenode:TTreeNode; root:TPNode);
        PrintTree(newnode, root^.PRight);
 
     end;
- end;
+ end;     }
 
 procedure TForm1.Button1Click(Sender: TObject);
 var
@@ -78,14 +78,14 @@ begin
  for i := 1 to tab_s do
    Memo1.Lines.Add(inttostr(out_arr[i]));
 
- PrintTree(nil, PTree);
+ //PrintTree(nil, PTree);
 end;
 
 procedure TForm1.FormShow(Sender: TObject);
 var
   tab_i, tab_j:integer;
 begin
-  PTree := nil;
+  //PTree := nil;
   n_form := tab_s;
 
   stringgrid1.RowCount := tab_s + 1;

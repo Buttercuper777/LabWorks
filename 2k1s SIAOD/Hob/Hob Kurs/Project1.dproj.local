@@ -1,0 +1,30 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<BorlandProject>
+	<Transactions>
+    <Transaction>1899.12.30 00:00:00.000.168,=C:\Users\Владимир\Documents\Embarcadero\Studio\Projects\Unit1.pas</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.347,=C:\Users\Владимир\Documents\Embarcadero\Studio\Projects\Unit1.pas</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.480,=C:\Users\Владимир\Documents\Embarcadero\Studio\Projects\Unit1.pas</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.963,=C:\Users\Владимир\Documents\Embarcadero\Studio\Projects\Unit1.pas</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.545,=C:\Users\Владимир\Documents\Embarcadero\Studio\Projects\Unit1.pas</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.110,=C:\Users\Владимир\Documents\Embarcadero\Studio\Projects\Unit1.pas</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.353,C:\Users\Владимир\Documents\Embarcadero\Studio\Projects\Unit1.dfm=C:\Users\Владимир\Desktop\Лаба 3\Unit1.dfm</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.416,C:\Users\Владимир\Documents\Embarcadero\Studio\Projects\Project1.dproj=C:\Users\Владимир\Desktop\Лаба 3\Project1.dproj</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.875,=C:\Users\Владимир\Documents\Embarcadero\Studio\Projects\Unit1.pas</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.454,=C:\Users\Владимир\Documents\Embarcadero\Studio\Projects\Unit1.pas</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.856,=C:\Users\Владимир\Documents\Embarcadero\Studio\Projects\Unit1.pas</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.961,=C:\Users\Владимир\Documents\Embarcadero\Studio\Projects\Unit1.pas</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.549,=C:\Users\Владимир\Documents\Embarcadero\Studio\Projects\Unit1.pas</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.000,=C:\Users\Владимир\Documents\Embarcadero\Studio\Projects\Unit1.pas</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.697,=C:\Users\Владимир\Documents\Embarcadero\Studio\Projects\Unit1.pas</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.322,=C:\Users\Владимир\Documents\Embarcadero\Studio\Projects\Unit1.pas</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.912,=C:\Users\Владимир\Documents\Embarcadero\Studio\Projects\Unit1.pas</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.330,=C:\Users\Владимир\Documents\Embarcadero\Studio\Projects\Unit1.pas</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.634,=C:\Users\Владимир\Documents\Embarcadero\Studio\Projects\Unit1.pas</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.617,=C:\Users\Владимир\Documents\Embarcadero\Studio\Projects\Unit1.pas</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.725,=C:\Users\Владимир\Documents\Embarcadero\Studio\Projects\Unit1.pas</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.353,C:\Users\Владимир\Documents\Embarcadero\Studio\Projects\Unit1.pas=C:\Users\Владимир\Desktop\Лаба 3\Unit1.pas</Transaction>
+    <Transaction>2021.02.09 17:57:55.422,=D:\LabWorks\2k1s SIAOD\Krup\Krup 3\Unit2.pas</Transaction>
+    <Transaction>2021.02.09 17:59:51.782,D:\LabWorks\2k1s SIAOD\Krup\Krup 3\HobLLibrary.pas=D:\LabWorks\2k1s SIAOD\Krup\Krup 3\Unit2.pas</Transaction>
+    <Transaction>2021.02.09 18:01:01.740,D:\LabWorks\2k1s SIAOD\Krup\Krup 3\HobLibrary.pas=D:\LabWorks\2k1s SIAOD\Krup\Krup 3\HobLLibrary.pas</Transaction>
+  </Transactions>
+</BorlandProject>

@@ -51,7 +51,7 @@ object Form1: TForm1
   object Label6: TLabel
     Left = 38
     Top = 400
-    Width = 64
+    Width = 3
     Height = 13
   end
   object StringGrid1: TStringGrid
