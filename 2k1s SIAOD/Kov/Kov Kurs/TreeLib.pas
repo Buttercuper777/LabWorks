@@ -7,16 +7,16 @@ uses
    Vcl.Dialogs;
 
 type
-  TData = Integer; { “ип указател€ на узел. }
-  TPNode = ^TNode; { “ип узла дерева. }
+  TData = Integer;
+  TPNode = ^TNode;
 
   TNode = record
-    Data: TData; {  люч (основные данные) узла дерева. }
-    PLeft, PRight: TPNode; { ”казатели на левый и правый узел. }
+    Data: TData;
+    PLeft, PRight: TPNode;
   end;
   TreeArrT = array[0..100] of TData;
 
-  TTree = class  // main class                              <---
+  TTree = class
     TreePointer: TPNode;
     Data: TData;
     OutData: string;
@@ -80,7 +80,7 @@ begin
 
   else if ForDel = Pointer^.Data then
   begin
-    if (Pointer^.PLeft = nil) and (Pointer^.PRight = nil) then                    // Alone Node
+    if (Pointer^.PLeft = nil) and (Pointer^.PRight = nil) then
     begin
       if Pointer^.Data > NodeSaver^.Data then
         NodeSaver^.PRight := nil
@@ -89,7 +89,7 @@ begin
 
       Dispose(Pointer);
     end
-    else if (Pointer^.PLeft <> nil) and (Pointer^.PRight = nil) then              // Tree -L    R - nil
+    else if (Pointer^.PLeft <> nil) and (Pointer^.PRight = nil) then
     begin
       if Pointer^.Data > NodeSaver^.Data then
       begin
@@ -105,7 +105,7 @@ begin
       end;
 
     end
-    else if (Pointer^.PLeft = nil) and (Pointer^.PRight <> nil) then              // nil - L   R - Tree
+    else if (Pointer^.PLeft = nil) and (Pointer^.PRight <> nil) then
     begin
       if Pointer^.Data > NodeSaver^.Data then
       begin
@@ -120,7 +120,7 @@ begin
         Dispose(Pointer);
       end;
     end
-    else if (Pointer^.PLeft <> nil) and (Pointer^.PRight <> nil) then       //< -----------------------------
+    else if (Pointer^.PLeft <> nil) and (Pointer^.PRight <> nil) then
     begin
       FindLeft(Pointer^.PRight);
       DataSaver := LeftNode^.Data;

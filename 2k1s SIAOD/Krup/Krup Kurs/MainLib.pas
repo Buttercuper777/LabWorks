@@ -7,30 +7,37 @@ uses
 
 
 Type
-  TIndex = Integer; { Тип указателя на узел. }
+  //TIndex = Integer; { Тип указателя на узел. }
   TPItem = ^TItem; { Тип узла дерева. }
 
   IndexList = array[1..50] of integer;
-
+  TreeType = array[1..100] of TPItem;
 
   TItem = record
-    Index: TIndex; { Ключ (основные данные) узла дерева. }
+    Index: Integer; { Ключ (основные данные) узла дерева. }
     IndexPointer: IndexList; { Указатели на левый и правый узел. }
 end;
 
 var
-  PTree: array[1..100] of TPItem;
+  PTree: TreeType;
   visit: array [1..100] of boolean;
   out_arr: array of integer;
   C: array[1..100] of array[1..100] of integer;
   C_BFS: array[1..100] of array[1..100] of integer;
   i :integer;
 
-procedure BFS(v:integer; n:integer);
+procedure BFS(v:integer; n:integer; LTree: TreeType);
 procedure Prim(out Way, Wght:string; n:integer);
 //procedure AddNode(var aPNode: TPNode; const aData: TData);
 Procedure NewNode(val: integer; List:IndexList);
 implementation
+
+procedure nullTree(LTree: TreeType);
+var i: integer;
+begin
+  for i := 1 to 100 do
+    LTree[i] := nil;
+end;
 
 Procedure NewNode(val: integer; List:IndexList);
 var
@@ -47,7 +54,8 @@ begin
     CheckStr := CheckStr + ' ' + inttostr(ForNew.IndexPointer[i]);
   end;
   //CheckStr := inttostr(ForNew.IndexPointer[1]) + ' ' + inttostr(ForNew.IndexPointer[2]);
-  showMessage(CheckStr);
+  //showMessage(CheckStr);
+  PTree[val] := ForNew;
 end;
 
 procedure Prim(out Way, Wght:string; n:integer);
@@ -120,7 +128,7 @@ begin
         Wght := inttostr(mincost);  // это итоговый вес }
 end;
 
-procedure BFS(v:integer; n:integer);
+procedure BFS(v:integer; n:integer; LTree: TreeType);
   var
   Q: array [1..100] of integer;
   Un,Uk: integer;
@@ -129,6 +137,7 @@ procedure BFS(v:integer; n:integer);
   NodeVal, SaveToCheck, c1, c2: integer;
   inArr: IndexList;
 begin
+NullTree(LTree);
 Un:=0; Uk:=0;
 Uk:=Uk+1; Q[Uk]:=v;
 add_out := 0;

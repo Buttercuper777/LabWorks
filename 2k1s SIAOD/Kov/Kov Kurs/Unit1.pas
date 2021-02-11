@@ -37,14 +37,6 @@ type
     { Public declarations }
   end;
 
- {TData = Integer;
-  TPNode = ^TNode;
-
-  TNode = record
-    Data: TData;
-    PLeft, PRight: TPNode;
-  end;     }
-
 var
   MTree: TTree;
   Form1: TForm1;
@@ -83,7 +75,7 @@ begin
   MTree := TTree.Create();
   MTree.FillTree(TreeArrSize + 1, InputArray, MTree.TreePointer);
 
-  PrintTree(nil, MTree.TreePointer);               //<----------------
+  PrintTree(nil, MTree.TreePointer);
   
   RadioGroup1.Enabled := True;
   Button3.Enabled := True;

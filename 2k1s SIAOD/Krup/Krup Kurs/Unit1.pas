@@ -33,19 +33,47 @@ var
   n_form, v_form: integer;
   newnode : TTreeNode;
   snode : TTreeNode;
+
+  StartTreeDrawVal:integer;
 implementation
 {$R *.dfm}
-{procedure PrintTree(treenode:TTreeNode; root:TPNode);
- var newnode : TTreeNode;
- begin
-    if Assigned(root) then
-    begin
-       newnode := Form1.TreeView1.Items.AddChild(treenode, IntToStr(root^.Data));
-       PrintTree(newnode, root^.PLeft);
-       PrintTree(newnode, root^.PRight);
 
+procedure PrintTree(treenode:TTreeNode; Tree:TreeType; goVal: integer);
+ var
+  newnode, snode : TTreeNode;
+  PList: IndexList;
+  i, goSaver, si:integer;
+ begin
+    i:= 1;
+    if Tree[goVal] = nil then
+    begin
+      Form1.TreeView1.Items.AddChild(treenode, IntToStr(goVal));
+      exit
+    end
+
+    else begin
+        goSaver := goVal;
+        while Tree[goSaver].IndexPointer[i] <> 0 do
+        begin
+          if (i > 1) then
+            goVal := GoSaver
+          else
+            newnode := Form1.TreeView1.Items.AddChild(treenode, IntToStr(goVal));
+          snode := treenode;
+          treenode := newnode;
+          goVal := Tree[goSaver].IndexPointer[i];
+          PrintTree(newnode, Tree, goVal);
+          si := i;
+          inc(i);
+          if Tree[goSaver + 1] = nil then
+          begin
+            goVal := GoSaver;
+            treenode := newnode;
+          end;
+        end;
+        exit;
     end;
- end;     }
+ end;
 
 procedure TForm1.Button1Click(Sender: TObject);
 var
@@ -74,11 +102,12 @@ begin
       StringGrid1.Cells[i, j] := inttostr(C_BFS[i, j]);
     end;
 
- BFS(v_form, n_form);
+ BFS(v_form, n_form, PTree);
  for i := 1 to tab_s do
    Memo1.Lines.Add(inttostr(out_arr[i]));
 
- //PrintTree(nil, PTree);
+ StartTreeDrawVal := 1;
+ PrintTree(nil, PTree, StartTreeDrawVal);
 end;
 
 procedure TForm1.FormShow(Sender: TObject);
