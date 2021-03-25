@@ -1,0 +1,142 @@
+unit Unit1;
+
+interface
+
+uses
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls, Vcl.ExtCtrls;
+
+type
+  TForm1 = class(TForm)
+    Label1: TLabel;
+    Label2: TLabel;
+    Label3: TLabel;
+    Edit1: TEdit;
+    Edit2: TEdit;
+    Edit3: TEdit;
+    Button1: TButton;
+    RadioGroup1: TRadioGroup;
+    Button2: TButton;
+    Memo1: TMemo;
+    Label4: TLabel;
+    Edit4: TEdit;
+    procedure Button1Click(Sender: TObject);
+    procedure Edit1KeyPress(Sender: TObject; var Key: Char);
+    procedure Button2Click(Sender: TObject);
+    procedure RadioGroup1Click(Sender: TObject);
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  Form1: TForm1;
+
+implementation
+
+{$R *.dfm}
+
+procedure TForm1.Button1Click(Sender: TObject);
+  var n, Min, Max, k, i: integer;
+begin
+
+  if (Edit1.Text='') or (Edit2.Text='') or (Edit3.Text='') then
+  begin
+    ShowMessage('Требуется ввод всех данных');
+    Exit;
+  end;
+
+  n := strtoint(edit1.Text);
+  Min := strtoint(edit2.Text);
+  Max := strtoint(edit3.Text);
+
+  if Min > Max then
+  begin
+    i := Min;
+    Min := Max;
+    Max := i;
+  end;
+
+  for i := 1 to n do
+  begin
+    k := Random(Max-Min+1)+Min;
+    Memo1.Lines.Add(inttostr(k));
+  end;
+    Memo1.Visible := True;
+    RadioGroup1.Visible := true;
+    button2.Visible := True;
+    Edit4.Visible := True;
+end;
+
+procedure TForm1.Button2Click(Sender: TObject);
+var
+  value, i, f, k, delta: integer;
+begin
+  value := strtoint(memo1.Lines[0]);
+  case RadioGroup1.ItemIndex of
+  2:  begin
+        if Edit4.Text = '' then
+        begin
+          ShowMessage('Введите значение!');
+          exit;
+        end;
+
+        f := Strtoint(Edit4.Text);
+        Delta := Abs(f - Strtoint(Memo1.Lines[0]));
+        for i := 1 to Memo1.Lines.Count - 1 do
+        begin
+          k :=  Abs(f - Strtoint(Memo1.Lines[i]));
+          if k < Delta then
+            Value := StrToInt(Memo1.Lines[i]);
+        end;
+      end;
+  end;
+  Label4.Visible := True;
+  Label4.Caption := inttostr(Value);
+end;
+
+procedure TForm1.Edit1KeyPress(Sender: TObject; var Key: Char);
+begin
+case Key of
+  #8, '0'..'9':
+    begin
+      if Pos(formatSETTINGS.DateSeparator, Edit1.Text) <> 0 then
+        Key := Chr(0);
+    end
+ else
+  Key := Chr(0);
+ end;
+end;
+
+procedure TForm1.RadioGroup1Click(Sender: TObject);
+var
+  value, i: integer;
+begin
+  value := strtoint(memo1.Lines[0]);
+  case RadioGroup1.ItemIndex of
+  0:  begin
+        for i := 1 to Memo1.Lines.Count - 1 do
+          if Strtoint(memo1.Lines[i]) > Value then
+            Value := Strtoint(memo1.Lines[i]);
+
+          Label4.Visible := True;
+          Label4.Caption := inttostr(Value);
+      end;
+
+  1:  begin
+        for i := 1 to Memo1.Lines.Count - 1 do
+          if Strtoint(memo1.Lines[i]) < Value then
+            Value := Strtoint(memo1.Lines[i]);
+
+          Label4.Visible := True;
+          Label4.Caption := inttostr(Value);
+      end;
+
+  2: if (Label4.Caption <> '') then
+        Label4.Caption := '-';
+
+  end;
+end;
+
+end.

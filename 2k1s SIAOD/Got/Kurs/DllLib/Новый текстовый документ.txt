@@ -1,0 +1,67 @@
+procedure Add_Tree(Item: TypeElement; var Tree: PTree);
+{Добавление в дерево вершины со значением Item}
+var
+  NewNode, Current: PTree;
+  Delta,            {изменение высоты поддерева при добавлении}
+  Change,           {изменение высоты поддерева при балансировке}
+  NewDelta: integer;{изм-ие высоты поддерева после балансировке}
+begin
+  if Tree = nil then begin  {Дерево пустое}
+  {Создаем корень}
+    New(Tree);
+    …
+    Tree^.Balance := 0;
+  end else begin
+    Current := Tree;
+    {Поиск вершины}
+    while ((Item > Current^.Data) and (Current^.Right <> nil)) or
+          ((Item < Current^.Data) and (Current^.Left <> nil)) do
+      if Item > Current^.Data then begin
+        Elem.Vert := Current; Elem.Direction := R;
+        PushStack(Elem, Stack);  {добавляем в стек}
+        Current := Current^.Right;
+      end else begin
+        Elem.Vert := Current; Elem.Direction := L;
+        PushStack(Elem, Stack);  {добавляем в стек}
+        Current := Current^.Left;
+      end;
+    if Item <> Current^.data then begin
+      {Создание новой вершины}
+      New(NewNode);
+      …
+      NewNode ^.Balance := 0;
+      If Item > Current^.Data then begin
+        Elem.Vert := Current; Elem.Direction := R;
+        PushStack(Elem, Stack);  {добавляем в стек}
+        Current^.Right := NewNode;
+      end else begin
+        Elem.Vert := Current; Elem.Direction := L;
+        PushStack(Elem, Stack);  {добавляем в стек}
+        Current^.Left := NewNode;
+      end;
+      {Балансируем изменившееся поддерево,
+       путь до которого сохранили в стеке}
+      Delta := 1;
+      while (Delta <> 0) and (Stack <> nil) do begin {Delta = 1}
+        PushStack(Elem, Stack); {берем из стека}
+        if Elem.Direct = L then begin
+          if Elem.Vert^.Balance = 1 then begin
+            Change := 0;
+          end else begin
+            Change := 1;
+          end;
+          Elem.Vert^.Balance := Elem.Vert^.Balance - 1;
+        end else begin { Elem.Direct = R}
+          if Elem.Vert^.Balance = -1 then begin
+            Change := 0;
+          end else begin
+            Change := 1;
+          end;
+          Elem.Vert^.Balance := Elem.Vert^.Balance + 1;
+        end;
+        TreeBalance (Elem.Vert, NewDelta);
+        Delta := Change + NewDelta;
+      end;
+    end;
+  end;
+end;

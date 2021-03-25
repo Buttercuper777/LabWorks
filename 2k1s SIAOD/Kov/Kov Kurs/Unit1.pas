@@ -54,7 +54,6 @@ procedure PrintTree(treenode:TTreeNode; root:TPNode);
        newnode := Form1.TreeView1.Items.AddChild(treenode, IntToStr(root^.Data));
        PrintTree(newnode, root^.PLeft);
        PrintTree(newnode, root^.PRight);
-
     end;
  end;
 

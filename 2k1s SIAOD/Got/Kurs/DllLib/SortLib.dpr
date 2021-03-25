@@ -22,9 +22,8 @@ type_of_array_element = integer;
 
 parr = ^HeadArray;
 pelement = ^type_of_array_element;
-HeadArray = array[1..100001] of pelement;
+HeadArray = array[1..100001] of integer;
 // -----------------------------
-
 
 var
 
@@ -33,7 +32,6 @@ p:parr;
 n:integer;
 el:type_of_array_element;
 // --------------------------
-
 
 
 {------------------------------- For D-Arr -------------------------------------}

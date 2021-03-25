@@ -13,7 +13,7 @@ type_of_array_element = integer;
 
 parr = ^HeadArray;
 pelement = ^type_of_array_element;
-HeadArray = array[1..100001] of pelement;
+HeadArray = array[1..100001] of integer;
 
 // -----------------------------
 
@@ -21,7 +21,7 @@ var
 
 // -------- Array -----------
 
-main_p:parr;
+main_p:HeadArray;
 main_n:integer;
 main_el:type_of_array_element;
 // --------------------------
@@ -89,7 +89,7 @@ begin
 
   ArrSize_l := strtoint(Edit2.Text);
   testVal := strtoint(Edit1.Text);
-  GetMem(main_p, ArrSize_l*sizeof(type_of_array_element));
+  //GetMem(main_p, ArrSize_l*sizeof(type_of_array_element));
 
   FillArray(main_p, ArrSize_l, 'g');
   bestS := SortCaller(main_p, ArrSize_l, SortType, 's');
