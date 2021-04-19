@@ -39,7 +39,7 @@ implementation
 procedure TForm1.Button1Click(Sender: TObject);
 var
   x, Eps, Func, Sum, Fact, ElemSeq: real;
-  Kol: Integer;
+  Kol, Kol2: Integer;
 begin
 
   if (edit1.text = '') or (edit2.text = '') then
@@ -63,6 +63,7 @@ begin
     Func := sin(x);
 
   label4.Caption := FloatToStr(Func);
+  kol2 := 0;
 
   Memo1.Lines.Clear;
   Sum := 0;
@@ -78,7 +79,7 @@ begin
       ElemSeq := power(x, kol)/Fact;
       Memo1.Lines.Add(FloatToStr(ElemSeq));
       Sum := Sum + ElemSeq;
-      Inc(Kol);
+      Inc(Kol); Inc(Kol2);
       Fact := Fact * Kol;
     end
 
@@ -93,7 +94,7 @@ begin
         Memo1.Lines.Add(FloatToStr(ElemSeq));
         Sum := Sum + ElemSeq;
         sum := sum * (-1);
-        Inc(Kol);
+        Inc(Kol); Inc(Kol2);
         Fact := Fact * Kol;
       end;
 
@@ -109,7 +110,7 @@ begin
   Label6.Caption := 'Погрешность: ' + floattostr(Func - Sum);
   Label6.Visible := True;
 
-  Label7.Caption := 'Кол-во итераций: ' + floattostr(kol);
+  Label7.Caption := 'Кол-во итераций: ' + floattostr(Kol2);
   Label7.Visible := True;
 end;
 

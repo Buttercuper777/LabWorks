@@ -86,12 +86,17 @@ begin
     if radiogroup1.ItemIndex = 0 then
       ElemSeq := power(x, kol)/Fact
     else
-      ElemSeq := Power(a * Ln(x), kol);
+      if a <> 0 then
+        ElemSeq := Power(x * Ln(a), kol)/Fact
+      else begin
+        ShowMessage('A не должен быть равен 0');
+        break;
+      end;
 
-    Memo1.Lines.Add(FloatToStr(ElemSeq));
     Sum := Sum + ElemSeq;
     Inc(Kol);
     Fact := Fact * Kol;
+    Memo1.Lines.Add(FloatToStr(ElemSeq));
   end;
 
   Label4.Caption := 'Значение Функции:' + floattostr(Func);
@@ -112,11 +117,7 @@ procedure TForm1.Edit1KeyPress(Sender: TObject; var Key: Char);
 begin
 case Key of
   #8, '0'..'9':;
-  ',':
-    begin
-      if Pos(formatSETTINGS.DateSeparator, Edit1.Text) <> 0 then
-        Key := Chr(0);
-    end
+  ',':;
  else
   Key := Chr(0);
  end;

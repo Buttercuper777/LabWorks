@@ -4,7 +4,7 @@ interface
 
 uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
-  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls;
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls, Vcl.ExtCtrls;
 
 type
   TForm1 = class(TForm)
@@ -17,8 +17,10 @@ type
     Memo1: TMemo;
     memo: TLabel;
     Memo2: TMemo;
+    RadioGroup1: TRadioGroup;
     procedure Button1Click(Sender: TObject);
     procedure Button2Click(Sender: TObject);
+    procedure FormShow(Sender: TObject);
   private
     { Private declarations }
   public
@@ -66,42 +68,75 @@ var
   i,j,kol,k: integer;
   nom: integer;
   s, sw: string;
+
+var
+  maxVal: integer;
+  trySv: integer;
+  sum: real;
 begin
-  if Edit1.Text = '' then
-  begin
-    ShowMessage('Введите букву в строку поиска');
-    exit;
-  end
-
-  else if Memo1.Lines[0] = '' then
-  begin
-    ShowMessage('Текст не найден');
-    exit;
-  end;
-
-  Nom:= 0;
-  for i := 0 to (Memo1.Lines.Count - 1) do
-  begin
-    s:= Memo1.Lines[i];
-    if s = '' then continue;
-    if AnsiUpperCase(s[1]) = AnsiUpperCase(Edit1.Text[1]) then
+  memo2.Lines.Clear;
+  sum := 0;
+  if radiogroup1.ItemIndex = 0 then
     begin
-      nom:= nom + 1;
-      Memo1.Lines.Add(IntToStr(nom) + ' . ' + s);    end;    For j:= 1 to length(s) do    if s[j] = ' ' then
+    if Edit1.Text = '' then
     begin
-      for k:= 1 to length(sw) do
-        if AnsiUpperCase(sw[k]) = AnsiUpperCase(Edit1.Text[1]) then
-        begin
-          kol:= kol + 1;
-          break;
-        end;
-        sw:= '';
+      ShowMessage('Введите букву в строку поиска');
+      exit;
+    end
 
+    else if Memo1.Lines[0] = '' then
+    begin
+      ShowMessage('Текст не найден');
+      exit;
+    end;
+
+    Nom:= 0;
+    for i := 0 to (Memo1.Lines.Count - 1) do
+    begin
+      s:= Memo1.Lines[i];
+      if s = '' then continue;
+      if AnsiUpperCase(s[1]) = AnsiUpperCase(Edit1.Text[1]) then
+      begin
+        nom:= nom + 1;
+        Memo2.Lines.Add(IntToStr(nom) + '. ' + s);      end;      For j:= 1 to length(s) do      if s[j] = ' ' then
+      begin
+        for k:= 1 to length(sw) do
+          if AnsiUpperCase(sw[k]) = AnsiUpperCase(Edit1.Text[1]) then
+            begin
+              kol:= kol + 1;
+              break;
+            end;
+            sw:= '';
+          end
         else
           sw:= sw + s[j];
+     end;     label1.Caption:= 'Букву ' + Edit1.Text + ' содержит ' + #13 + IntToStr(kol) + ' слов';     label1.Visible:= true;    end    else begin      if Memo1.Lines[0] = '' then      begin
+        ShowMessage('Текст не найден');
+        exit;
+      end;
+        nom := memo1.Lines.Count;
 
-   end;  end;
-
+        for i := 0 to nom - 1 do
+        begin
+          sw := memo1.Lines[i];
+          j := length(sw);
+          maxVal := 0;
+            for k := 1 to j do
+              try
+                trySv := strtoint(sw[k]);
+                if trySv > maxVal then
+                  maxVal := trySv;
+              except
+                continue
+              end;
+            memo2.Lines.Add(inttostr(i + 1) + '. ' + inttostr(maxVal));
+            sum := sum + maxVal;
+        end;
+        sum := sum/nom;
+        label1.Caption := 'Ср.Арифмет: ' + #13 + floattostrf(sum, fffixed, 5,3);
+    end;  end;procedure TForm1.FormShow(Sender: TObject);
+begin
+  radiogroup1.ItemIndex := 0;
 end;
 
 end.

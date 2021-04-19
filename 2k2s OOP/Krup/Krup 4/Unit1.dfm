@@ -2,7 +2,7 @@ object Form1: TForm1
   Left = 0
   Top = 0
   Caption = 'Form1'
-  ClientHeight = 396
+  ClientHeight = 387
   ClientWidth = 560
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
@@ -11,6 +11,7 @@ object Form1: TForm1
   Font.Name = 'Tahoma'
   Font.Style = []
   OldCreateOrder = False
+  OnShow = FormShow
   PixelsPerInch = 96
   TextHeight = 13
   object Label1: TLabel
@@ -79,8 +80,19 @@ object Form1: TForm1
     Height = 350
     TabOrder = 4
   end
+  object RadioGroup1: TRadioGroup
+    Left = 6
+    Top = 264
+    Width = 113
+    Height = 81
+    Caption = #1042#1072#1088#1080#1072#1085#1090
+    Items.Strings = (
+      #1054#1073#1097#1080#1081' '#1074#1072#1088#1080#1072#1085#1090
+      #1042#1072#1088#1080#1072#1085#1090' 11')
+    TabOrder = 5
+  end
   object OpenDialog1: TOpenDialog
-    Left = 40
-    Top = 296
+    Left = 528
+    Top = 368
   end
 end
