@@ -1,2 +1,7 @@
-﻿  ConsoleApplication2.cpp
-  ConsoleApplication2.vcxproj -> D:\LabWorks\2k1s SIAOD\Kov\Kov 3 cpp\ConsoleApplication2\Debug\ConsoleApplication2.exe
+﻿  DoubleHashLesson.cpp
+D:\LabWorks\2k1s SIAOD\Kov\Kov 3 cpp\ConsoleApplication2\ConsoleApplication2\DoubleHashLesson.h(57,13): error C2561: DoubleHashLesson::insertHash: функция должна возвращать значение
+D:\LabWorks\2k1s SIAOD\Kov\Kov 3 cpp\ConsoleApplication2\ConsoleApplication2\DoubleHashLesson.h(54): message : см. объявление "DoubleHashLesson::insertHash"
+  main.cpp
+D:\LabWorks\2k1s SIAOD\Kov\Kov 3 cpp\ConsoleApplication2\ConsoleApplication2\DoubleHashLesson.h(57,13): error C2561: DoubleHashLesson::insertHash: функция должна возвращать значение
+D:\LabWorks\2k1s SIAOD\Kov\Kov 3 cpp\ConsoleApplication2\ConsoleApplication2\DoubleHashLesson.h(54): message : см. объявление "DoubleHashLesson::insertHash"
+  Создание кода...

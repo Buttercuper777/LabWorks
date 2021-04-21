@@ -92,7 +92,7 @@ object Form1: TForm1
     TabOrder = 5
   end
   object OpenDialog1: TOpenDialog
-    Left = 528
-    Top = 368
+    Left = 8
+    Top = 352
   end
 end

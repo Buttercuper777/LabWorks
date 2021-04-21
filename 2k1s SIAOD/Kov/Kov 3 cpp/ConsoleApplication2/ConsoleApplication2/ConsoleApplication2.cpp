@@ -1,36 +1,29 @@
-﻿// CPP program to implement double hashing
-#include <iostream>
+﻿#include <iostream>
+#include <string>
 using namespace std;
 
-// Hash table size
-#define TABLE_SIZE 13
+#define TABLE_SIZE 20
 
-// Used in second hash function.
-#define PRIME 7
+#define PRIME 13
 
 class DoubleHash
 {
-    // Pointer to an array containing buckets
     int* hashTable;
     int curr_size;
 
 public:
 
-    // function to check if hash table is full
     bool isFull()
     {
 
-        // if hash size reaches maximum size
         return (curr_size == TABLE_SIZE);
     }
 
-    // function to calculate first hash
     int hash1(int key)
     {
         return (key % TABLE_SIZE);
     }
 
-    // function to calculate second hash
     int hash2(int key)
     {
         return (PRIME - (key % PRIME));
@@ -44,30 +37,22 @@ public:
             hashTable[i] = -1;
     }
 
-    // function to insert key into hash table
     void insertHash(int key)
     {
-        // if hash table is full
         if (isFull())
             return;
 
-        // get index from first hash
         int index = hash1(key);
 
-        // if collision occurs
         if (hashTable[index] != -1)
         {
-            // get index2 from second hash
             int index2 = hash2(key);
             int i = 1;
             while (1)
             {
-                // get newIndex
                 int newIndex = (index + i * index2) %
                     TABLE_SIZE;
 
-                // if no collision occurs, store
-                // the key
                 if (hashTable[newIndex] == -1)
                 {
                     hashTable[newIndex] = key;
@@ -77,13 +62,11 @@ public:
             }
         }
 
-        // if no collision occurs
         else
             hashTable[index] = key;
         curr_size++;
     }
 
-    // function to display the hash table
     void displayHash()
     {
         for (int i = 0; i < TABLE_SIZE; i++)
@@ -97,18 +80,18 @@ public:
     }
 };
 
-// Driver's code
 int main()
 {
-    int a[] = { 19, 27, 36, 10, 64 };
-    int n = sizeof(a) / sizeof(a[0]);
+    const char* a[] = { "ada", "sdcsdcs" };
 
-    // inserting keys into hash table
+
+    cout << a[0];
+    /*//int n = sizeof(a) / sizeof(a[0]);
+
     DoubleHash h;
     for (int i = 0; i < n; i++)
-        h.insertHash(a[i]);
+        //h.insertHash(a[i]);
 
-    // display the hash Table
-    h.displayHash();
+    h.displayHash();*/
     return 0;
 }

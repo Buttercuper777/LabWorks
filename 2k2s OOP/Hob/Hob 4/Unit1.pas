@@ -66,16 +66,13 @@ end;
 procedure TForm1.Button2Click(Sender: TObject);
 var
   i,j,kol,k: integer;
-  nom: integer;
+  nom, sLnght, sum, mSum, lineData: integer;
   s, sw: string;
-
-var
-  maxVal: integer;
-  trySv: integer;
-  sum: real;
 begin
   memo2.Lines.Clear;
   sum := 0;
+  mSum := 0;
+  
   if radiogroup1.ItemIndex = 0 then
     begin
     if Edit1.Text = '' then
@@ -110,7 +107,16 @@ begin
           end
         else
           sw:= sw + s[j];
-     end;     label1.Caption:= 'Букву ' + Edit1.Text + ' содержит ' + #13 + IntToStr(kol) + ' слов';     label1.Visible:= true;    end    else begin      if Memo1.Lines[0] = '' then      begin
+     end;     label1.Caption:= 'Букву ' + Edit1.Text + ' содержит ' + #13 + IntToStr(kol) + ' слов';     label1.Visible:= true;    end    else begin      if Edit1.Text = '' then      begin
+        ShowMessage('Введите букву в строку поиска');
+        exit;
+      end      else begin        try
+          sLnght := strtoint(edit1.text);  
+        except
+          ShowMessage('Проверьте введеные данные!');
+          exit;
+        end;
+      end;      if Memo1.Lines[0] = '' then      begin
         ShowMessage('Текст не найден');
         exit;
       end;
@@ -118,22 +124,29 @@ begin
 
         for i := 0 to nom - 1 do
         begin
+          try
+            lineData := strtoint(memo1.Lines[i]);
+            if lineData > 0 then
+              sum := sum + lineData
+            else
+              mSum := mSum + lineData;
+          except
+            ShowMessage('Файл не должен содержать символов!');
+            Memo2.Clear;
+            Memo2.Lines.Add('Файл не должен содержать символов!');
+            exit;
+          end;
+
           sw := memo1.Lines[i];
           j := length(sw);
-          maxVal := 0;
-            for k := 1 to j do
-              try
-                trySv := strtoint(sw[k]);
-                if trySv > maxVal then
-                  maxVal := trySv;
-              except
-                continue
-              end;
-            memo2.Lines.Add(inttostr(i + 1) + '. ' + inttostr(maxVal));
-            sum := sum + maxVal;
+          if j >= sLnght then
+            memo2.Lines.Add(inttostr(i + 1) + '. ' + Memo1.Lines[i]);
+          
         end;
-        sum := sum/nom;
-        label1.Caption := 'Ср.Арифмет: ' + #13 + floattostrf(sum, fffixed, 5,3);
+        
+        label1.Caption := 'Сумма(X > 0): ' + #13 + inttostr(sum) + #13 + 
+                          'Сумма(X < 0): ' + #13 + inttostr(mSum);
+        
     end;  end;procedure TForm1.FormShow(Sender: TObject);
 begin
   radiogroup1.ItemIndex := 0;

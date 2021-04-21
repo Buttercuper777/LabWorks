@@ -2,7 +2,7 @@ object Form1: TForm1
   Left = 0
   Top = 0
   Caption = 'Form1'
-  ClientHeight = 387
+  ClientHeight = 386
   ClientWidth = 560
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
@@ -74,25 +74,25 @@ object Form1: TForm1
     TabOrder = 3
   end
   object Memo2: TMemo
-    Left = 352
-    Top = 27
+    Left = 359
+    Top = 29
     Width = 193
     Height = 350
     TabOrder = 4
   end
   object RadioGroup1: TRadioGroup
-    Left = 6
+    Left = 8
     Top = 264
     Width = 113
     Height = 81
     Caption = #1042#1072#1088#1080#1072#1085#1090
     Items.Strings = (
       #1054#1073#1097#1080#1081' '#1074#1072#1088#1080#1072#1085#1090
-      #1042#1072#1088#1080#1072#1085#1090' 11')
+      #1042#1072#1088#1080#1072#1085#1090' 1')
     TabOrder = 5
   end
   object OpenDialog1: TOpenDialog
-    Left = 528
-    Top = 368
+    Left = 8
+    Top = 352
   end
 end
