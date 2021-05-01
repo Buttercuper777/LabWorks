@@ -24,7 +24,7 @@ type
     Button3: TButton;
     RadioGroup1: TRadioGroup;
     procedure Button1Click(Sender: TObject);
-    procedure Edit1KeyPress(Sender: TObject; var Key: Char);
+    procedure Edit3KeyPress(Sender: TObject; var Key: Char);
     procedure Button2Click(Sender: TObject);
     procedure Button3Click(Sender: TObject);
     procedure CheckBox1Click(Sender: TObject);
@@ -47,20 +47,26 @@ procedure TForm1.Button1Click(Sender: TObject);
 var
   i, j:integer;
 begin
-
+label4.Caption := 'пїЅпїЅпїЅпїЅпїЅ: ';
   if edit1.text = '' then
     begin
-      ShowMessage('Введите количество столбцов.');
+      ShowMessage('пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ.');
       edit1.SetFocus();
       exit;
     end;
 
   if edit2.text = '' then
     begin
-      ShowMessage('Введите количество строк.');
+      ShowMessage('пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ.');
       edit2.SetFocus();
       exit;
     end;
+
+  if (strtoint(edit2.text) <= 0) or (strtoint(edit1.text) <= 0) then
+  begin
+    showmessage('пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ > 0');
+    exit
+  end;
 
   stringGrid1.ColCount := strtoint(edit1.text);
   stringGrid1.RowCount := strtoint(edit2.text);
@@ -78,9 +84,9 @@ procedure TForm1.Button2Click(Sender: TObject);
 var
   i,j, colChecker, thisCol, rCol:integer;
 begin
-
-  stringGrid2.ColCount := strtoint(edit1.text);
-  stringGrid2.RowCount := strtoint(edit2.text);
+label4.Caption := 'пїЅпїЅпїЅпїЅпїЅ: ';
+  stringGrid2.ColCount := stringGrid1.ColCount;
+  stringGrid2.RowCount := stringGrid1.RowCount;
 
   if radiogroup1.ItemIndex = 0 then
   begin
@@ -125,7 +131,7 @@ begin
   try
     numCol := strtoint(edit3.Text) - 1;
   except
-    Showmessage('Введите значение');
+    Showmessage('пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ');
     edit3.SetFocus();
     exit;
   end;
@@ -134,7 +140,7 @@ begin
 
   if (((numCol > StringGrid2.ColCount - 1) or (numCol < 0)) and (radiogroup1.ItemIndex = 0)) then
     begin
-      showmessage('Неверный номер столбца');
+      showmessage('пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ');
       exit;
     end
   else if radiogroup1.ItemIndex = 1 then
@@ -147,11 +153,11 @@ begin
       for i := 0 to stringgrid2.RowCount - 1 do
         sum := sum + strtoint(stringgrid2.Cells[numCol, i]);
     except
-      showmessage('Ошибка в таблице.');
-      label4.Caption := 'Сумма: ошибка.';
+      showmessage('пїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ.');
+      label4.Caption := 'пїЅпїЅпїЅпїЅпїЅ: пїЅпїЅпїЅпїЅпїЅпїЅ.';
       exit;
     end;
-    label4.Caption := 'Сумма: ' + inttostr(sum);
+    label4.Caption := 'пїЅпїЅпїЅпїЅпїЅ: ' + inttostr(sum);
   end
 
   else begin
@@ -161,11 +167,11 @@ begin
           if (strtoint(stringgrid2.Cells[i, j]) > numCol) then
             sum := sum + strtoint(stringgrid2.Cells[i, j]);
     except
-      showmessage('Ошибка в таблице.');
-      label4.Caption := 'Сумма: ошибка.';
+      showmessage('пїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ.');
+      label4.Caption := 'пїЅпїЅпїЅпїЅпїЅ: пїЅпїЅпїЅпїЅпїЅпїЅ.';
       exit;
     end;
-    label4.Caption := 'Сумма: ' + inttostr(sum);
+    label4.Caption := 'пїЅпїЅпїЅпїЅпїЅ: ' + inttostr(sum);
   end;
 
 end;
@@ -179,7 +185,7 @@ begin
       stringgrid2.Cells[i, j] := '';
 end;
 
-procedure TForm1.Edit1KeyPress(Sender: TObject; var Key: Char);
+procedure TForm1.Edit3KeyPress(Sender: TObject; var Key: Char);
 begin
 case Key of
   #8, '0'..'9', '-':
@@ -187,6 +193,8 @@ case Key of
   Key := Chr(0);
  end;
 end;
+
+
 
 procedure TForm1.FormCreate(Sender: TObject);
 begin
@@ -202,10 +210,12 @@ begin
       stringgrid2.Cells[i, j] := '';
 
   if radiogroup1.ItemIndex = 1 then
-    label3.Caption := 'Сумма чисел,' + #13 + 'больших:'
+    label3.Caption := 'пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ,' + #13 + 'пїЅпїЅпїЅпїЅпїЅпїЅпїЅ:'
   else
-    label3.Caption := '№ Столбца: '
+    label3.Caption := 'пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ: ';
 
+  label4.Caption := 'пїЅпїЅпїЅпїЅпїЅ: ';
+  edit3.Text := '';
 end;
 
 end.

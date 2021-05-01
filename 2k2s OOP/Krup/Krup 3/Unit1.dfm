@@ -61,6 +61,8 @@ object Form1: TForm1
     Top = 24
     Width = 552
     Height = 201
+    FixedCols = 0
+    FixedRows = 0
     TabOrder = 0
   end
   object StringGrid2: TStringGrid
@@ -68,6 +70,8 @@ object Form1: TForm1
     Top = 256
     Width = 552
     Height = 201
+    FixedCols = 0
+    FixedRows = 0
     TabOrder = 1
   end
   object Edit1: TEdit
@@ -76,7 +80,7 @@ object Form1: TForm1
     Width = 122
     Height = 21
     TabOrder = 2
-    OnKeyPress = Edit1KeyPress
+    OnKeyPress = Edit3KeyPress
   end
   object Edit2: TEdit
     Left = 103
@@ -84,7 +88,7 @@ object Form1: TForm1
     Width = 122
     Height = 21
     TabOrder = 3
-    OnKeyPress = Edit1KeyPress
+    OnKeyPress = Edit3KeyPress
   end
   object Button1: TButton
     Left = 8
@@ -112,7 +116,7 @@ object Form1: TForm1
     Height = 21
     Enabled = False
     TabOrder = 6
-    OnKeyPress = Edit1KeyPress
+    OnKeyPress = Edit3KeyPress
   end
   object Button3: TButton
     Left = 256

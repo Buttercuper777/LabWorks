@@ -76,6 +76,12 @@ var
   value, i, f, k, delta: integer;
 begin
   value := strtoint(memo1.Lines[0]);
+  if (memo1.Lines[0] = '') then
+  begin
+    showmessage('Массив пуст!');
+    exit;
+  end;
+
   case RadioGroup1.ItemIndex of
   2:  begin
         if Edit4.Text = '' then
@@ -106,10 +112,6 @@ procedure TForm1.Edit1KeyPress(Sender: TObject; var Key: Char);
 begin
 case Key of
   #8, '0'..'9':
-    begin
-      if Pos(formatSETTINGS.DateSeparator, Edit1.Text) <> 0 then
-        Key := Chr(0);
-    end
  else
   Key := Chr(0);
  end;
@@ -120,6 +122,13 @@ var
   value, i: integer;
 begin
   value := strtoint(memo1.Lines[0]);
+
+  if (memo1.Lines[0] = '') then
+  begin
+    showmessage('Массив пуст!');
+    exit;
+  end;
+
   case RadioGroup1.ItemIndex of
   0:  begin
         for i := 1 to Memo1.Lines.Count - 1 do

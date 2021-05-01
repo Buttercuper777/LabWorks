@@ -4,7 +4,7 @@ interface
 
 uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
-  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls, Vcl.ExtCtrls;
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls, Vcl.ExtCtrls, Character;
 
 type
   TForm1 = class(TForm)
@@ -21,6 +21,7 @@ type
     procedure Button1Click(Sender: TObject);
     procedure Button2Click(Sender: TObject);
     procedure FormShow(Sender: TObject);
+    procedure RadioGroup1Click(Sender: TObject);
   private
     { Private declarations }
   public
@@ -59,15 +60,14 @@ begin
       end;
 
       CloseFile(f);
-      Edit1.SetFocus();
 
 end;
 
 procedure TForm1.Button2Click(Sender: TObject);
 var
-  i,j,kol,k: integer;
-  nom: integer;
-  s, sw: string;
+  i,j,kol,k, n, l: integer;
+  nom, nom2: integer;
+  s, sw, number: string;
 
 var
   maxVal: integer;
@@ -98,7 +98,7 @@ begin
       if AnsiUpperCase(s[1]) = AnsiUpperCase(Edit1.Text[1]) then
       begin
         nom:= nom + 1;
-        Memo2.Lines.Add(IntToStr(nom) + '. ' + s);      end;      For j:= 1 to length(s) do      if s[j] = ' ' then
+        Memo2.Lines.Add(IntToStr(nom) + '. ' + s);      end;                For j:= 1 to length(s) do      if s[j] = ' ' then
       begin
         for k:= 1 to length(sw) do
           if AnsiUpperCase(sw[k]) = AnsiUpperCase(Edit1.Text[1]) then
@@ -118,25 +118,68 @@ begin
 
         for i := 0 to nom - 1 do
         begin
+          maxVal := 0;
+          number := '';
           sw := memo1.Lines[i];
           j := length(sw);
+          if j = 0 then
+            continue;
           maxVal := 0;
-            for k := 1 to j do
+          k:=1;
+          for n := 1 to j do
+            if (sw[n] = ' ') then
+            begin
               try
-                trySv := strtoint(sw[k]);
-                if trySv > maxVal then
-                  maxVal := trySv;
+                if maxVal < strtoint(number) then
+                  MaxVal := strtoint(number);
               except
-                continue
+                continue;
               end;
-            memo2.Lines.Add(inttostr(i + 1) + '. ' + inttostr(maxVal));
-            sum := sum + maxVal;
-        end;
-        sum := sum/nom;
-        label1.Caption := 'Ср.Арифмет: ' + #13 + floattostrf(sum, fffixed, 5,3);
+              number := '';
+              continue
+            end
+            else if isLetter(sw[n]) then
+            begin
+              showmessage('Файл не должен содержать букв');
+              exit;
+            end
+            else
+              number := number + sw[n];
+
+            try
+              if maxVal < strtoint(number) then
+              begin
+                 memo2.lines.add(number)
+              end
+              else begin
+                 memo2.lines.add(inttostr(maxVal));
+              end;
+                 
+            except
+              Memo2.Lines.Add('В строке ' + inttostr(i+1) + ' допущена ошибка');
+              exit;
+            end;
+            end;
+
+          sum := 0;
+          nom2 := memo2.Lines.Count;
+          for l := 0 to nom2 - 1 do
+            sum := sum + strtoint(memo2.Lines[l]);
+          label1.Caption := ('Результат:' + #13 + 'Ср. ар. = ' + floattostr(sum / memo2.Lines.Count));
+
     end;  end;procedure TForm1.FormShow(Sender: TObject);
 begin
   radiogroup1.ItemIndex := 0;
+end;
+
+procedure TForm1.RadioGroup1Click(Sender: TObject);
+begin
+  label1.Caption := 'Результат:';
+  
+  if radiogroup1.ItemIndex <> 0 then
+    edit1.Enabled := false
+  else
+    edit1.Enabled := true;  
 end;
 
 end.

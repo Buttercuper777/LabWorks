@@ -143,7 +143,7 @@ begin
   else begin
     try
       for i := 0 to stringgrid2.RowCount - 1 do
-        if (strtoint(stringgrid2.Cells[numCol, i]) mod 2) = 0 then
+        if (strtoint(stringgrid2.Cells[numCol, i]) mod 2) <> 0 then
           sum := sum + strtoint(stringgrid2.Cells[numCol, i]);
     except
       showmessage('Ошибка в таблице.');

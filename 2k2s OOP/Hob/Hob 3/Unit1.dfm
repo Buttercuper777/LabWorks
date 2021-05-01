@@ -72,7 +72,7 @@ object Form1: TForm1
   object Edit1: TEdit
     Left = 103
     Top = 473
-    Width = 122
+    Width = 302
     Height = 21
     TabOrder = 2
     OnKeyPress = Edit1KeyPress
@@ -80,14 +80,14 @@ object Form1: TForm1
   object Edit2: TEdit
     Left = 103
     Top = 500
-    Width = 122
+    Width = 302
     Height = 21
     TabOrder = 3
     OnKeyPress = Edit1KeyPress
   end
   object Button1: TButton
-    Left = 247
-    Top = 467
+    Left = 269
+    Top = 535
     Width = 136
     Height = 25
     Caption = #1048#1089#1093#1086#1076#1085#1072#1103' '#1084#1072#1090#1088#1080#1094#1072
@@ -95,8 +95,8 @@ object Form1: TForm1
     OnClick = Button1Click
   end
   object Button2: TButton
-    Left = 247
-    Top = 498
+    Left = 127
+    Top = 535
     Width = 136
     Height = 25
     Caption = #1052#1086#1076'. '#1084#1072#1090#1088#1080#1094#1072
