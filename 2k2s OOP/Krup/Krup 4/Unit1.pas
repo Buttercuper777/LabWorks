@@ -1,4 +1,4 @@
-unit Unit1;
+п»їunit Unit1;
 
 interface
 
@@ -80,13 +80,13 @@ begin
     begin
     if Edit1.Text = '' then
     begin
-      ShowMessage('Введите букву в строку поиска');
+      ShowMessage('пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ');
       exit;
     end
 
     else if Memo1.Lines[0] = '' then
     begin
-      ShowMessage('Текст не найден');
+      ShowMessage('пїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ');
       exit;
     end;
 
@@ -98,7 +98,11 @@ begin
       if AnsiUpperCase(s[1]) = AnsiUpperCase(Edit1.Text[1]) then
       begin
         nom:= nom + 1;
-        Memo2.Lines.Add(IntToStr(nom) + '. ' + s);      end;                For j:= 1 to length(s) do      if s[j] = ' ' then
+        Memo2.Lines.Add(IntToStr(nom) + '. ' + s);
+      end;
+          
+      For j:= 1 to length(s) do
+      if s[j] = ' ' then
       begin
         for k:= 1 to length(sw) do
           if AnsiUpperCase(sw[k]) = AnsiUpperCase(Edit1.Text[1]) then
@@ -110,8 +114,16 @@ begin
           end
         else
           sw:= sw + s[j];
-     end;     label1.Caption:= 'Букву ' + Edit1.Text + ' содержит ' + #13 + IntToStr(kol) + ' слов';     label1.Visible:= true;    end    else begin      if Memo1.Lines[0] = '' then      begin
-        ShowMessage('Текст не найден');
+     end;
+
+     label1.Caption:= 'пїЅпїЅпїЅпїЅпїЅ ' + Edit1.Text + ' пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ ' + #13 + IntToStr(kol) + ' пїЅпїЅпїЅпїЅ';
+     label1.Visible:= true;
+    end
+
+    else begin
+      if Memo1.Lines[0] = '' then
+      begin
+        ShowMessage('пїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ');
         exit;
       end;
         nom := memo1.Lines.Count;
@@ -140,7 +152,7 @@ begin
             end
             else if isLetter(sw[n]) then
             begin
-              showmessage('Файл не должен содержать букв');
+              showmessage('пїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ');
               exit;
             end
             else
@@ -156,7 +168,7 @@ begin
               end;
                  
             except
-              Memo2.Lines.Add('В строке ' + inttostr(i+1) + ' допущена ошибка');
+              Memo2.Lines.Add('пїЅ пїЅпїЅпїЅпїЅпїЅпїЅ ' + inttostr(i+1) + ' пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ');
               exit;
             end;
             end;
@@ -165,16 +177,20 @@ begin
           nom2 := memo2.Lines.Count;
           for l := 0 to nom2 - 1 do
             sum := sum + strtoint(memo2.Lines[l]);
-          label1.Caption := ('Результат:' + #13 + 'Ср. ар. = ' + floattostr(sum / memo2.Lines.Count));
+          label1.Caption := ('пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ:' + #13 + 'пїЅпїЅ. пїЅпїЅ. = ' + floattostr(sum / memo2.Lines.Count));
 
-    end;  end;procedure TForm1.FormShow(Sender: TObject);
+    end;
+
+  end;
+
+procedure TForm1.FormShow(Sender: TObject);
 begin
   radiogroup1.ItemIndex := 0;
 end;
 
 procedure TForm1.RadioGroup1Click(Sender: TObject);
 begin
-  label1.Caption := 'Результат:';
+  label1.Caption := 'пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ:';
   
   if radiogroup1.ItemIndex <> 0 then
     edit1.Enabled := false

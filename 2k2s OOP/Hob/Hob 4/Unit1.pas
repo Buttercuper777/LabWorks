@@ -65,7 +65,7 @@ end;
 
 procedure TForm1.Button2Click(Sender: TObject);
 var
-  i,j,kol,k: integer;
+  i,j,kol,k,n: integer;
   nom, sLnght, sum, mSum, lineData: integer;
   s, sw: string;
 begin
@@ -107,11 +107,11 @@ begin
           end
         else
           sw:= sw + s[j];
-     end;     label1.Caption:= 'Букву ' + Edit1.Text + ' содержит ' + #13 + IntToStr(kol) + ' слов';     label1.Visible:= true;    end    else begin      if Edit1.Text = '' then      begin
+     end;     label1.Caption:= 'Букву ' + Edit1.Text + ' содержит ' + #13 + IntToStr(kol) + ' слов';     label1.Visible:= true;    end    else begin      if Edit1.Text = '' then      begin
         ShowMessage('Введите букву в строку поиска');
         exit;
       end      else begin        try
-          sLnght := strtoint(edit1.text);  
+          sLnght := strtoint(edit1.text);
         except
           ShowMessage('Проверьте введеные данные!');
           exit;
@@ -122,31 +122,60 @@ begin
       end;
         nom := memo1.Lines.Count;
 
+        sum := 0;
+        mSum := 0;
+        
         for i := 0 to nom - 1 do
         begin
-          try
-            lineData := strtoint(memo1.Lines[i]);
-            if lineData > 0 then
-              sum := sum + lineData
-            else
-              mSum := mSum + lineData;
-          except
-            ShowMessage('Файл не должен содержать символов!');
-            Memo2.Clear;
-            Memo2.Lines.Add('Файл не должен содержать символов!');
-            exit;
-          end;
-
+          s := '';
           sw := memo1.Lines[i];
           j := length(sw);
-          if j >= sLnght then
-            memo2.Lines.Add(inttostr(i + 1) + '. ' + Memo1.Lines[i]);
-          
+          if j = 0 then
+            continue;
+
+          for n := 1 to j do
+          begin
+            if sw[n] = ' ' then
+            begin
+              if length(s) >= sLnght then
+                memo2.Lines.Add(s);
+              if s <> '' then
+              begin
+                try
+                  if strtoint(s) > 0 then
+                    sum := sum + strtoint(s)
+                  else 
+                    mSum := mSum + strtoint(s);
+                except
+                  showmessage('Файл не должен содержать букв. символов');
+                  exit;
+                end;
+              end;
+
+              s := '';
+              continue;
+            end
+            else begin
+              s := s + sw[n];
+            end;
+          end;
+
+          if length(s) >= sLnght then
+            memo2.Lines.Add(s);
+            
+          try
+            if strtoint(s) > 0 then
+              sum := sum + strtoint(s)
+            else 
+              mSum := mSum + strtoint(s);
+          except
+            showmessage('Файл не должен содержать букв. символов');
+            exit;
+          end;
         end;
         
         label1.Caption := 'Сумма(X > 0): ' + #13 + inttostr(sum) + #13 + 
                           'Сумма(X < 0): ' + #13 + inttostr(mSum);
-        
     end;  end;procedure TForm1.FormShow(Sender: TObject);
 begin
   radiogroup1.ItemIndex := 0;

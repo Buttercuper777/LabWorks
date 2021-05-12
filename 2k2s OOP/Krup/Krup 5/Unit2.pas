@@ -61,6 +61,24 @@ begin
   lx := StrToInt(edit3.Text);
   ly := StrToInt(edit4.Text);
 
+    if(x1 + lx > Image1.Width) or (x1 < 0) then
+  begin
+    ShowMessage('Не верно введены данные координат');
+    exit;
+  end;
+
+  if(y1 > Image1.height) or (y1 < ly) then
+  begin
+    ShowMessage('Не верно введены данные координат');
+    exit;
+  end;
+
+  if(lx < 30) or (ly < 30) then
+  begin
+    Showmessage('Значения размеров должны начинаться от 30');
+    exit
+  end;
+
   rl := Rect(x1, y1, x1 + lx, y1-ly);
 
   Image1.Canvas.Pen.Color := clRed;
@@ -69,12 +87,16 @@ begin
   xs := lx div 2;
   ys := ly div 2;
 
+
+
   IMage1.Canvas.Pen.Color := clGreen;
   IMage1.Canvas.MoveTo(x1, y1 - ys);
   IMage1.Canvas.LineTo(x1 + xs, y1 - ly);
   IMage1.Canvas.LineTo(x1 + lx, y1 - ys);
-  //IMage1.Canvas.LineTo(x1 + xs, y1);
+  IMage1.Canvas.LineTo(x1 + xs, y1);
   IMage1.Canvas.LineTo(x1 , y1 - ys);
+
+  Image1.Canvas.Polyline([point(x1, y1 - ys), point(lx + x1, y1 - ys)]);
 
   Image1.Canvas.Brush.Color:= ColorRomb;
   Image1.Canvas.FloodFill(x1 + xs - 2, y1 - ys - 2, clGreen, fsBorder);

@@ -61,6 +61,24 @@ begin
   lx := StrToInt(edit3.Text);
   ly := StrToInt(edit4.Text);
 
+  if(x1 + lx > Image1.Width) or (x1 < 0) then
+  begin
+    ShowMessage('Фигура не должна выходить за пределы рамок программы');
+    exit;
+  end;
+
+  if(y1 > Image1.height) or (y1 < ly) then
+  begin
+    ShowMessage('Фигура не должна выходить за пределы рамок программы');
+    exit;
+  end;
+
+  if(lx < 50) or (ly < 50) then
+  begin
+    Showmessage('Значения размеров должны начинаться от 50');
+    exit
+  end;
+
   rl := Rect(x1, y1, x1 + lx, y1-ly);
 
   Image1.Canvas.Pen.Color := clRed;
@@ -73,8 +91,10 @@ begin
   IMage1.Canvas.MoveTo(x1, y1 - ys);
   IMage1.Canvas.LineTo(x1 + xs, y1 - ly);
   IMage1.Canvas.LineTo(x1 + lx, y1 - ys);
-  //IMage1.Canvas.LineTo(x1 + xs, y1);
+  IMage1.Canvas.LineTo(x1 + xs, y1);
   IMage1.Canvas.LineTo(x1 , y1 - ys);
+
+  Image1.Canvas.Polyline([point(x1, y1 - ys), point(lx + x1, y1 - ys)]);
 
   Image1.Canvas.Brush.Color:= ColorRomb;
   Image1.Canvas.FloodFill(x1 + xs - 2, y1 - ys - 2, clGreen, fsBorder);

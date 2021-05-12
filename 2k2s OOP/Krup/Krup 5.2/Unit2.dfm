@@ -2,7 +2,7 @@ object Form2: TForm2
   Left = 0
   Top = 0
   Caption = 'Form2'
-  ClientHeight = 409
+  ClientHeight = 408
   ClientWidth = 708
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
@@ -30,9 +30,9 @@ object Form2: TForm2
   object Label2: TLabel
     Left = 400
     Top = 339
-    Width = 156
+    Width = 130
     Height = 13
-    Caption = #1056#1072#1076#1080#1091#1089' '#1074#1087#1080#1089#1072#1085#1085#1086#1081' '#1086#1082#1088#1091#1078#1085#1086#1089#1090#1080
+    Caption = #1056#1072#1076#1080#1091#1089' '#1086#1087#1080#1089'. '#1086#1082#1088#1091#1078#1085#1086#1089#1090#1080
   end
   object Label5: TLabel
     Left = 180

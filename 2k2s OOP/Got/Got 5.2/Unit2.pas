@@ -59,6 +59,24 @@ begin
   y1 := StrToInt(edit2.Text);
   lx := StrToInt(edit3.Text);
 
+  if (lx < 10) then
+  begin
+    showmessage('Радиус должен быть >= 10');
+    exit
+  end;
+
+  if(x1 + lx > Image1.Width) or (x1 < lx)then
+  begin
+    ShowMessage('Проверьте ввод координат');
+    exit;
+  end;
+
+  if(y1 + lx > Image1.height) or (y1 < lx)then
+  begin
+    ShowMessage('Проверьте ввод координат');
+    exit;
+  end;
+
   IMage1.Canvas.Pen.Color := clGreen;
 
   u := pi/2;

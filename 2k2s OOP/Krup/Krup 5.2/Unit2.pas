@@ -59,6 +59,24 @@ begin
   y1 := StrToInt(edit2.Text);
   lx := StrToInt(edit3.Text);
 
+    if (lx < 30) then
+  begin
+    showmessage('Размер должен быть не меньше 30');
+    exit
+  end;
+
+  if(x1 + lx > Image1.Width) or (x1 < lx)then
+  begin
+    ShowMessage('Не верно введены координаты');
+    exit;
+  end;
+
+  if(y1 + lx > Image1.height) or (y1 < lx)then
+  begin
+    ShowMessage('Не верно введены координаты');
+    exit;
+  end;
+
   IMage1.Canvas.Pen.Color := clGreen;
 
   u := pi/2;

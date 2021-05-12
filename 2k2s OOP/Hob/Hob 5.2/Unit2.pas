@@ -68,6 +68,18 @@ begin
   x3 := StrToInt(edit5.Text);
   y3 := StrToInt(edit6.Text);
 
+  if (x1 > Image1.Width) or (x2 > Image1.Width) or (x2 > Image1.Width) then
+  begin
+    Showmessage('Проверьте координаты точек');
+    exit;
+  end;
+
+  if (y1 > Image1.Height - 2) or (y2 > Image1.Height - 2) or (y2 > Image1.Height - 2) then
+  begin
+    Showmessage('Проверьте координаты точек');
+    exit;
+  end;
+
   IMage1.Canvas.Pen.Color := ColorRomb;
   IMage1.Canvas.Pen.Width := 5;
 
