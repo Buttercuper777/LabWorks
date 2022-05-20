@@ -1,0 +1,8 @@
+{
+  "runtimeOptions": {
+    "additionalProbingPaths": [
+      "C:\\Users\\webma\\.dotnet\\store\\|arch|\\|tfm|",
+      "C:\\Users\\webma\\.nuget\\packages"
+    ]
+  }
+}

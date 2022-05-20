@@ -1,0 +1,41 @@
+{
+  "Version": 1,
+  "ProjectMap": {
+    "34a08f38-9ed6-4fad-aed3-41f76631884e": {
+      "ProjectGuid": "34a08f38-9ed6-4fad-aed3-41f76631884e",
+      "DisplayName": "Elevator.WPF",
+      "ColorIndex": 0
+    },
+    "a2fe74e1-b743-11d0-ae1a-00a0c90fffc3": {
+      "ProjectGuid": "a2fe74e1-b743-11d0-ae1a-00a0c90fffc3",
+      "DisplayName": "Miscellaneous Files",
+      "ColorIndex": -1
+    },
+    "6dfc0b74-19a9-4c29-9d08-09739f49cfb6": {
+      "ProjectGuid": "6dfc0b74-19a9-4c29-9d08-09739f49cfb6",
+      "DisplayName": "Elevator.CLI",
+      "ColorIndex": 1
+    },
+    "de73ee4e-2b05-4bcd-a092-51609e89ac9f": {
+      "ProjectGuid": "de73ee4e-2b05-4bcd-a092-51609e89ac9f",
+      "DisplayName": "Elevator.API",
+      "ColorIndex": 2
+    },
+    "76e3352c-8513-4510-ab2f-f0ae1e64fdad": {
+      "ProjectGuid": "76e3352c-8513-4510-ab2f-f0ae1e64fdad",
+      "DisplayName": "Elevator.Models",
+      "ColorIndex": 3
+    },
+    "a609ad33-14e8-4016-b449-ecff2453df74": {
+      "ProjectGuid": "a609ad33-14e8-4016-b449-ecff2453df74",
+      "DisplayName": "Elevator.Domain",
+      "ColorIndex": 4
+    },
+    "99902001-6f2a-4f9f-a2af-caaf6e67dada": {
+      "ProjectGuid": "99902001-6f2a-4f9f-a2af-caaf6e67dada",
+      "DisplayName": "Elevator.API",
+      "ColorIndex": 5
+    }
+  },
+  "NextColorIndex": 6
+}

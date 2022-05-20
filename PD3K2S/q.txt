@@ -1,0 +1,2 @@
+Как остановить GIF-анимацию PictureBox после первого цикла С#?
+https://stackoverflow.com/questions/53634678/how-to-stop-picturebox-gif-animation-after-the-first-loop-c

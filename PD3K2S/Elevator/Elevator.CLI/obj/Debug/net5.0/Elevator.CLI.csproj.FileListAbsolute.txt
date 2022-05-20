@@ -1,0 +1,16 @@
+D:\GitProjects\PD3K2S\Elevator\Elevator.CLI\bin\Debug\net5.0\Elevator.CLI.exe
+D:\GitProjects\PD3K2S\Elevator\Elevator.CLI\bin\Debug\net5.0\Elevator.CLI.deps.json
+D:\GitProjects\PD3K2S\Elevator\Elevator.CLI\bin\Debug\net5.0\Elevator.CLI.runtimeconfig.json
+D:\GitProjects\PD3K2S\Elevator\Elevator.CLI\bin\Debug\net5.0\Elevator.CLI.runtimeconfig.dev.json
+D:\GitProjects\PD3K2S\Elevator\Elevator.CLI\bin\Debug\net5.0\Elevator.CLI.dll
+D:\GitProjects\PD3K2S\Elevator\Elevator.CLI\bin\Debug\net5.0\ref\Elevator.CLI.dll
+D:\GitProjects\PD3K2S\Elevator\Elevator.CLI\bin\Debug\net5.0\Elevator.CLI.pdb
+D:\GitProjects\PD3K2S\Elevator\Elevator.CLI\obj\Debug\net5.0\Elevator.CLI.csproj.AssemblyReference.cache
+D:\GitProjects\PD3K2S\Elevator\Elevator.CLI\obj\Debug\net5.0\Elevator.CLI.GeneratedMSBuildEditorConfig.editorconfig
+D:\GitProjects\PD3K2S\Elevator\Elevator.CLI\obj\Debug\net5.0\Elevator.CLI.AssemblyInfoInputs.cache
+D:\GitProjects\PD3K2S\Elevator\Elevator.CLI\obj\Debug\net5.0\Elevator.CLI.AssemblyInfo.cs
+D:\GitProjects\PD3K2S\Elevator\Elevator.CLI\obj\Debug\net5.0\Elevator.CLI.csproj.CoreCompileInputs.cache
+D:\GitProjects\PD3K2S\Elevator\Elevator.CLI\obj\Debug\net5.0\Elevator.CLI.dll
+D:\GitProjects\PD3K2S\Elevator\Elevator.CLI\obj\Debug\net5.0\ref\Elevator.CLI.dll
+D:\GitProjects\PD3K2S\Elevator\Elevator.CLI\obj\Debug\net5.0\Elevator.CLI.pdb
+D:\GitProjects\PD3K2S\Elevator\Elevator.CLI\obj\Debug\net5.0\Elevator.CLI.genruntimeconfig.cache
