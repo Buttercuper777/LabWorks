@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "D:\\GitProjects\\PD3K2S\\Elevator\\Elevator.WPF\\Elevator.WPF.csproj": {}
+    "D:\\GitProjects\\LabWorks\\PD3K2S\\Elevator\\Elevator.WPF\\Elevator.WPF.csproj": {}
   },
   "projects": {
-    "D:\\GitProjects\\PD3K2S\\Elevator\\Elevator.WPF\\Elevator.WPF.csproj": {
+    "D:\\GitProjects\\LabWorks\\PD3K2S\\Elevator\\Elevator.WPF\\Elevator.WPF.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\GitProjects\\PD3K2S\\Elevator\\Elevator.WPF\\Elevator.WPF.csproj",
+        "projectUniqueName": "D:\\GitProjects\\LabWorks\\PD3K2S\\Elevator\\Elevator.WPF\\Elevator.WPF.csproj",
         "projectName": "Elevator.WPF",
-        "projectPath": "D:\\GitProjects\\PD3K2S\\Elevator\\Elevator.WPF\\Elevator.WPF.csproj",
+        "projectPath": "D:\\GitProjects\\LabWorks\\PD3K2S\\Elevator\\Elevator.WPF\\Elevator.WPF.csproj",
         "packagesPath": "C:\\Users\\webma\\.nuget\\packages\\",
-        "outputPath": "D:\\GitProjects\\PD3K2S\\Elevator\\Elevator.WPF\\obj\\",
+        "outputPath": "D:\\GitProjects\\LabWorks\\PD3K2S\\Elevator\\Elevator.WPF\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\webma\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -43,6 +43,10 @@
             "Microsoft.AspNet.WebApi.Client": {
               "target": "Package",
               "version": "[5.2.8, )"
+            },
+            "Newtonsoft.Json": {
+              "target": "Package",
+              "version": "[13.0.1, )"
             },
             "System.Net.Http": {
               "target": "Package",

@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "IgtIi2vX2VGEFVsHUO7eVz0rqgoU1OmbKgvF7G+dEfvgerlfo7114H4rg8w0UrG4+w/CusmMRf+B4p17QRVQFA==",
+  "dgSpecHash": "g1oPAUPl+SMCq/b2Wy1SEjkmiVLtwzlIxN9+Y1EqhMDe+NXqsDsSUV3GM8zuot3R3BV8618KzVdQ6I8BkI1AwQ==",
   "success": true,
-  "projectFilePath": "D:\\GitProjects\\PD3K2S\\Elevator\\Elevator.CLI\\Elevator.CLI.csproj",
+  "projectFilePath": "D:\\GitProjects\\LabWorks\\PD3K2S\\Elevator\\Elevator.CLI\\Elevator.CLI.csproj",
   "expectedPackageFiles": [],
   "logs": []
 }

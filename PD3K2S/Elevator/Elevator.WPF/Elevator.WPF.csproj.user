@@ -4,7 +4,7 @@
     <Compile Update="ChooseLift.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Update="Form1.cs">
+    <Compile Update="ElevatorViewer.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Update="UserControl1.cs">

@@ -1,6 +1,6 @@
 ﻿namespace Elevator.WPF
 {
-    partial class Form1
+    partial class ElevatorViewer
     {
         /// <summary>
         ///  Required designer variable.
@@ -28,14 +28,15 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ElevatorViewer));
             this.LevelNumLabel = new System.Windows.Forms.Label();
             this.label = new System.Windows.Forms.Label();
             this.ElevCave = new System.Windows.Forms.PictureBox();
-            this.label1 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
+            this.DownLevel = new System.Windows.Forms.Label();
+            this.UpperLevel = new System.Windows.Forms.Label();
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
             this.userControl11 = new Elevator.WPF.UserControl1();
+            this.AddressVal = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.ElevCave)).BeginInit();
             this.SuspendLayout();
             // 
@@ -49,6 +50,7 @@
             this.LevelNumLabel.Size = new System.Drawing.Size(164, 128);
             this.LevelNumLabel.TabIndex = 0;
             this.LevelNumLabel.Text = "00";
+            this.LevelNumLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.LevelNumLabel.Click += new System.EventHandler(this.LevelNumLabel_Click);
             // 
             // label
@@ -64,6 +66,7 @@
             // 
             // ElevCave
             // 
+            this.ElevCave.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.ElevCave.Image = ((System.Drawing.Image)(resources.GetObject("ElevCave.Image")));
             this.ElevCave.Location = new System.Drawing.Point(218, 1);
             this.ElevCave.Name = "ElevCave";
@@ -71,35 +74,37 @@
             this.ElevCave.TabIndex = 2;
             this.ElevCave.TabStop = false;
             // 
-            // label1
+            // DownLevel
             // 
-            this.label1.AutoSize = true;
-            this.label1.BackColor = System.Drawing.Color.Transparent;
-            this.label1.Font = new System.Drawing.Font("Segoe UI", 36F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.label1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(179)))), ((int)(((byte)(144)))), ((int)(((byte)(80)))));
-            this.label1.Location = new System.Drawing.Point(62, 194);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(84, 65);
-            this.label1.TabIndex = 3;
-            this.label1.Text = "00";
+            this.DownLevel.AutoSize = true;
+            this.DownLevel.BackColor = System.Drawing.Color.Transparent;
+            this.DownLevel.Font = new System.Drawing.Font("Segoe UI", 36F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.DownLevel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(179)))), ((int)(((byte)(144)))), ((int)(((byte)(80)))));
+            this.DownLevel.Location = new System.Drawing.Point(62, 194);
+            this.DownLevel.Name = "DownLevel";
+            this.DownLevel.Size = new System.Drawing.Size(84, 65);
+            this.DownLevel.TabIndex = 3;
+            this.DownLevel.Text = "00";
+            this.DownLevel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // label2
+            // UpperLevel
             // 
-            this.label2.AutoSize = true;
-            this.label2.BackColor = System.Drawing.Color.Transparent;
-            this.label2.Font = new System.Drawing.Font("Segoe UI", 36F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.label2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(179)))), ((int)(((byte)(144)))), ((int)(((byte)(80)))));
-            this.label2.Location = new System.Drawing.Point(62, 41);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(84, 65);
-            this.label2.TabIndex = 4;
-            this.label2.Text = "00";
+            this.UpperLevel.AutoSize = true;
+            this.UpperLevel.BackColor = System.Drawing.Color.Transparent;
+            this.UpperLevel.Font = new System.Drawing.Font("Segoe UI", 36F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.UpperLevel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(179)))), ((int)(((byte)(144)))), ((int)(((byte)(80)))));
+            this.UpperLevel.Location = new System.Drawing.Point(62, 41);
+            this.UpperLevel.Name = "UpperLevel";
+            this.UpperLevel.Size = new System.Drawing.Size(84, 65);
+            this.UpperLevel.TabIndex = 4;
+            this.UpperLevel.Text = "00";
+            this.UpperLevel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // flowLayoutPanel1
             // 
             this.flowLayoutPanel1.Location = new System.Drawing.Point(12, 410);
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
-            this.flowLayoutPanel1.Size = new System.Drawing.Size(440, 297);
+            this.flowLayoutPanel1.Size = new System.Drawing.Size(440, 271);
             this.flowLayoutPanel1.TabIndex = 5;
             // 
             // userControl11
@@ -111,22 +116,38 @@
             this.userControl11.Name = "userControl11";
             this.userControl11.Size = new System.Drawing.Size(78, 78);
             this.userControl11.TabIndex = 6;
+            this.userControl11.Load += new System.EventHandler(this.userControl11_Load);
             // 
-            // Form1
+            // AddressVal
+            // 
+            this.AddressVal.AutoSize = true;
+            this.AddressVal.Font = new System.Drawing.Font("Segoe UI Semibold", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.AddressVal.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(188)))), ((int)(((byte)(77)))));
+            this.AddressVal.Location = new System.Drawing.Point(12, 685);
+            this.AddressVal.Name = "AddressVal";
+            this.AddressVal.Size = new System.Drawing.Size(126, 25);
+            this.AddressVal.TabIndex = 7;
+            this.AddressVal.Text = "Emty address";
+            this.AddressVal.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // ElevatorViewer
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(27)))), ((int)(((byte)(28)))), ((int)(((byte)(48)))));
             this.ClientSize = new System.Drawing.Size(464, 719);
+            this.Controls.Add(this.AddressVal);
             this.Controls.Add(this.userControl11);
             this.Controls.Add(this.flowLayoutPanel1);
-            this.Controls.Add(this.label2);
+            this.Controls.Add(this.UpperLevel);
             this.Controls.Add(this.ElevCave);
             this.Controls.Add(this.label);
             this.Controls.Add(this.LevelNumLabel);
-            this.Controls.Add(this.label1);
-            this.Name = "Form1";
-            this.Text = "Form1";
+            this.Controls.Add(this.DownLevel);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
+            this.Name = "ElevatorViewer";
+            this.Text = "ELEVATOR VIEWER";
+            this.Load += new System.EventHandler(this.ElevatorViewer_Load);
             ((System.ComponentModel.ISupportInitialize)(this.ElevCave)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -138,9 +159,10 @@
         private System.Windows.Forms.Label LevelNumLabel;
         private System.Windows.Forms.Label label;
         private System.Windows.Forms.PictureBox ElevCave;
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label DownLevel;
+        private System.Windows.Forms.Label UpperLevel;
         private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel1;
         private UserControl1 userControl11;
+        private System.Windows.Forms.Label AddressVal;
     }
 }

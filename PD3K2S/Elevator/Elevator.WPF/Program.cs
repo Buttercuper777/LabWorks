@@ -18,6 +18,15 @@ namespace Elevator.WPF
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             Application.Run(new ChooseLift());
+
+            if (SaverLiftId.LiftId != null)
+            {
+                Application.Run(new ElevatorViewer());
+            }
+            else
+            {
+                Application.Exit();
+            }
         }
     }
 }

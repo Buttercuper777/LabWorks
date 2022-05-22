@@ -50,12 +50,14 @@ namespace Elevator.API.Controllers
 
         [Route("editfloor")]
         [HttpPost]
-        public IActionResult EditActFloor([FromHeader] string id, [FromHeader]int floor)
+
+        public IActionResult EditActFloor([FromForm]string id, [FromForm] string floor)
         {
             var lift = _context.Find<Lift>(Guid.Parse(id));
             if(lift != null)
             {
-                lift.ActFloor = floor;
+                Int32.TryParse(floor, out int j);
+                lift.ActFloor = j;
                 _context.Update(lift);
                 _context.SaveChanges();
             }

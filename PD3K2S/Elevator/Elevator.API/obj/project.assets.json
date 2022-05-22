@@ -1040,11 +1040,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\GitProjects\\PD3K2S\\Elevator\\Elevator.API\\Elevator.API.csproj",
+      "projectUniqueName": "D:\\GitProjects\\LabWorks\\PD3K2S\\Elevator\\Elevator.API\\Elevator.API.csproj",
       "projectName": "Elevator.API",
-      "projectPath": "D:\\GitProjects\\PD3K2S\\Elevator\\Elevator.API\\Elevator.API.csproj",
+      "projectPath": "D:\\GitProjects\\LabWorks\\PD3K2S\\Elevator\\Elevator.API\\Elevator.API.csproj",
       "packagesPath": "C:\\Users\\webma\\.nuget\\packages\\",
-      "outputPath": "D:\\GitProjects\\PD3K2S\\Elevator\\Elevator.API\\obj\\",
+      "outputPath": "D:\\GitProjects\\LabWorks\\PD3K2S\\Elevator\\Elevator.API\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\webma\\AppData\\Roaming\\NuGet\\NuGet.Config",
