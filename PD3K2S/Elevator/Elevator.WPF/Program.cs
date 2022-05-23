@@ -22,6 +22,7 @@ namespace Elevator.WPF
             if (SaverLiftId.LiftId != null)
             {
                 Application.Run(new ElevatorViewer());
+                
             }
             else
             {

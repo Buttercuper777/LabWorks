@@ -33,10 +33,8 @@ D:\GitProjects\LabWorks\PD3K2S\Elevator\Elevator.WPF\bin\Debug\net5.0-windows\El
 D:\GitProjects\LabWorks\PD3K2S\Elevator\Elevator.WPF\bin\Debug\net5.0-windows\System.Net.Http.Formatting.dll
 D:\GitProjects\LabWorks\PD3K2S\Elevator\Elevator.WPF\bin\Debug\net5.0-windows\Newtonsoft.Json.dll
 D:\GitProjects\LabWorks\PD3K2S\Elevator\Elevator.WPF\bin\Debug\net5.0-windows\Newtonsoft.Json.Bson.dll
-D:\GitProjects\LabWorks\PD3K2S\Elevator\Elevator.WPF\obj\Debug\net5.0-windows\Elevator.WPF.csproj.AssemblyReference.cache
 D:\GitProjects\LabWorks\PD3K2S\Elevator\Elevator.WPF\obj\Debug\net5.0-windows\Elevator.WPF.ChooseLift.resources
 D:\GitProjects\LabWorks\PD3K2S\Elevator\Elevator.WPF\obj\Debug\net5.0-windows\Elevator.WPF.Properties.Resources.resources
-D:\GitProjects\LabWorks\PD3K2S\Elevator\Elevator.WPF\obj\Debug\net5.0-windows\Elevator.WPF.UserControl1.resources
 D:\GitProjects\LabWorks\PD3K2S\Elevator\Elevator.WPF\obj\Debug\net5.0-windows\Elevator.WPF.csproj.GenerateResource.cache
 D:\GitProjects\LabWorks\PD3K2S\Elevator\Elevator.WPF\obj\Debug\net5.0-windows\Elevator.WPF.GeneratedMSBuildEditorConfig.editorconfig
 D:\GitProjects\LabWorks\PD3K2S\Elevator\Elevator.WPF\obj\Debug\net5.0-windows\Elevator.WPF.AssemblyInfoInputs.cache
@@ -48,3 +46,7 @@ D:\GitProjects\LabWorks\PD3K2S\Elevator\Elevator.WPF\obj\Debug\net5.0-windows\re
 D:\GitProjects\LabWorks\PD3K2S\Elevator\Elevator.WPF\obj\Debug\net5.0-windows\Elevator.WPF.pdb
 D:\GitProjects\LabWorks\PD3K2S\Elevator\Elevator.WPF\obj\Debug\net5.0-windows\Elevator.WPF.genruntimeconfig.cache
 D:\GitProjects\LabWorks\PD3K2S\Elevator\Elevator.WPF\obj\Debug\net5.0-windows\Elevator.WPF.ElevatorViewer.resources
+D:\GitProjects\LabWorks\PD3K2S\Elevator\Elevator.WPF\obj\Debug\net5.0-windows\Elevator.WPF.ElevatorButton.resources
+D:\GitProjects\LabWorks\PD3K2S\Elevator\Elevator.WPF\obj\Debug\net5.0-windows\Elevator.WPF.csproj.AssemblyReference.cache
+D:\GitProjects\LabWorks\PD3K2S\Elevator\Elevator.WPF\bin\Debug\net5.0-windows\Elevator.MoveController.dll
+D:\GitProjects\LabWorks\PD3K2S\Elevator\Elevator.WPF\bin\Debug\net5.0-windows\Elevator.MoveController.pdb

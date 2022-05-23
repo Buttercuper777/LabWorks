@@ -35,8 +35,8 @@
             this.DownLevel = new System.Windows.Forms.Label();
             this.UpperLevel = new System.Windows.Forms.Label();
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
-            this.userControl11 = new Elevator.WPF.UserControl1();
             this.AddressVal = new System.Windows.Forms.Label();
+            this.flowLayoutPanel2 = new System.Windows.Forms.FlowLayoutPanel();
             ((System.ComponentModel.ISupportInitialize)(this.ElevCave)).BeginInit();
             this.SuspendLayout();
             // 
@@ -102,21 +102,12 @@
             // 
             // flowLayoutPanel1
             // 
-            this.flowLayoutPanel1.Location = new System.Drawing.Point(12, 410);
+            this.flowLayoutPanel1.AutoScroll = true;
+            this.flowLayoutPanel1.Location = new System.Drawing.Point(20, 305);
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
-            this.flowLayoutPanel1.Size = new System.Drawing.Size(440, 271);
+            this.flowLayoutPanel1.Size = new System.Drawing.Size(426, 266);
             this.flowLayoutPanel1.TabIndex = 5;
-            // 
-            // userControl11
-            // 
-            this.userControl11.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(106)))), ((int)(((byte)(110)))), ((int)(((byte)(189)))));
-            this.userControl11.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.userControl11.ForeColor = System.Drawing.Color.Transparent;
-            this.userControl11.Location = new System.Drawing.Point(25, 326);
-            this.userControl11.Name = "userControl11";
-            this.userControl11.Size = new System.Drawing.Size(78, 78);
-            this.userControl11.TabIndex = 6;
-            this.userControl11.Load += new System.EventHandler(this.userControl11_Load);
+            this.flowLayoutPanel1.Paint += new System.Windows.Forms.PaintEventHandler(this.flowLayoutPanel1_Paint);
             // 
             // AddressVal
             // 
@@ -130,14 +121,22 @@
             this.AddressVal.Text = "Emty address";
             this.AddressVal.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
+            // flowLayoutPanel2
+            // 
+            this.flowLayoutPanel2.AutoScroll = true;
+            this.flowLayoutPanel2.Location = new System.Drawing.Point(20, 577);
+            this.flowLayoutPanel2.Name = "flowLayoutPanel2";
+            this.flowLayoutPanel2.Size = new System.Drawing.Size(426, 86);
+            this.flowLayoutPanel2.TabIndex = 8;
+            // 
             // ElevatorViewer
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(27)))), ((int)(((byte)(28)))), ((int)(((byte)(48)))));
             this.ClientSize = new System.Drawing.Size(464, 719);
+            this.Controls.Add(this.flowLayoutPanel2);
             this.Controls.Add(this.AddressVal);
-            this.Controls.Add(this.userControl11);
             this.Controls.Add(this.flowLayoutPanel1);
             this.Controls.Add(this.UpperLevel);
             this.Controls.Add(this.ElevCave);
@@ -162,7 +161,7 @@
         private System.Windows.Forms.Label DownLevel;
         private System.Windows.Forms.Label UpperLevel;
         private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel1;
-        private UserControl1 userControl11;
         private System.Windows.Forms.Label AddressVal;
+        private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel2;
     }
 }

@@ -8,6 +8,7 @@
     ".NETCoreApp,Version=v5.0": {
       "Elevator.WPF/1.0.0": {
         "dependencies": {
+          "Elevator.MoveController": "1.0.0",
           "Microsoft.AspNet.WebApi.Client": "5.2.8",
           "Newtonsoft.Json": "13.0.1",
           "System.Net.Http": "4.3.4"
@@ -713,6 +714,11 @@
           "System.Threading": "4.3.0",
           "System.Xml.ReaderWriter": "4.3.0"
         }
+      },
+      "Elevator.MoveController/1.0.0": {
+        "runtime": {
+          "Elevator.MoveController.dll": {}
+        }
       }
     }
   },
@@ -1253,6 +1259,11 @@
       "sha512": "sha512-5zJ0XDxAIg8iy+t4aMnQAu0MqVbqyvfoUVl1yDV61xdo3Vth45oA2FoY4pPkxYAH5f8ixpmTqXeEIya95x0aCQ==",
       "path": "system.xml.xdocument/4.3.0",
       "hashPath": "system.xml.xdocument.4.3.0.nupkg.sha512"
+    },
+    "Elevator.MoveController/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
     }
   }
 }

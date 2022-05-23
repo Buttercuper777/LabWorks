@@ -1224,6 +1224,16 @@
         "runtime": {
           "lib/netstandard1.3/System.Xml.XDocument.dll": {}
         }
+      },
+      "Elevator.MoveController/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v5.0",
+        "compile": {
+          "bin/placeholder/Elevator.MoveController.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/Elevator.MoveController.dll": {}
+        }
       }
     }
   },
@@ -4517,10 +4527,16 @@
         "system.xml.xdocument.4.3.0.nupkg.sha512",
         "system.xml.xdocument.nuspec"
       ]
+    },
+    "Elevator.MoveController/1.0.0": {
+      "type": "project",
+      "path": "../Elevator.MoveController/Elevator.MoveController.csproj",
+      "msbuildProject": "../Elevator.MoveController/Elevator.MoveController.csproj"
     }
   },
   "projectFileDependencyGroups": {
     "net5.0-windows7.0": [
+      "Elevator.MoveController >= 1.0.0",
       "Microsoft.AspNet.WebApi.Client >= 5.2.8",
       "Newtonsoft.Json >= 13.0.1",
       "System.Net.Http >= 4.3.4"
@@ -4552,7 +4568,11 @@
       "frameworks": {
         "net5.0-windows7.0": {
           "targetAlias": "net5.0-windows",
-          "projectReferences": {}
+          "projectReferences": {
+            "D:\\GitProjects\\LabWorks\\PD3K2S\\Elevator\\Elevator.MoveController\\Elevator.MoveController.csproj": {
+              "projectPath": "D:\\GitProjects\\LabWorks\\PD3K2S\\Elevator\\Elevator.MoveController\\Elevator.MoveController.csproj"
+            }
+          }
         }
       },
       "warningProperties": {

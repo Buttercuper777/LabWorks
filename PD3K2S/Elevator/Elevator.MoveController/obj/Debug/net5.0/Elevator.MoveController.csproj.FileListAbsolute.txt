@@ -1,0 +1,12 @@
+D:\GitProjects\LabWorks\PD3K2S\Elevator\Elevator.MoveController\bin\Debug\net5.0\Elevator.MoveController.deps.json
+D:\GitProjects\LabWorks\PD3K2S\Elevator\Elevator.MoveController\bin\Debug\net5.0\Elevator.MoveController.dll
+D:\GitProjects\LabWorks\PD3K2S\Elevator\Elevator.MoveController\bin\Debug\net5.0\ref\Elevator.MoveController.dll
+D:\GitProjects\LabWorks\PD3K2S\Elevator\Elevator.MoveController\bin\Debug\net5.0\Elevator.MoveController.pdb
+D:\GitProjects\LabWorks\PD3K2S\Elevator\Elevator.MoveController\obj\Debug\net5.0\Elevator.MoveController.csproj.AssemblyReference.cache
+D:\GitProjects\LabWorks\PD3K2S\Elevator\Elevator.MoveController\obj\Debug\net5.0\Elevator.MoveController.GeneratedMSBuildEditorConfig.editorconfig
+D:\GitProjects\LabWorks\PD3K2S\Elevator\Elevator.MoveController\obj\Debug\net5.0\Elevator.MoveController.AssemblyInfoInputs.cache
+D:\GitProjects\LabWorks\PD3K2S\Elevator\Elevator.MoveController\obj\Debug\net5.0\Elevator.MoveController.AssemblyInfo.cs
+D:\GitProjects\LabWorks\PD3K2S\Elevator\Elevator.MoveController\obj\Debug\net5.0\Elevator.MoveController.csproj.CoreCompileInputs.cache
+D:\GitProjects\LabWorks\PD3K2S\Elevator\Elevator.MoveController\obj\Debug\net5.0\Elevator.MoveController.dll
+D:\GitProjects\LabWorks\PD3K2S\Elevator\Elevator.MoveController\obj\Debug\net5.0\ref\Elevator.MoveController.dll
+D:\GitProjects\LabWorks\PD3K2S\Elevator\Elevator.MoveController\obj\Debug\net5.0\Elevator.MoveController.pdb

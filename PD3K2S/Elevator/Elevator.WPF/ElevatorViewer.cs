@@ -8,6 +8,7 @@ using System.Drawing;
 using System.Linq;
 using System.Net.Http;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -104,9 +105,54 @@ namespace Elevator.WPF
 
         }
 
+        private void CheckerActFloor_t()
+        {
+            ActFloorChecker _actFloorChecker = new ActFloorChecker();
+            ActFloorChecker actFloorChecker = new ActFloorChecker();
+            Thread CheckerThread = new Thread(new ThreadStart(actFloorChecker.StartChecker));
+
+            CheckerThread.Priority = ThreadPriority.BelowNormal;
+            CheckerThread.Name = "CheckerActFloor_t";
+
+            CheckerThread.Start();
+
+        }
+
         private void ModelRebuilder(string model)
         {
             ElevatorData = JsonConvert.DeserializeObject<Employee>(model);
+            LocalFloor.localFloor = ElevatorData.ActFloor;
+        }
+
+        private void LevelsShower(int floors_num, bool isBasement)
+        {
+            ElevatorButton[] LevelsList = new ElevatorButton[floors_num];
+
+            for (int i = 0; i < LevelsList.Length; i++)
+            {
+                LevelsList[i] = new ElevatorButton();
+                if (i+1 >= 10)
+                {
+                    if (isBasement)
+                        LevelsList[i].FloorNum = ((i + 1) * (-1)).ToString();
+                    else
+                        LevelsList[i].FloorNum = ((i + 1)).ToString();
+                }
+
+                else
+                {
+                    if (isBasement)
+                        LevelsList[i].FloorNum = ((i + 1) * (-1)).ToString();
+                    else
+                        LevelsList[i].FloorNum = "0" + (i + 1).ToString();
+                }
+
+                if(!isBasement)
+                    flowLayoutPanel1.Controls.Add(LevelsList[i]);
+                else
+                    flowLayoutPanel2.Controls.Add(LevelsList[i]);
+
+            }
         }
 
         public ElevatorViewer()
@@ -179,19 +225,23 @@ namespace Elevator.WPF
                     var editfloor = await RestHelper.EditFloor(ElevatorData.Id.ToString(), 1);
                     ModelRebuilder(editfloor);
                 }
-                else if(Math.Abs(ElevatorData.ActFloor) > ElevatorData.NumOfBasements)
+                else if((ElevatorData.ActFloor) < ElevatorData.NumOfBasements * (-1))
                 {
                     var editfloor = await RestHelper.EditFloor(ElevatorData.Id.ToString(), 1);
                     ModelRebuilder(editfloor);
                 }
 
 
-                //MessageBox.Show(editfloor.ToString(), "Post", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                AddressVal.Text = ElevatorData.Adress.ToString();                   
+                LevelSwitcher(LocalFloor.localFloor);
 
-                AddressVal.Text = ElevatorData.Adress.ToString();                   //Start Address
-                LevelSwitcher(ElevatorData.ActFloor);
+                LevelsShower(ElevatorData.NumOfFloors, false);
+                if(ElevatorData.NumOfBasements > 0)
+                    LevelsShower(ElevatorData.NumOfBasements, true);
 
 
+                CheckerActFloor_t();
+                
 
 
             }
@@ -201,6 +251,11 @@ namespace Elevator.WPF
                 MessageBox.Show("Проверьте соединение с сервером:\n " + ex.Message, "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 Application.Exit();
             }
+        }
+
+        private void flowLayoutPanel1_Paint(object sender, PaintEventArgs e)
+        {
+
         }
     }
 }
