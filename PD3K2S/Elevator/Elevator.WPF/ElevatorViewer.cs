@@ -19,6 +19,25 @@ namespace Elevator.WPF
         Employee ElevatorData = new Employee();
 
 
+        public void AnimActions(int actlevel, int prevlevel)
+        {
+            if (actlevel < prevlevel)
+            {
+                elevatorPointers1.Visible = true;
+                elevatorPointers1.Direction = true;
+            }
+            else if (actlevel == prevlevel)
+            {
+                elevatorPointers1.Visible = false;
+                elevatorPointers1.Clear();
+            }
+            else
+            {
+                elevatorPointers1.Visible = true;
+                elevatorPointers1.Direction = false;
+            }
+        }
+
         public void LevelSwitcher(int actlevel)
         {
 
@@ -113,7 +132,7 @@ namespace Elevator.WPF
                 {
                     Invoke((MethodInvoker)(() => 
                         {
-                            actFloorChecker.StartChecker(this);
+                            actFloorChecker.StartChecker(this ,ElevatorData);
                         }
                     )); 
                 }
@@ -129,7 +148,7 @@ namespace Elevator.WPF
         private void ModelRebuilder(string model)
         {
             ElevatorData = JsonConvert.DeserializeObject<Employee>(model);
-            LocalFloor.localFloor = ElevatorData.ActFloor;
+            
         }
 
         private void LevelsShower(int floors_num, bool isBasement)
@@ -168,20 +187,6 @@ namespace Elevator.WPF
             InitializeComponent();
         }
 
-        private void LevelNumLabel_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void pictureBox1_Click(object sender, EventArgs e)
-        {
-           
-        }
-
-        private void userControl11_Load(object sender, EventArgs e)
-        {
-
-        }
 
         private async void ElevatorViewer_Load(object sender, EventArgs e)
         {
@@ -190,13 +195,13 @@ namespace Elevator.WPF
             LoadWindow.StartPosition = FormStartPosition.CenterScreen;
             LoadWindow.Size = new System.Drawing.Size(230, 150);
 
-            Label lbl = new Label(); // Новый экземпляр
+            Label lbl = new Label(); 
             lbl.Font = new Font("Arial", 20);
             lbl.AutoSize = false;
             lbl.TextAlign = ContentAlignment.MiddleCenter;
             lbl.Dock = DockStyle.Fill;
             lbl.Text = "Загрузка...";
-            LoadWindow.Controls.Add(lbl); // выбор контейнера
+            LoadWindow.Controls.Add(lbl); 
 
             LoadWindow.Show();
 
@@ -225,8 +230,6 @@ namespace Elevator.WPF
                     Application.Exit();
                 }
 
-                //var startFloor = await RestHelper.EditFloor(ElevatorData.Id.ToString(), 20);
-                //ModelRebuilder(startFloor);
 
                 if (ElevatorData.ActFloor > ElevatorData.NumOfFloors)
                 {
@@ -241,16 +244,17 @@ namespace Elevator.WPF
 
 
                 AddressVal.Text = ElevatorData.Adress.ToString();                   
-                LevelSwitcher(LocalFloor.localFloor);
+                LevelSwitcher(ElevatorData.ActFloor);
 
                 LevelsShower(ElevatorData.NumOfFloors, false);
                 if(ElevatorData.NumOfBasements > 0)
                     LevelsShower(ElevatorData.NumOfBasements, true);
 
 
-                CheckerActFloor_t();
-                
+                //elevatorPointers1.Vis = false;
+                //elevatorPointers1.Direction = true;
 
+                CheckerActFloor_t();
 
             }
             catch (Exception ex)

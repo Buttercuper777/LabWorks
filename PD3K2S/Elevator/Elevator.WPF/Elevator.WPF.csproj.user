@@ -7,6 +7,9 @@
     <Compile Update="ElevatorButton.cs">
       <SubType>UserControl</SubType>
     </Compile>
+    <Compile Update="ElevatorPointers.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
     <Compile Update="ElevatorViewer.cs">
       <SubType>Form</SubType>
     </Compile>

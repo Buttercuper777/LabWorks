@@ -14,7 +14,7 @@ namespace Elevator.WPF
     class ActFloorChecker
     {
 
-        public async void StartChecker(ElevatorViewer ev)
+        public async void StartChecker(ElevatorViewer ev, Employee prev)
         {
             while (true)
             {
@@ -25,22 +25,27 @@ namespace Elevator.WPF
                     var resJsonString = await RestHelper.GetById(SaverLiftId.LiftId);
                     Employee actState = JsonConvert.DeserializeObject<Employee>(resJsonString);
 
-                    if (actState.ActFloor != LocalFloor.localFloor)
+                    if (actState.ActFloor != prev.ActFloor)
                     {
+                        ev.AnimActions(prev.ActFloor, actState.ActFloor);
 
-                        if (LocalFloor.localFloor < actState.ActFloor)
+                        if (prev.ActFloor < actState.ActFloor)
                         {
-                            LocalFloor.localFloor = await _moveController.LiftUp(LocalFloor.localFloor);
-                            ev.LevelSwitcher(LocalFloor.localFloor);
+                            prev.ActFloor = await _moveController.LiftUp(prev.ActFloor);
+                            ev.LevelSwitcher(prev.ActFloor);
 
                         }
-                        if (LocalFloor.localFloor > actState.ActFloor)
+                        if (prev.ActFloor > actState.ActFloor)
                         {
-                            LocalFloor.localFloor =  _moveController.liftDown();
+                            prev.ActFloor = await _moveController.liftDown(prev.ActFloor);
+                            ev.LevelSwitcher(prev.ActFloor);
                         }
                     }
                     else
+                    {
+                        ev.AnimActions(prev.ActFloor, actState.ActFloor);
                         Console.WriteLine("Scan...");
+                    }
                 }
                 catch (Exception ex)
                 {

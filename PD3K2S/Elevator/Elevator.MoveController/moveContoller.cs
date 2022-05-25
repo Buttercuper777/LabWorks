@@ -5,16 +5,25 @@ namespace Elevator.MoveController
 {
     public class moveContoller
     {
-        public async Task<int> LiftUp(int actLevel)
-        {
-            actLevel += 1;
-            await Task.Delay(5000);
-            return actLevel;
+        public async Task<int> LiftUp(int actLevel) {
+
+            await Task.Delay(1000);
+
+            if (actLevel + 1 == 0)
+                return actLevel + 2;
+            else
+                return actLevel + 1;
+
         }
 
-        public int liftDown()
+        public async Task<int> liftDown(int actLevel)
         {
-            return -1;
+            await Task.Delay(1000);
+
+            if (actLevel - 1 == 0)
+                return actLevel - 2;
+            else
+                return actLevel - 1;
         }
     }
 }

@@ -50,3 +50,4 @@ D:\GitProjects\LabWorks\PD3K2S\Elevator\Elevator.WPF\obj\Debug\net5.0-windows\El
 D:\GitProjects\LabWorks\PD3K2S\Elevator\Elevator.WPF\obj\Debug\net5.0-windows\Elevator.WPF.csproj.AssemblyReference.cache
 D:\GitProjects\LabWorks\PD3K2S\Elevator\Elevator.WPF\bin\Debug\net5.0-windows\Elevator.MoveController.dll
 D:\GitProjects\LabWorks\PD3K2S\Elevator\Elevator.WPF\bin\Debug\net5.0-windows\Elevator.MoveController.pdb
+D:\GitProjects\LabWorks\PD3K2S\Elevator\Elevator.WPF\obj\Debug\net5.0-windows\Elevator.WPF.ElevatorPointers.resources
