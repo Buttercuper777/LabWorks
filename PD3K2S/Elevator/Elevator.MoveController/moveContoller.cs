@@ -8,7 +8,7 @@ namespace Elevator.MoveController
         public async Task<int> LiftUp(int actLevel)
         {
             actLevel += 1;
-            await Task.Delay(10000);
+            await Task.Delay(5000);
             return actLevel;
         }
 

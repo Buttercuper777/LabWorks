@@ -7,48 +7,51 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using Elevator.MoveController;
+using System.Windows.Forms;
 
 namespace Elevator.WPF
 {
     class ActFloorChecker
     {
-        public int levelNow;
 
-        public async void StartChecker()
+        public async void StartChecker(ElevatorViewer ev)
         {
             while (true)
             {
-                Thread thread = Thread.CurrentThread;
-                moveContoller _moveController = new moveContoller();
-
-                var resJsonString = await RestHelper.GetById(SaverLiftId.LiftId);
-                Employee actState = JsonConvert.DeserializeObject<Employee>(resJsonString);
-
-                if(actState.ActFloor != LocalFloor.localFloor)
+                try
                 {
+                    moveContoller _moveController = new moveContoller();
 
-                    Console.WriteLine("Chenged: " + actState.ActFloor.ToString());
-                    if (LocalFloor.localFloor < actState.ActFloor)
+                    var resJsonString = await RestHelper.GetById(SaverLiftId.LiftId);
+                    Employee actState = JsonConvert.DeserializeObject<Employee>(resJsonString);
+
+                    if (actState.ActFloor != LocalFloor.localFloor)
                     {
-                        LocalFloor.localFloor = await _moveController.LiftUp(LocalFloor.localFloor);
-                        levelNow = LocalFloor.localFloor;
+
+                        if (LocalFloor.localFloor < actState.ActFloor)
+                        {
+                            LocalFloor.localFloor = await _moveController.LiftUp(LocalFloor.localFloor);
+                            ev.LevelSwitcher(LocalFloor.localFloor);
+
+                        }
+                        if (LocalFloor.localFloor > actState.ActFloor)
+                        {
+                            LocalFloor.localFloor =  _moveController.liftDown();
+                        }
                     }
-                    if (LocalFloor.localFloor > actState.ActFloor)
-                    {
-                        LocalFloor.localFloor =  _moveController.liftDown();
-                    }
+                    else
+                        Console.WriteLine("Scan...");
                 }
-                else
-                    Console.WriteLine("Scan...");
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.ToString(), "", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    continue;
+                }
 
-
-                Thread.Sleep(1000);
+                await Task.Delay(200);
             }
         }
 
-        public int actLevelNow()
-        {
-            return levelNow;
-        }
+
     }
 }

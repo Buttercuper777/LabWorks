@@ -19,13 +19,13 @@ namespace Elevator.WPF
         Employee ElevatorData = new Employee();
 
 
-        private void LevelSwitcher(int actlevel)
+        public void LevelSwitcher(int actlevel)
         {
 
-            if (ElevatorData.ActFloor < 10 && ElevatorData.ActFloor > 0)                                      
-                LevelNumLabel.Text = "0" + ElevatorData.ActFloor.ToString();
+            if (actlevel < 10 && actlevel > 0)                                      
+                LevelNumLabel.Text = "0" + actlevel.ToString();
             else
-                LevelNumLabel.Text = ElevatorData.ActFloor.ToString();
+                LevelNumLabel.Text = actlevel.ToString();
 
 
             if(actlevel > 0 && actlevel < ElevatorData.NumOfFloors)
@@ -107,9 +107,17 @@ namespace Elevator.WPF
 
         private void CheckerActFloor_t()
         {
-            ActFloorChecker _actFloorChecker = new ActFloorChecker();
+
             ActFloorChecker actFloorChecker = new ActFloorChecker();
-            Thread CheckerThread = new Thread(new ThreadStart(actFloorChecker.StartChecker));
+            Thread CheckerThread = new Thread(() =>
+                {
+                    Invoke((MethodInvoker)(() => 
+                        {
+                            actFloorChecker.StartChecker(this);
+                        }
+                    )); 
+                }
+            );
 
             CheckerThread.Priority = ThreadPriority.BelowNormal;
             CheckerThread.Name = "CheckerActFloor_t";
