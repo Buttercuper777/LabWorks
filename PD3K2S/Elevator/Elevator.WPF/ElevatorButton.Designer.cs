@@ -42,6 +42,8 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(72, 72);
             this.panel1.TabIndex = 0;
+            this.panel1.Click += new System.EventHandler(this.panel1_Click);
+
             // 
             // FloorNumber
             // 

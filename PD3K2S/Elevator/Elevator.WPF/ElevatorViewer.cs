@@ -25,16 +25,21 @@ namespace Elevator.WPF
             {
                 elevatorPointers1.Visible = true;
                 elevatorPointers1.Direction = true;
+                ElevCave.Image = Image.FromFile("Images/elev-sectors-animation-3.gif");
+                ElevCave.Enabled = true;
             }
             else if (actlevel == prevlevel)
             {
                 elevatorPointers1.Visible = false;
                 elevatorPointers1.Clear();
+                ElevCave.Enabled = false;
             }
             else
             {
                 elevatorPointers1.Visible = true;
                 elevatorPointers1.Direction = false;
+                ElevCave.Image = Image.FromFile("Images/elev-anim-to-down.gif");
+                ElevCave.Enabled = true;
             }
         }
 
@@ -157,21 +162,33 @@ namespace Elevator.WPF
 
             for (int i = 0; i < LevelsList.Length; i++)
             {
-                LevelsList[i] = new ElevatorButton();
+                LevelsList[i] = new ElevatorButton(ElevatorData.Id);
                 if (i+1 >= 10)
                 {
                     if (isBasement)
+                    {
                         LevelsList[i].FloorNum = ((i + 1) * (-1)).ToString();
+                        LevelsList[i].GoToFloor = ((i + 1) * (-1));
+                    }
                     else
+                    {
                         LevelsList[i].FloorNum = ((i + 1)).ToString();
+                        LevelsList[i].GoToFloor = ((i + 1));
+                    }
                 }
 
                 else
                 {
                     if (isBasement)
+                    {
                         LevelsList[i].FloorNum = ((i + 1) * (-1)).ToString();
+                        LevelsList[i].GoToFloor = ((i + 1) * (-1));
+                    }
                     else
+                    {
                         LevelsList[i].FloorNum = "0" + (i + 1).ToString();
+                        LevelsList[i].GoToFloor = ((i + 1));
+                    }
                 }
 
                 if(!isBasement)
